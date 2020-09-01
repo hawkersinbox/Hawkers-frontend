@@ -8,6 +8,7 @@ import 'package:hawkers/Screens/addCommunity.dart';
 import 'package:hawkers/Screens/addProducts.dart';
 import 'package:hawkers/Screens/communities.dart';
 import 'package:hawkers/Screens/products.dart';
+import 'package:hawkers/Screens/productsReview.dart';
 import 'package:hawkers/Screens/registrationScreen.dart';
 import 'package:hawkers/Screens/otpScreen.dart';
 import 'package:hawkers/Screens/userRequest.dart';
@@ -46,7 +47,7 @@ class MyApp extends StatelessWidget {
 
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomeScreen(),
+      home: ProductReview(),
       routes: {
         Otp.routeName: (ctx) => Otp(),
         Login.routeName: (ctx) => Login(),
