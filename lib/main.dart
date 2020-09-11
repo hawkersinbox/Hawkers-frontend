@@ -5,19 +5,19 @@ import 'package:hawkers/Provider/getProduct.dart';
 import 'package:hawkers/Screens/HomeScreen.dart';
 import 'package:hawkers/Screens/adminApproval/adminApproval.dart';
 import 'package:hawkers/Screens/community/addCommunity.dart';
-import 'package:hawkers/Screens/logout.dart';
+import 'package:hawkers/Screens/paymentDetails.dart';
 import 'package:hawkers/Screens/product/addProducts.dart';
 import 'package:hawkers/Screens/community/communities.dart';
 import 'package:hawkers/Screens/product/productReview.dart';
 import 'package:hawkers/Screens/product/products.dart';
-import 'package:hawkers/Screens/profile.dart';
+import 'file:///D:/git2/Hawkers-frontend/lib/Screens/Account/profile.dart';
 import 'package:hawkers/Screens/registrationScreen.dart';
 import 'package:hawkers/Screens/otpScreen.dart';
 import 'package:hawkers/Screens/salesRequest/salesRequest.dart';
 import 'package:hawkers/Screens/splashScreen.dart';
 import 'package:hawkers/Provider/user.dart';
 import 'package:hawkers/Screens/help.dart';
-import 'package:hawkers/Screens/updateProfile.dart';
+import 'file:///D:/git2/Hawkers-frontend/lib/Screens/Account/updateProfile.dart';
 import 'package:provider/provider.dart';
 
 import 'Screens/loginScreen.dart';
@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.green,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home:AdminApproval(),
+        home: SplashScreen(),
         routes: {
           // CreateSalesRequest.routeName: (ctx) => CreateSalesRequest(),
           SplashScreen.routeName: (ctx) => SplashScreen(),

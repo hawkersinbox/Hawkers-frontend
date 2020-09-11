@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hawkers/Screens/HomeScreen.dart';
+import 'file:///D:/git2/Hawkers-frontend/lib/Screens/Account/account.dart';
 
 class NavigationBar extends StatefulWidget {
   @override
@@ -25,18 +27,28 @@ class _NavigationBarState extends State<NavigationBar> {
                     color:Colors.black,
                     size:40),
 
-                Icon(Icons.home,
-                    color:Colors.black,
-                    size:40),
-                Icon(Icons.person_outline,
-                    color:Colors.black,
-                    size:40),
+                InkWell(
+                  onTap: (){
+                    Navigator.push(context,MaterialPageRoute(builder: (context)=>HomeScreen()));
+                  },
+                  child: Icon(Icons.home,
+                      color:Colors.black,
+                      size:40),
+                ),
+                InkWell(
+                  onTap: (){
+                    Navigator.push(context,MaterialPageRoute(builder: (context)=>Account()));
+                  },
+                  child: Icon(Icons.person_outline,
+                      color:Colors.black,
+                      size:40),
+                ),
 
               ],
             )
           ],
         ),
       ),
-    );;
+    );
   }
 }

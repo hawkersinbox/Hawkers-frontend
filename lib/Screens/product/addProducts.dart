@@ -5,6 +5,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:hawkers/Models/priceRange.dart';
 import 'package:hawkers/Models/subcategory.dart';
 import 'package:hawkers/Provider/getProduct.dart';
+import 'package:hawkers/Screens/product/productReview.dart';
 import 'package:hawkers/Services/api.dart';
 import 'package:hawkers/Widgets/navigationBar.dart';
 import 'package:provider/provider.dart';
@@ -304,6 +305,7 @@ class _AddProductsState extends State<AddProducts> {
                             onPressed: () {
                               FocusScope.of(context).requestFocus(FocusNode());
                               _addProduct();
+                              Navigator.push(context,MaterialPageRoute(builder: (context)=>ProductReview()));
                             },
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular((3))),

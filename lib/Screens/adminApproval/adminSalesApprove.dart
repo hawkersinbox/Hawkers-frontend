@@ -4,6 +4,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:hawkers/Widgets/navigationBar.dart';
 
 class AdminSalesApprove extends StatefulWidget {
+  static const routeName = '/admin-sales';
   @override
   _AdminSalesApproveState createState() => _AdminSalesApproveState();
 }

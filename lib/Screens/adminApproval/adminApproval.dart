@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hawkers/Screens/adminApproval/adminSalesApprove.dart';
 import 'package:hawkers/Widgets/communityApproval.dart';
 
 class AdminApproval extends StatefulWidget {
+  static const routeName = '/admin-approval';
   @override
   _AdminApprovalState createState() => _AdminApprovalState();
 }
@@ -158,54 +160,59 @@ class _AdminApprovalState extends State<AdminApproval> {
                                             Divider(
                                               height: 30,color: Colors.black,thickness: 1,
                                             ),
-                                            Row(
-                                              children: [
-                                                SizedBox(width: 25,),
-                                                Expanded(
-                                                  child: Column(
-                                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                                    children: [
-                                                    Text(
-                                                    'REQ-1234',
-                                                    style: TextStyle(
-                                                        fontSize: 18,
+                                            InkWell(
+                                              onTap: (){
+                                                Navigator.push(context,MaterialPageRoute(builder: (context)=>AdminSalesApprove()));
+                                              },
+                                              child: Row(
+                                                children: [
+                                                  SizedBox(width: 25,),
+                                                  Expanded(
+                                                    child: Column(
+                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                      children: [
+                                                      Text(
+                                                      'REQ-1234',
+                                                      style: TextStyle(
+                                                          fontSize: 18,
 
-                                                        color: Colors.black),
+                                                          color: Colors.black),
+                                                    ),
+                                                        Text(
+                                                          'Date:05-Sep-2020',
+                                                          style: TextStyle(
+                                                              fontSize: 16,
+
+                                                              color: Colors.black),
+                                                        ),
+                                                        Text(
+                                                          'Type:Cloths',
+                                                          style: TextStyle(
+                                                              fontSize: 16,
+
+                                                              color: Colors.black),
+                                                        ),
+                                                        SizedBox(height: 5,),
+
+                                                        Text(
+                                                          'Inprogress',
+                                                          style: TextStyle(
+                                                              fontSize: 16,
+
+                                                              color: Colors.lightGreen),
+                                                        ),
+
+
+                                                      ],
+                                                    ),
                                                   ),
-                                                      Text(
-                                                        'Date:05-Sep-2020',
-                                                        style: TextStyle(
-                                                            fontSize: 16,
-
-                                                            color: Colors.black),
-                                                      ),
-                                                      Text(
-                                                        'Type:Cloths',
-                                                        style: TextStyle(
-                                                            fontSize: 16,
-
-                                                            color: Colors.black),
-                                                      ),
-                                                      SizedBox(height: 5,),
-
-                                                      Text(
-                                                        'Inprogress',
-                                                        style: TextStyle(
-                                                            fontSize: 16,
-
-                                                            color: Colors.lightGreen),
-                                                      ),
-
-
-                                                    ],
-                                                  ),
-                                                ),
-                                                Icon(
-                                                  Icons.arrow_forward_ios,
-                                                  color: Colors.black,
-                                                  size: 25,
-                                                )
-                                              ],
+                                                  Icon(
+                                                    Icons.arrow_forward_ios,
+                                                    color: Colors.black,
+                                                    size: 25,
+                                                  )
+                                                ],
+                                              ),
                                             ),
                                             Divider(
                                               height: 30,color: Colors.black,thickness: 1,

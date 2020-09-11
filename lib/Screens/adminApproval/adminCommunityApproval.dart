@@ -4,6 +4,7 @@ import 'package:hawkers/Widgets/navigationBar.dart';
 import 'package:image_picker/image_picker.dart';
 
 class AdminCommunityApproval extends StatefulWidget {
+  static const routeName = '/admin-community';
   @override
   _AdminCommunityApprovalState createState() => _AdminCommunityApprovalState();
 }

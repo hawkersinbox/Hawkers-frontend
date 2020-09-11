@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'file:///D:/git2/Hawkers-frontend/lib/Screens/Account/account.dart';
+import 'package:hawkers/Screens/addPaymentDetails.dart';
+import 'package:hawkers/Screens/addUserAdmin.dart';
 import 'package:hawkers/Screens/product/addProducts.dart';
 import 'package:hawkers/Screens/community/communities.dart';
 import 'package:hawkers/Screens/product/products.dart';
+import 'package:hawkers/Screens/adminApproval/adminApproval.dart';
 import 'package:hawkers/Screens/salesRequest/salesRequest.dart';
 import 'package:hawkers/Widgets/navigationBar.dart';
 
@@ -21,7 +25,41 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         // elevation: 0,
       ),
-      bottomNavigationBar: NavigationBar(),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          height: 60,
+          child: Column(
+            children: [
+              Divider(height: 10,color:Colors.grey,
+                thickness: 1,),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+
+                  Icon(Icons.add,
+                      color:Colors.black,
+                      size:40),
+
+                  Icon(Icons.home,
+                      color:Colors.black,
+                      size:40),
+                  InkWell(
+                    onTap: (){
+                      Navigator.push(context,MaterialPageRoute(builder: (context)=>Account()));
+                    },
+                    child: Icon(Icons.person_outline,
+                        color:Colors.black,
+                        size:40),
+                  ),
+
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Container(
@@ -111,9 +149,17 @@ class HomeScreen extends StatelessWidget {
               ]),
 
               Row(children: [
-                Expanded(child: card('Approval')),
+                Expanded(child: InkWell(
+                  onTap: (){
+                    Navigator.push(context,MaterialPageRoute(builder: (context)=>AdminApproval()));
+                  },
+                    child: card('Approval'))),
 
-                Expanded(child: card('Add User')),
+                Expanded(child: InkWell(
+                    onTap: (){
+                      Navigator.push(context,MaterialPageRoute(builder: (context)=>AddUserAdmin()));
+                    },
+                    child: card('Add User'))),
 
                 // card('Add Payment'),
               ]),
@@ -127,7 +173,11 @@ class HomeScreen extends StatelessWidget {
                         },
                         child: card('Products')),
                   ),
-                  Expanded(child: card('Add Payment')),
+                  Expanded(child: InkWell(
+                      onTap: (){
+                        Navigator.push(context,MaterialPageRoute(builder: (context)=>AddPayment()));
+                      },
+                      child: card('Add Payment'))),
                   // card('Add Payment'),
                 ],
               ),

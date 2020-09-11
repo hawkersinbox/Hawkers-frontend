@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:hawkers/Screens/salesRequest/requestReview.dart';
 import 'package:intl/intl.dart';
 import 'package:hawkers/Widgets/navigationBar.dart';
 import 'package:image_picker/image_picker.dart';
@@ -348,7 +349,7 @@ class _RaiseSalesState extends State<RaiseSales> {
                               child: RaisedButton(
                                 onPressed: () {
 
-
+                                  Navigator.push(context,MaterialPageRoute(builder: (context)=>RequestReview()));
                                 },
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular((3))),

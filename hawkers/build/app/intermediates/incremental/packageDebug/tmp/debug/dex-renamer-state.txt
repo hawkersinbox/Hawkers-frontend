@@ -1,4 +1,0 @@
-#Tue Sep 01 11:04:44 IST 2020
-base.0=D\:\\git2\\Hawkers-frontend\\hawkers\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
-path.0=classes.dex
-renamed.0=classes.dex

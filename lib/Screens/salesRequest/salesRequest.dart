@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hawkers/Models/salesRequestModel.dart' as model;
 import 'package:hawkers/Provider/SalesRequestProvider.dart';
 import 'package:hawkers/Screens/salesRequest/createSalesRequest.dart';
+import 'package:hawkers/Screens/salesRequest/raiseSalesRequest.dart';
 import 'package:hawkers/Widgets/navigationBar.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:provider/provider.dart';
@@ -88,8 +89,7 @@ class _SalesRequestState extends State<SalesRequest> {
           ),
           InkWell(
             onTap: () {
-              // Navigator.pushNamed(context, CreateSalesRequest.routeName)
-              //     .then((value) => getSalesRequest());
+              Navigator.push(context,MaterialPageRoute(builder: (context)=>RaiseSales()));
             },
             child: Container(
               height: 45,

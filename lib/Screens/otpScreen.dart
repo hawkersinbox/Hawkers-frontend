@@ -137,83 +137,85 @@ class _OtpState extends State<Otp> {
         ),
         centerTitle: true,
       ),
-      body: Container(
-        child: Column(
-          children: <Widget>[
-            SizedBox(
-              height: 60,
-            ),
-            Container(
-              color: Colors.white,
-              width: 300,
-              margin: EdgeInsets.all(20),
-              padding: EdgeInsets.all(20),
-              child: PinPut(
-                fieldsCount: 6,
-                focusNode: _pinPutFocusNode,
-                controller: _pinPutController,
-                submittedFieldDecoration: _pinPutDecoration.copyWith(
-                    borderRadius: BorderRadius.circular(20)),
-                selectedFieldDecoration: _pinPutDecoration,
-                followingFieldDecoration: _pinPutDecoration.copyWith(
-                  borderRadius: BorderRadius.circular(5),
-                  border: Border.all(
-                    color: Colors.black.withOpacity(.5),
-                  ),
-                ),
+      body: Center(
+        child: Container(
+          child: Column(
+            children: <Widget>[
+              SizedBox(
+                height: 60,
               ),
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            _start > 0
-                ? Text(
-                    'Resend in ${_start.toString()}',
-                    style: TextStyle(color: Colors.lightGreen),
-                  )
-                : InkWell(
-                    onTap: () {
-                      requestOtp();
-                    },
-                    child: Text(
-                      'Resend',
-                      style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.lightGreen,
-                          decoration: TextDecoration.underline),
+              Container(
+                color: Colors.white,
+                width: 300,
+                margin: EdgeInsets.all(20),
+                padding: EdgeInsets.all(20),
+                child: PinPut(
+                  fieldsCount: 6,
+                  focusNode: _pinPutFocusNode,
+                  controller: _pinPutController,
+                  submittedFieldDecoration: _pinPutDecoration.copyWith(
+                      borderRadius: BorderRadius.circular(20)),
+                  selectedFieldDecoration: _pinPutDecoration,
+                  followingFieldDecoration: _pinPutDecoration.copyWith(
+                    borderRadius: BorderRadius.circular(5),
+                    border: Border.all(
+                      color: Colors.black.withOpacity(.5),
                     ),
                   ),
-            SizedBox(
-              height: 30,
-            ),
-            Container(
-              child: SizedBox(
-                height: 45,
-                width: 200,
-                child: RaisedButton(
-                  onPressed: () {
-                    verifyOtp();
-                  },
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular((3))),
-                  color: Colors.lightGreen,
-                  child: _isLoading
-                      ? SpinKitCircle(
-                          color: Colors.white,
-                          size: 25,
-                        )
-                      : Text(
-                          'Verify',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white,
-                          ),
-                        ),
                 ),
               ),
-            )
-          ],
+              SizedBox(
+                height: 30,
+              ),
+              _start > 0
+                  ? Text(
+                      'Resend in ${_start.toString()}',
+                      style: TextStyle(color: Colors.lightGreen),
+                    )
+                  : InkWell(
+                      onTap: () {
+                        requestOtp();
+                      },
+                      child: Text(
+                        'Resend',
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.lightGreen,
+                            decoration: TextDecoration.underline),
+                      ),
+                    ),
+              SizedBox(
+                height: 30,
+              ),
+              Container(
+                child: SizedBox(
+                  height: 45,
+                  width: 200,
+                  child: RaisedButton(
+                    onPressed: () {
+                      verifyOtp();
+                    },
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular((3))),
+                    color: Colors.lightGreen,
+                    child: _isLoading
+                        ? SpinKitCircle(
+                            color: Colors.white,
+                            size: 25,
+                          )
+                        : Text(
+                            'Verify',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                            ),
+                          ),
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
