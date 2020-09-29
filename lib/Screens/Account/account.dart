@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:hawkers/Screens/help.dart';
 import 'package:hawkers/Screens/paymentDetails.dart';
 import 'package:hawkers/Screens/paymentNumber.dart';
-import 'file:///D:/git2/Hawkers-frontend/lib/Screens/Account/profile.dart';
+// import 'file:///D:/git2/Hawkers-frontend/lib/Screens/Account/profile.dart';
 import 'package:hawkers/Screens/userDetails.dart';
 import 'package:hawkers/Widgets/navigationBar.dart';
+
+import 'profile.dart';
 
 class Account extends StatelessWidget {
   @override

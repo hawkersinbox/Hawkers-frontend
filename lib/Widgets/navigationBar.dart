@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hawkers/Screens/HomeScreen.dart';
-import 'file:///D:/git2/Hawkers-frontend/lib/Screens/Account/account.dart';
+
+import '../Screens/Account/account.dart';
 
 class NavigationBar extends StatefulWidget {
   @override

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'file:///D:/git2/Hawkers-frontend/lib/Screens/Account/updateProfile.dart';
+// import 'file:///D:/git2/Hawkers-frontend/lib/Screens/Account/updateProfile.dart';
 import 'package:hawkers/Widgets/navigationBar.dart';
+
+import 'updateProfile.dart';
 
 class Profile extends StatefulWidget {
   @override
