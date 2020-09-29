@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hawkers/Provider/MobileNumber.dart';
 import 'package:hawkers/Provider/SalesRequestProvider.dart';
 import 'package:hawkers/Provider/community.dart';
 import 'package:hawkers/Provider/getProduct.dart';
@@ -38,6 +39,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<SalesRequestProvider>(
           create: (_) => SalesRequestProvider(),
         ),
+        ChangeNotifierProvider<MobileNumberProvider>(
+          create: (_) => MobileNumberProvider(),
+        )
       ],
       child: MaterialApp(
         title: 'Hawkers',

@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hawkers/Screens/addPaymentDetails.dart';
 import 'package:hawkers/Screens/addUserAdmin.dart';
-import 'package:hawkers/Screens/product/addProducts.dart';
 import 'package:hawkers/Screens/community/communities.dart';
 import 'package:hawkers/Screens/product/products.dart';
 import 'package:hawkers/Screens/adminApproval/adminApproval.dart';
 import 'package:hawkers/Screens/salesRequest/salesRequest.dart';
-import 'package:hawkers/Widgets/navigationBar.dart';
 
 import 'Account/account.dart';
 

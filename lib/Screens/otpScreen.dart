@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:hawkers/Provider/MobileNumber.dart';
 import 'package:pinput/pin_put/pin_put.dart';
 import 'package:flutter/material.dart';
 import 'package:hawkers/Screens/HomeScreen.dart';
@@ -8,7 +10,11 @@ import 'package:hawkers/Utility/userData.dart';
 import 'package:hawkers/Models/userModel.dart' as UserModel;
 import 'package:hawkers/Services/api.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+
+String verification_code_text = "Enter 6 digits verification code sent to ";
 
 class Otp extends StatefulWidget {
   static const routeName = '/Otp';
@@ -124,6 +130,7 @@ class _OtpState extends State<Otp> {
 
   @override
   Widget build(BuildContext context) {
+    var mobileNumberDetails = Provider.of<MobileNumberProvider>(context);
     return Scaffold(
       key: _scaffoldKey,
       resizeToAvoidBottomPadding: false,
@@ -142,13 +149,43 @@ class _OtpState extends State<Otp> {
           child: Column(
             children: <Widget>[
               SizedBox(
-                height: 60,
+                height: 20,
+              ),
+              Padding(
+                padding: EdgeInsets.all(10),
+                child: Container(
+                  width: 320,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        verification_code_text,
+                        style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.grey,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        mobileNumberDetails.mobileNumber,
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.grey,
+                        ),
+                      ),
+
+                    ],
+                  ),
+                ),
               ),
               Container(
                 color: Colors.white,
-                width: 300,
-                margin: EdgeInsets.all(20),
-                padding: EdgeInsets.all(20),
+                width: 320,
+                margin: EdgeInsets.all(0),
+                padding: EdgeInsets.all(0),
                 child: PinPut(
                   fieldsCount: 6,
                   focusNode: _pinPutFocusNode,
@@ -165,14 +202,30 @@ class _OtpState extends State<Otp> {
                 ),
               ),
               SizedBox(
-                height: 30,
+                height: 5,
               ),
-              _start > 0
-                  ? Text(
+              Container(
+                width: 320,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.all(5),
+                      child: Text(
+                        'Change Number',
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.lightGreen,
+                        ),
+                      )
+                      ),
+                    _start > 0
+                        ? Text(
                       'Resend in ${_start.toString()}',
                       style: TextStyle(color: Colors.lightGreen),
                     )
-                  : InkWell(
+                        : InkWell(
                       onTap: () {
                         requestOtp();
                       },
@@ -184,13 +237,16 @@ class _OtpState extends State<Otp> {
                             decoration: TextDecoration.underline),
                       ),
                     ),
+                  ],
+                ),
+              ),
               SizedBox(
-                height: 30,
+                height: 60,
               ),
               Container(
                 child: SizedBox(
                   height: 45,
-                  width: 200,
+                  width: 320,
                   child: RaisedButton(
                     onPressed: () {
                       verifyOtp();

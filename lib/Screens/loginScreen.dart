@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:hawkers/Models/userModel.dart';
+import 'package:hawkers/Provider/MobileNumber.dart';
 import 'package:hawkers/Screens/registrationScreen.dart';
 import 'package:hawkers/Utility/userData.dart';
 import 'package:provider/provider.dart';
@@ -61,6 +62,7 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
+    var mobileNumberDetails = Provider.of<MobileNumberProvider>(context);
     return Scaffold(
       key: _scaffoldKey,
       resizeToAvoidBottomInset: false,
@@ -96,7 +98,6 @@ class _LoginState extends State<Login> {
                 margin: EdgeInsets.all(0),
                 height: 45,
                 decoration: BoxDecoration(
-                    // color: Colors.black12,
                     borderRadius: BorderRadius.circular(3),
                     border: Border.all(color: Colors.black45)),
                 child: Container(
@@ -119,7 +120,7 @@ class _LoginState extends State<Login> {
                         ),
                         onChanged: (val) {
                           _mobile = val;
-
+                          mobileNumberDetails.setMobileNumber(_mobile);
                           if (!mobileValid) {
                             setState(() {
                               mobileValid = true;
