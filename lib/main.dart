@@ -13,6 +13,7 @@ import 'package:hawkers/Screens/otpScreen.dart';
 import 'package:hawkers/Screens/salesRequest/salesRequest.dart';
 import 'package:hawkers/Screens/splashScreen.dart';
 import 'package:hawkers/Provider/user.dart';
+import 'package:hawkers/utils/SizeConfig.dart';
 import 'package:provider/provider.dart';
 
 import 'Screens/loginScreen.dart';

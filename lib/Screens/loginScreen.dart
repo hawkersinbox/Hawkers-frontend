@@ -5,6 +5,7 @@ import 'package:hawkers/Models/userModel.dart';
 import 'package:hawkers/Provider/MobileNumber.dart';
 import 'package:hawkers/Screens/registrationScreen.dart';
 import 'package:hawkers/Utility/userData.dart';
+import 'package:hawkers/utils/SizeConfig.dart';
 import 'package:provider/provider.dart';
 import 'package:hawkers/Provider/user.dart';
 import 'package:hawkers/Screens/otpScreen.dart';
@@ -62,6 +63,7 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     var mobileNumberDetails = Provider.of<MobileNumberProvider>(context);
     return Scaffold(
       key: _scaffoldKey,
