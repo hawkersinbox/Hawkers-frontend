@@ -99,25 +99,36 @@ class _OtpState extends State<Otp> {
       final responseData = jsonDecode(response.body);
       print(responseData);
       if (responseData["success"]) {
-        UserModel.User loginResponse = UserModel.userFromJson(response.body);
-        UserData.user = loginResponse;
-        final prefs = await SharedPreferences.getInstance();
-        prefs.setString(
-          'userData',
-          json.encode(
-            UserData.user.toJson(),
-          ),
-        );
+        if (response.body != null){
+          print("Response Not Null!");
+          print("Response Body: ${response.body}");
+          UserModel.User loginResponse = UserModel.userFromJson(response.body);
+          UserData.user = loginResponse;
+          final prefs = await SharedPreferences.getInstance();
+          prefs.setString(
+            'userData',
+            json.encode(
+              UserData.user.toJson(),
+            ),
+          );
 
-        Navigator.pushAndRemoveUntil(
-            context,
-            PageTransition(
-                type: PageTransitionType.rightToLeft, child: HomeScreen()),
-            ModalRoute.withName('/'));
+          Navigator.pushAndRemoveUntil(
+              context,
+              PageTransition(
+                  type: PageTransitionType.rightToLeft, child: HomeScreen()),
+              ModalRoute.withName('/'));
 
-        setState(() {
-          _isLoading = false;
-        });
+          setState(() {
+            _isLoading = false;
+          });
+        }else if (response.body == null){
+          print("Response Null!");
+          print("Response Body: ${response.body}");
+          showDialog(
+            context: context,
+            builder: (context) => showWaitingForApprovalWidget(context)
+          );
+        }
       } else {
         final snackBar = SnackBar(content: Text('${responseData["message"]}'));
         _scaffoldKey.currentState.showSnackBar(snackBar);
@@ -269,6 +280,73 @@ class _OtpState extends State<Otp> {
                           ),
                   ),
                 ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget showWaitingForApprovalWidget(BuildContext context) {
+    String waiting_for_approval_text = "Login request sent for approval, will be notified once approved!";
+    return Center(
+      child: Card(
+        elevation: 2,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5.0),
+        ),
+        child: Container(
+          width: 250,
+          height: 250,
+          margin: EdgeInsets.all(5),
+          padding: EdgeInsets.all(15),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Padding(
+                padding: EdgeInsets.all(10),
+                child: Text(
+                  'Waiting Approval',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(10),
+                child: Text(
+                  waiting_for_approval_text,
+                  style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.black,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(10),
+                child: RaisedButton(
+                  color: Colors.lightGreen,
+                  onPressed: (){
+                    Navigator.pop(context);
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.all(5),
+                    child: Text(
+                      'Okay',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w300,
+                        color: Colors.black,
+                        fontSize: 16
+                      ),
+                    ),
+                  ),
+                )
               )
             ],
           ),

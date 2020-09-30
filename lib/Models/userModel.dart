@@ -37,21 +37,30 @@ class Response {
     this.id,
     this.firstName,
     this.lastName,
+    this.email,
+    this.accessToken
   });
 
   int id;
   String firstName;
   String lastName;
+  String email;
+  String accessToken;
 
   factory Response.fromJson(Map<String, dynamic> json) => Response(
-        id: json["id"],
-        firstName: json["firstName"],
-        lastName: json["lastName"],
-      );
+    id: json["id"],
+    firstName: json["firstName"],
+    lastName: json["lastName"],
+    email: json["email"],
+    accessToken: json["accessToken"]
+
+  );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "firstName": firstName,
-        "lastName": lastName,
-      };
+    "id": id,
+    "firstName": firstName,
+    "lastName": lastName,
+    "email": email,
+    "accessToken": accessToken
+  };
 }
