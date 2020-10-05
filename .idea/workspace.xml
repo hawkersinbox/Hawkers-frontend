@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ea6ccf4a-5e0e-4f0a-8be3-fd9222bcf4f9" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dart File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="apisIntegration" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="D:\git2\Hawkers-frontend\.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectId" id="1gDXPtxYo8SxOXiyaUxN0pc18E8" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
+    <property name="dart.analysis.tool.window.force.activate" value="false" />
+    <property name="io.flutter.reload.alreadyRun" value="true" />
+    <property name="last_opened_file_path" value="D:/git/atmnirbhar_store" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\git2\Hawkers-frontend\Assets" />
+      <recent name="D:\git2\Hawkers-frontend\lib\Screens\Account" />
+      <recent name="D:\git2\Hawkers-frontend\lib\Screens\adminApproval" />
+      <recent name="D:\git2\Hawkers-frontend\lib\Screens" />
+      <recent name="D:\git2\Hawkers-frontend\lib\Screens\salesRequest" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="main.dart" type="FlutterRunConfigurationType" factoryName="Flutter">
+      <option name="filePath" value="$PROJECT_DIR$/lib/main.dart" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ea6ccf4a-5e0e-4f0a-8be3-fd9222bcf4f9" name="Default Changelist" comment="" />
+      <created>1597650120964</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1597650120964</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="137" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1599807082684">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="137" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1599807082684" />
+    <state x="337" y="0" key="CommitChangelistDialog2" timestamp="1599806396435">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="337" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1599806396435" />
+    <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1599467888831">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1599467888831" />
+    <state width="1323" height="402" key="GridCell.Tab.0.bottom" timestamp="1601895946492">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="402" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1601895946492" />
+    <state width="1323" height="402" key="GridCell.Tab.0.center" timestamp="1601895946491">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="402" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1601895946491" />
+    <state width="1323" height="402" key="GridCell.Tab.0.left" timestamp="1601895946401">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="402" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1601895946401" />
+    <state width="1323" height="402" key="GridCell.Tab.0.right" timestamp="1601895946491">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="402" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1601895946491" />
+    <state x="129" y="55" key="MergeDialog" timestamp="1601899465996">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="129" y="55" key="MergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1601899465996" />
+    <state x="388" y="79" key="MultipleFileMergeDialog" timestamp="1601900003067">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="388" y="79" key="MultipleFileMergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1601900003067" />
+    <state x="487" y="74" key="RollbackChangesDialog" timestamp="1599804650295">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="487" y="74" key="RollbackChangesDialog/0.0.1366.728@0.0.1366.728" timestamp="1599804650295" />
+    <state x="184" y="6" key="SettingsEditor" timestamp="1598965699401">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="184" y="6" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1598965699401" />
+    <state x="100" y="100" width="1166" height="528" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1600322130396">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="100" y="100" width="1166" height="528" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1366.728@0.0.1366.728" timestamp="1600322130396" />
+    <state x="379" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1600002322884">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="379" y="188" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1600002322884" />
+    <state x="494" y="98" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog" timestamp="1599807108535">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="494" y="98" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog/0.0.1366.728@0.0.1366.728" timestamp="1599807108535" />
+    <state x="460" y="77" key="git4idea.branch.GitSmartOperationDialog" timestamp="1601899376010">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="460" y="77" key="git4idea.branch.GitSmartOperationDialog/0.0.1366.728@0.0.1366.728" timestamp="1601899376010" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1600321887084">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1600321887084" />
+  </component>
+</project>
