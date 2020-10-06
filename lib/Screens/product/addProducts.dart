@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:hawkers/Models/priceRange.dart';
 import 'package:hawkers/Models/subcategory.dart';
+import 'package:hawkers/Provider/AccessToken.dart';
 import 'package:hawkers/Provider/getProduct.dart';
 import 'package:hawkers/Screens/product/productReview.dart';
 import 'package:hawkers/Services/api.dart';
@@ -112,17 +113,19 @@ class _AddProductsState extends State<AddProducts> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getCategory();
   }
 
-  getCategory() async {
-    await Provider.of<ProductProvider>(context, listen: false).getCategory();
+  getCategory(String access_token) async {
+    await Provider.of<ProductProvider>(context, listen: false).getCategory(access_token);
     setState(() {
       _isLoadingCategory = false;
     });
   }
 
   Widget build(BuildContext context) {
+    var accessTokenProvider = Provider.of<AccessTokenProvider>(context);
+    print("AccessToken: ${accessTokenProvider.mAccessToken}");
+    getCategory(accessTokenProvider.mAccessToken);
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(

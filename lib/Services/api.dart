@@ -3,10 +3,12 @@ import 'package:http/http.dart' as http;
 class RestApi {
   RestApi();
 
+  final String BaseUrl = "https://zzsa82b4p3.execute-api.ap-south-1.amazonaws.com/prod/";
+
   Future<http.Response> register(String body) async {
     try {
       String url =
-          "https://zzsa82b4p3.execute-api.ap-south-1.amazonaws.com/prod/auth/v0/signUp";
+          BaseUrl + "auth/v0/signUp";
       final response = await http.post(
         url,
         body: body,
@@ -96,12 +98,15 @@ class RestApi {
     }
   }
 
-  Future<http.Response> getProduct() async {
+  Future<http.Response> getProduct(String access_token) async {
     try {
       String url =
-          "https://zzsa82b4p3.execute-api.ap-south-1.amazonaws.com/prod/v0/product";
+          BaseUrl + "v0/product";
       final response = await http.get(url,
-          headers: <String, String>{'content-type': "application/json"});
+          headers: <String, String>{
+        'content-type': "application/json",
+            'Bearer' : access_token
+      });
 
       print(response.body);
       return response;
@@ -127,12 +132,16 @@ class RestApi {
     }
   }
 
-  Future<http.Response> getCategory() async {
+  Future<http.Response> getCategory(String access_token) async {
     try {
       String url =
           "https://zzsa82b4p3.execute-api.ap-south-1.amazonaws.com/prod/v0/category";
       final response = await http.get(url,
-          headers: <String, String>{'content-type': "application/json"});
+          headers: <String, String>{
+        'content-type': "application/json",
+            'Bearer': access_token
+
+      });
       return response;
     } catch (e) {
       print(e);

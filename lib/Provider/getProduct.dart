@@ -37,15 +37,15 @@ class ProductProvider with ChangeNotifier {
     return _selectedSubCategory;
   }
 
-  Future<List<Product>> getProduct() async {
-    final response = await restApi.getProduct();
+  Future<List<Product>> getProduct(String access_token) async {
+    final response = await restApi.getProduct(access_token);
     List<Product> products = productResponseFromJson(response.body).response;
     _products = products;
     return products;
   }
 
-  Future<List<Category>> getCategory() async {
-    final response = await restApi.getCategory();
+  Future<List<Category>> getCategory(String accessToken) async {
+    final response = await restApi.getCategory(accessToken);
     List<Category> categories =
         categoryResponseFromJson(response.body).response;
     _categories = categories;

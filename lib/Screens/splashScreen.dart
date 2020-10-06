@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   nextScreen() async {
-    if (await Provider.of<User>(context, listen: false).tryAutoLogin()) {
+    if (await Provider.of<User>(context, listen: false).tryAutoLogin(context)) {
       Future.delayed(Duration.zero, () {
         Navigator.pushReplacementNamed(context, HomeScreen.routeName);
       });

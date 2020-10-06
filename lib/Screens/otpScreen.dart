@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:hawkers/Provider/AccessToken.dart';
 import 'package:hawkers/Provider/MobileNumber.dart';
 import 'package:pinput/pin_put/pin_put.dart';
 import 'package:flutter/material.dart';
@@ -36,6 +37,10 @@ class _OtpState extends State<Otp> {
   RestApi restApi = RestApi();
   bool _isLoading = false;
   String otp = '';
+
+
+  var accessTokenProvider;
+
 
   BoxDecoration get _pinPutDecoration {
     return BoxDecoration(
@@ -99,35 +104,44 @@ class _OtpState extends State<Otp> {
       final responseData = jsonDecode(response.body);
       print(responseData);
       if (responseData["success"]) {
-        if (response.body != null){
-          print("Response Not Null!");
-          print("Response Body: ${response.body}");
-          UserModel.User loginResponse = UserModel.userFromJson(response.body);
-          UserData.user = loginResponse;
-          final prefs = await SharedPreferences.getInstance();
-          prefs.setString(
-            'userData',
-            json.encode(
-              UserData.user.toJson(),
-            ),
-          );
+        if (responseData["response"]["status"].toString() == "ACTIVE"){
+          if (response.body != null){
+            print("Response Not Null!");
+            print("Response Body: ${response.body}");
+            UserModel.User loginResponse = UserModel.userFromJson(response.body);
+            UserData.user = loginResponse;
+            final prefs = await SharedPreferences.getInstance();
+            prefs.setString(
+              'userData',
+              json.encode(
+                UserData.user.toJson(),
+              ),
+            );
 
-          Navigator.pushAndRemoveUntil(
-              context,
-              PageTransition(
-                  type: PageTransitionType.rightToLeft, child: HomeScreen()),
-              ModalRoute.withName('/'));
+            print("AccessToken: ${loginResponse.response.accessToken.toString()}");
+            accessTokenProvider.setAccessToken(loginResponse.response.accessToken);
 
-          setState(() {
-            _isLoading = false;
-          });
-        }else if (response.body == null){
-          print("Response Null!");
-          print("Response Body: ${response.body}");
-          showDialog(
-            context: context,
-            builder: (context) => showWaitingForApprovalWidget(context)
-          );
+            Navigator.pushAndRemoveUntil(
+                context,
+                PageTransition(
+                    type: PageTransitionType.rightToLeft, child: HomeScreen()),
+                ModalRoute.withName('/'));
+
+            setState(() {
+              _isLoading = false;
+            });
+          }else if (response.body == null){
+            print("Response Null!");
+            print("Response Body: ${response.body}");
+            showDialog(
+                context: context,
+                builder: (context) => showWaitingForApprovalWidget(context)
+            );
+          }
+        }else if (responseData["response"]["status"].toString() == "DELETE"){
+          print("User Deleted!");
+        }else if (responseData["response"]["status"].toString() == "DRAFT"){
+          print("User Draft!");
         }
       } else {
         final snackBar = SnackBar(content: Text('${responseData["message"]}'));
@@ -141,6 +155,7 @@ class _OtpState extends State<Otp> {
 
   @override
   Widget build(BuildContext context) {
+    accessTokenProvider = Provider.of<AccessTokenProvider>(context);
     var mobileNumberDetails = Provider.of<MobileNumberProvider>(context);
     return Scaffold(
       key: _scaffoldKey,

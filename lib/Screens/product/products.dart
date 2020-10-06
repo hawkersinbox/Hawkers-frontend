@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hawkers/Provider/AccessToken.dart';
 import 'package:hawkers/Screens/product/addProducts.dart';
 import 'package:provider/provider.dart';
 import 'package:hawkers/Models/Product.dart' as Model;
@@ -20,15 +21,18 @@ class ProductList extends StatefulWidget {
 
 class _ProductListState extends State<ProductList> {
   bool isLoading = true;
+  var accessTokenProvider;
+
   @override
   void initState() {
-    getProduct();
-
+    accessTokenProvider = Provider.of<AccessTokenProvider>(context);
+    print("Access Token: ${accessTokenProvider.mAccessToken}");
+    getProduct(accessTokenProvider.mAccessToken);
     super.initState();
   }
 
-  getProduct() async {
-    await Provider.of<ProductProvider>(context, listen: false).getProduct();
+  getProduct(String access_token) async {
+    await Provider.of<ProductProvider>(context, listen: false).getProduct(access_token);
     setState(() {
       isLoading = false;
     });
@@ -113,7 +117,7 @@ class _ProductListState extends State<ProductList> {
                               Navigator.pushNamed(
                                       context, AddProducts.routeName)
                                   .then((value) {
-                                getProduct();
+                                getProduct(accessTokenProvider.mAccessToken);
                               });
                             },
                             shape: RoundedRectangleBorder(

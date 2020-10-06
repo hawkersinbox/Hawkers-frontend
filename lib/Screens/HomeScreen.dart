@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:hawkers/utils/SizeConfig.dart';
+import 'package:hawkers/Models/Product.dart';
+import 'package:hawkers/Screens/addPaymentDetails.dart';
+import 'package:hawkers/Screens/addUserAdmin.dart';
+import 'package:hawkers/Screens/community/communities.dart';
+import 'package:hawkers/Screens/product/addProducts.dart';
+import 'package:hawkers/Screens/salesRequest/salesRequest.dart';
+import 'package:hawkers/Screens/userRequest.dart';
+import 'package:hawkers/Utility/SizeConfig.dart';
 
 import 'Account/account.dart';
 
@@ -233,7 +240,11 @@ class HomeScreen extends StatelessWidget {
                 mainAxisSpacing: 0
             ),
             itemBuilder: (BuildContext context, int index){
-              return GridTile(
+              return InkWell(
+                onTap: (){
+                  _gridViewOnTap(context, index);
+                },
+                child: GridTile(
                   child: Padding(
                     padding: EdgeInsets.all(5),
                     child: Container(
@@ -273,13 +284,81 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                  )
+                  ),
+                ),
               );
             },
             itemCount: gridViewList.length,
           ),
         )
     );
+  }
+
+  void _gridViewOnTap(BuildContext context, int index) {
+    switch (index){
+      case 0:
+        salesRequestClicked(context);
+        break;
+      case 1:
+        communitiesClicked(context);
+        break;
+      case 2:
+        approvalClicked(context);
+        break;
+      case 3:
+        addUserClicked(context);
+        break;
+      case 4:
+        productsClicked(context);
+        break;
+      case 5:
+        addPaymentClicked(context);
+        break;
+
+
+    }
+  }
+
+  void salesRequestClicked(BuildContext context) {
+    Navigator.of(context)
+        .push(MaterialPageRoute(
+      builder: (context)=> SalesRequest()
+    ));
+  }
+
+  void communitiesClicked(BuildContext context) {
+    Navigator.of(context)
+        .push(MaterialPageRoute(
+        builder: (context)=> Communities()
+    ));
+  }
+
+  void approvalClicked(BuildContext context) {
+    Navigator.of(context)
+        .push(MaterialPageRoute(
+        builder: (context)=> Approval()
+    ));
+  }
+
+  void addUserClicked(BuildContext context) {
+    Navigator.of(context)
+        .push(MaterialPageRoute(
+        builder: (context)=> AddUserAdmin()
+    ));
+  }
+
+  void productsClicked(BuildContext context) {
+    Navigator.of(context)
+        .push(MaterialPageRoute(
+        builder: (context)=> AddProducts()
+    ));
+  }
+
+  void addPaymentClicked(BuildContext context) {
+    Navigator.of(context)
+        .push(MaterialPageRoute(
+        builder: (context)=> AddPayment()
+    ));
   }
 
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hawkers/Provider/AccessToken.dart';
 import 'package:hawkers/Provider/MobileNumber.dart';
 import 'package:hawkers/Provider/SalesRequestProvider.dart';
 import 'package:hawkers/Provider/community.dart';
@@ -13,7 +14,7 @@ import 'package:hawkers/Screens/otpScreen.dart';
 import 'package:hawkers/Screens/salesRequest/salesRequest.dart';
 import 'package:hawkers/Screens/splashScreen.dart';
 import 'package:hawkers/Provider/user.dart';
-import 'package:hawkers/utils/SizeConfig.dart';
+import 'package:hawkers/Utility/SizeConfig.dart';
 import 'package:provider/provider.dart';
 
 import 'Screens/loginScreen.dart';
@@ -42,6 +43,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider<MobileNumberProvider>(
           create: (_) => MobileNumberProvider(),
+        ),
+        ChangeNotifierProvider<AccessTokenProvider>(
+          create: (_) => AccessTokenProvider(),
         )
       ],
       child: MaterialApp(
