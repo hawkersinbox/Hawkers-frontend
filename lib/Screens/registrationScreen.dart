@@ -63,13 +63,12 @@ class _RegistrationState extends State<Registration> {
     String body = json.encode({
       'email': _email,
       'mobile': _mobile,
-      'firstName': _firstname,
-      'lastName': _lastname,
+      'first_name': _firstname,
+      'last_name': _lastname,
       'city': _city,
       'state': _state,
-      'street_address': _streetaddress,
-      'pincode': _pincode,
-      "role": 1
+      'street_address1': _streetaddress,
+      'pincode': _pincode
     });
     print(body);
 
