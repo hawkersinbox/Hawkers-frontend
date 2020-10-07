@@ -46,6 +46,7 @@ class ProductProvider with ChangeNotifier {
 
   Future<List<Category>> getCategory(String accessToken) async {
     final response = await restApi.getCategory(accessToken);
+    print("Get Categories Response: ${response.body.toString()}");
     List<Category> categories =
         categoryResponseFromJson(response.body).response;
     _categories = categories;

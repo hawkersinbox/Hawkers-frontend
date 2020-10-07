@@ -1,3 +1,5 @@
+import 'dart:io';
+import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
 
 class RestApi {
@@ -5,7 +7,8 @@ class RestApi {
 
   final String BaseUrl = "https://zzsa82b4p3.execute-api.ap-south-1.amazonaws.com/prod/";
 
-  Future<http.Response> register(String body) async {
+
+  Future<Response> register(String body) async {
     try {
       String url =
           BaseUrl + "auth/v0/signUp";
@@ -23,7 +26,7 @@ class RestApi {
     }
   }
 
-  Future<http.Response> login(String body) async {
+  Future<Response> login(String body) async {
     try {
       String url =
           "https://zzsa82b4p3.execute-api.ap-south-1.amazonaws.com/prod/auth/v0/signIn";
@@ -41,7 +44,7 @@ class RestApi {
     }
   }
 
-  Future<http.Response> otpVerify(String body) async {
+  Future<Response> otpVerify(String body) async {
     try {
       print("body: $body");
       final response = await http.post(
@@ -59,7 +62,7 @@ class RestApi {
     }
   }
 
-  Future<http.Response> addCommunity(String body) async {
+  Future<Response> addCommunity(String body) async {
     try {
       print("body: $body");
       String url =
@@ -78,7 +81,7 @@ class RestApi {
     }
   }
 
-  Future<http.Response> product(String body) async {
+  Future<Response> product(String body) async {
     try {
       print("body: $body");
       String url =
@@ -98,7 +101,7 @@ class RestApi {
     }
   }
 
-  Future<http.Response> getProduct(String access_token) async {
+  Future<Response> getProduct(String access_token) async {
     try {
       String url =
           BaseUrl + "v0/product";
@@ -116,13 +119,20 @@ class RestApi {
     }
   }
 
-  Future<http.Response> getCommunity() async {
+  Future<Response> getCommunity(String access_token) async {
     try {
       String url =
           "https://zzsa82b4p3.execute-api.ap-south-1.amazonaws.com/prod/v0/community";
       print(url);
+
+      Map<String, String> requestHeaders = {
+        'Content-type': 'application/json',
+        HttpHeaders.authorizationHeader: "Bearer " + access_token
+      };
+
       final response = await http.get(
         url,
+        headers: requestHeaders
       );
       print(response.body);
       return response;
@@ -132,16 +142,24 @@ class RestApi {
     }
   }
 
-  Future<http.Response> getCategory(String access_token) async {
+  Future<Response> getCategory(String access_token) async {
     try {
       String url =
           "https://zzsa82b4p3.execute-api.ap-south-1.amazonaws.com/prod/v0/category";
-      final response = await http.get(url,
-          headers: <String, String>{
-        'content-type': "application/json",
-            'Bearer': access_token
 
-      });
+      Map<String, String> requestHeaders = {
+        'Content-type': 'application/json',
+        HttpHeaders.authorizationHeader: "Bearer " + access_token
+      };
+
+      final response = await http.get(url,
+          headers:requestHeaders
+      );
+
+      print("HeadersMap: ${requestHeaders.toString()}");
+
+
+
       return response;
     } catch (e) {
       print(e);
@@ -149,7 +167,7 @@ class RestApi {
     }
   }
 
-  Future<http.Response> getSubCategory(String body) async {
+  Future<Response> getSubCategory(String body) async {
     try {
       String url =
           "https://zzsa82b4p3.execute-api.ap-south-1.amazonaws.com/prod/v0/subcategory";
@@ -162,7 +180,7 @@ class RestApi {
     }
   }
 
-  Future<http.Response> addProduct(String body) async {
+  Future<Response> addProduct(String body) async {
     try {
       String url =
           "https://zzsa82b4p3.execute-api.ap-south-1.amazonaws.com/prod/v0/product";
@@ -176,7 +194,7 @@ class RestApi {
     }
   }
 
-  Future<http.Response> salesRequest() async {
+  Future<Response> salesRequest() async {
     try {
       String url =
           "https://zzsa82b4p3.execute-api.ap-south-1.amazonaws.com/prod/v0/request";
@@ -188,4 +206,7 @@ class RestApi {
       throw e;
     }
   }
+
+
+
 }

@@ -11,6 +11,7 @@ import 'package:hawkers/Services/api.dart';
 import 'package:hawkers/Widgets/navigationBar.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 List<PriceRange> priceRangeList = [
   PriceRange(display: "Rs1-Rs100", max: 100, min: 1),
@@ -112,6 +113,9 @@ class _AddProductsState extends State<AddProducts> {
   @override
   void initState() {
     // TODO: implement initState
+
+    getSharedPrefrences();
+
     super.initState();
   }
 
@@ -123,9 +127,6 @@ class _AddProductsState extends State<AddProducts> {
   }
 
   Widget build(BuildContext context) {
-    var accessTokenProvider = Provider.of<AccessTokenProvider>(context);
-    print("AccessToken: ${accessTokenProvider.mAccessToken}");
-    getCategory(accessTokenProvider.mAccessToken);
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
@@ -380,5 +381,21 @@ class _AddProductsState extends State<AddProducts> {
             )),
       ],
     ));
+  }
+
+  void getSharedPrefrences() async {
+    Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+
+    _prefs.then((SharedPreferences sharedPreferences) {
+      String accessToken = sharedPreferences.getString("access_token");
+      print("access_token: $accessToken");
+      getCategory(accessToken);
+    })
+    .whenComplete(() {
+      print("Complete!");
+    })
+    .catchError((error){
+      print("Error: ${error.toString()}");
+    });
   }
 }

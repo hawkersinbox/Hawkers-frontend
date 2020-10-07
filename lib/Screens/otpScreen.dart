@@ -104,44 +104,59 @@ class _OtpState extends State<Otp> {
       final responseData = jsonDecode(response.body);
       print(responseData);
       if (responseData["success"]) {
-        if (responseData["response"]["status"].toString() == "ACTIVE"){
-          if (response.body != null){
-            print("Response Not Null!");
-            print("Response Body: ${response.body}");
-            UserModel.User loginResponse = UserModel.userFromJson(response.body);
-            UserData.user = loginResponse;
-            final prefs = await SharedPreferences.getInstance();
-            prefs.setString(
-              'userData',
-              json.encode(
-                UserData.user.toJson(),
-              ),
-            );
+        if (responseData["response"]["status"] != null){
+          if (responseData["response"]["status"].toString() == "ACTIVE"){
+            if (response.body != null){
+              print("Response Not Null!");
+              print("Response Body: ${response.body}");
+              UserModel.User loginResponse = UserModel.userFromJson(response.body);
+              UserData.user = loginResponse;
+              final prefs = await SharedPreferences.getInstance();
+              prefs.setString(
+                'userData',
+                json.encode(
+                  UserData.user.toJson(),
+                ),
+              );
+              String accessToken = responseData["response"]["user"]["accessToken"].toString();
+              print("Access Token: $accessToken");
+              prefs.setString("access_token", accessToken);
 
-            print("AccessToken: ${loginResponse.response.accessToken.toString()}");
-            accessTokenProvider.setAccessToken(loginResponse.response.accessToken);
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  PageTransition(
+                      type: PageTransitionType.rightToLeft, child: HomeScreen()),
+                  ModalRoute.withName('/'));
 
-            Navigator.pushAndRemoveUntil(
-                context,
-                PageTransition(
-                    type: PageTransitionType.rightToLeft, child: HomeScreen()),
-                ModalRoute.withName('/'));
-
-            setState(() {
-              _isLoading = false;
-            });
-          }else if (response.body == null){
-            print("Response Null!");
-            print("Response Body: ${response.body}");
+              setState(() {
+                _isLoading = false;
+              });
+            }else if (response.body == null){
+              String message = "Login request sent for approval, will be notified once approved!";
+              print("Response Null!");
+              print("Response Body: ${response.body}");
+              showDialog(
+                  context: context,
+                  builder: (context) => showPopupMessageDialog(context, message, 'Waiting Approval')
+              );
+            }
+          }else if (responseData["response"]["status"].toString() == "DELETE"){
+            String message = responseData["message"].toString();
             showDialog(
                 context: context,
-                builder: (context) => showWaitingForApprovalWidget(context)
+                builder: (context) => showPopupMessageDialog(context, message, "Account Deleted!")
             );
+            print("User Deleted!");
+          }else if (responseData["response"]["status"].toString() == "DRAFT"){
+            String message = responseData["message"].toString();
+            showDialog(
+                context: context,
+                builder: (context) => showPopupMessageDialog(context, message, "In Draft")
+            );
+            print("User Draft!");
           }
-        }else if (responseData["response"]["status"].toString() == "DELETE"){
-          print("User Deleted!");
-        }else if (responseData["response"]["status"].toString() == "DRAFT"){
-          print("User Draft!");
+        }else {
+          print("Staus Null!");
         }
       } else {
         final snackBar = SnackBar(content: Text('${responseData["message"]}'));
@@ -303,8 +318,7 @@ class _OtpState extends State<Otp> {
     );
   }
 
-  Widget showWaitingForApprovalWidget(BuildContext context) {
-    String waiting_for_approval_text = "Login request sent for approval, will be notified once approved!";
+  Widget showPopupMessageDialog(BuildContext context, String message, String title) {
     return Center(
       child: Card(
         elevation: 2,
@@ -323,7 +337,7 @@ class _OtpState extends State<Otp> {
               Padding(
                 padding: EdgeInsets.all(10),
                 child: Text(
-                  'Waiting Approval',
+                  title,
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -334,7 +348,7 @@ class _OtpState extends State<Otp> {
               Padding(
                 padding: EdgeInsets.all(10),
                 child: Text(
-                  waiting_for_approval_text,
+                  message,
                   style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w400,
