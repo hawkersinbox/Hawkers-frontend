@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:hawkers/Models/communityModel.dart' as Model;
 import 'package:hawkers/Provider/community.dart';
 import 'package:hawkers/Screens/community/addCommunity.dart';
+import 'package:hawkers/Screens/salesRequest/raiseSalesRequest.dart';
+import 'package:hawkers/Screens/salesRequest/salesRequest.dart';
 import 'package:hawkers/Widgets/navigationBar.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -80,15 +82,27 @@ class _CommunitiesState extends State<Communities> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(data.community[index].type,
+                                    Text(
+                                        data.community[index].type,
                                         style: TextStyle(
                                           fontSize: 20,
                                           fontWeight: FontWeight.w600,
                                         )),
-                                    Icon(
-                                      Icons.arrow_forward_ios,
-                                      color: Colors.black,
-                                      size: 22,
+                                    InkWell(
+                                      child: Icon(
+                                        Icons.arrow_forward_ios,
+                                        color: Colors.black,
+                                        size: 22,
+                                      ),
+                                      onTap: (){
+                                        // TODO Communities...
+                                        Navigator.of(context)
+                                            .push(
+                                          MaterialPageRoute(
+                                            builder: (context) => RaiseSales()
+                                          )
+                                        );
+                                      },
                                     )
                                   ],
                                 ),

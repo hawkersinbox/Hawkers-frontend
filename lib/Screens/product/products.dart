@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:hawkers/Models/Product.dart' as Model;
 import 'package:hawkers/Provider/getProduct.dart';
 import 'package:hawkers/Widgets/navigationBar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProductList extends StatefulWidget {
   static const routeName = '/Products';
@@ -21,13 +22,22 @@ class ProductList extends StatefulWidget {
 
 class _ProductListState extends State<ProductList> {
   bool isLoading = true;
-  var accessTokenProvider;
 
   @override
   void initState() {
-    accessTokenProvider = Provider.of<AccessTokenProvider>(context);
-    print("Access Token: ${accessTokenProvider.mAccessToken}");
-    getProduct(accessTokenProvider.mAccessToken);
+    Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+
+    _prefs.then((SharedPreferences sharedPreferences) {
+      String accessToken = sharedPreferences.getString("access_token");
+      print("access_token: $accessToken");
+      getProduct(accessToken);
+    })
+        .whenComplete(() {
+      print("Complete!");
+    })
+        .catchError((error){
+      print("Error: ${error.toString()}");
+    });
     super.initState();
   }
 
@@ -117,7 +127,19 @@ class _ProductListState extends State<ProductList> {
                               Navigator.pushNamed(
                                       context, AddProducts.routeName)
                                   .then((value) {
-                                getProduct(accessTokenProvider.mAccessToken);
+                                Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+
+                                _prefs.then((SharedPreferences sharedPreferences) {
+                                  String accessToken = sharedPreferences.getString("access_token");
+                                  print("access_token: $accessToken");
+                                  getProduct(accessToken);
+                                })
+                                    .whenComplete(() {
+                                  print("Complete!");
+                                })
+                                    .catchError((error){
+                                  print("Error: ${error.toString()}");
+                                });
                               });
                             },
                             shape: RoundedRectangleBorder(

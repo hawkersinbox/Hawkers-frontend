@@ -117,7 +117,7 @@ class RestApi {
             'Bearer' : access_token
       });
 
-      print(response.body);
+      print("GetProducts response: ${response.body.toString()}");
       return response;
     } catch (e) {
       print(e);
@@ -267,6 +267,34 @@ class RestApi {
     }
   }
 
+
+  Future<Response> createSalesRequest(
+      String access_token,
+      String body
+      ) async {
+    try {
+      String url =
+          BaseUrl + "/v0/request";
+
+      Map<String, String> requestHeaders = {
+        'Content-type': 'application/json',
+        HttpHeaders.authorizationHeader: "Bearer " + access_token
+      };
+
+      final response = await http.post(
+          url,
+          body: body,
+          headers:requestHeaders
+      );
+
+      print("HeadersMap: ${requestHeaders.toString()}");
+      print("Add User Response: ${response.toString()}");
+      return response;
+    } catch (e) {
+      print(e);
+      throw e;
+    }
+  }
 
 
 }

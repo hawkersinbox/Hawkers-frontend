@@ -8,6 +8,7 @@ import 'package:hawkers/Screens/addUserAdmin.dart';
 import 'package:hawkers/Screens/adminApproval/adminApproval.dart';
 import 'package:hawkers/Screens/community/communities.dart';
 import 'package:hawkers/Screens/product/addProducts.dart';
+import 'package:hawkers/Screens/product/products.dart';
 import 'package:hawkers/Screens/salesRequest/salesRequest.dart';
 import 'package:hawkers/Screens/userRequest.dart';
 import 'package:hawkers/Services/api.dart';
@@ -385,7 +386,7 @@ var gridViewList = [
    void productsClicked(BuildContext context) {
      Navigator.of(context)
          .push(MaterialPageRoute(
-         builder: (context)=> AddProducts()
+         builder: (context)=> ProductList()
      ));
    }
 
