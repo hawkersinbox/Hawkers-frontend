@@ -118,6 +118,12 @@ class _OtpState extends State<Otp> {
                   UserData.user.toJson(),
                 ),
               );
+
+              prefs.setString("user_first_name", responseData["response"]["user"]["firstName"]);
+              prefs.setString("user_last_name", responseData["response"]["user"]["lastName"]);
+              prefs.setString("user_email", responseData["response"]["user"]["email"]);
+              prefs.setString("user_access_token", responseData["response"]["user"]["accessToken"]);
+
               String accessToken = responseData["response"]["user"]["accessToken"].toString();
               print("Access Token: $accessToken");
               prefs.setString("access_token", accessToken);

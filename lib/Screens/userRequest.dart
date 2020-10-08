@@ -16,7 +16,7 @@ class _ApprovalState extends State<Approval> {
   }
 
   nextScreen() async {
-    Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
+    Navigator.of(context).pushReplacementNamed('/HomeScreen');
   }
   @override
   Widget build(BuildContext context) {

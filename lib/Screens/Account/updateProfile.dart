@@ -1,12 +1,85 @@
 import 'package:flutter/material.dart';
 import 'package:hawkers/Widgets/navigationBar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 
 class UpdateProfile extends StatefulWidget {
+
+  final String mFirstName;
+  final String mLastName;
+  final String mEmailID;
+  final String mMobileNumber;
+  final String mUserCity;
+  final String mUserState;
+  final String mUserStreetOne;
+  final String mUserPinCode;
+
+  UpdateProfile({
+    this.mFirstName,
+    this.mLastName,
+    this.mEmailID,
+    this.mMobileNumber,
+    this.mUserCity,
+    this.mUserState,
+    this.mUserStreetOne,
+    this.mUserPinCode
+  });
+
   @override
-  _UpdateProfileState createState() => _UpdateProfileState();
+  _UpdateProfileState createState() => _UpdateProfileState(
+    mFirstName,
+    mLastName,
+    mEmailID,
+    mMobileNumber,
+    mUserCity,
+    mUserState,
+    mUserStreetOne,
+    mUserPinCode
+  );
+
 }
 
 class _UpdateProfileState extends State<UpdateProfile> {
+
+  String mFirstName;
+  String mLastName;
+  String mEmailID;
+  String mAccessToken;
+  String firstAndLastName;
+  String mMobileNumber;
+  String mUserCity;
+  String mUserState;
+  String mUserStreetOne;
+  String mUserPinCode;
+
+  _UpdateProfileState(
+      String firstName,
+      String lastName,
+      String emailID,
+      String mobileNumber,
+      String userCity,
+      String userState,
+      String userStreetOne,
+      String userPinCode
+      ){
+    this.mFirstName = firstName;
+    this.mLastName = lastName;
+    this.mEmailID = emailID;
+    this.mMobileNumber = mobileNumber;
+    this.mUserCity = userCity;
+    this.mUserState = userState;
+    this.mUserStreetOne = userStreetOne;
+    this.mUserPinCode = userPinCode;
+
+    print("Update Profile FirtName: $mFirstName");
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     int _value = 1;
@@ -28,33 +101,33 @@ class _UpdateProfileState extends State<UpdateProfile> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                NumField('Mobile'),
+                NumField('Mobile', mMobileNumber),
                 SizedBox(
                   height: 20,
                 ),
-                Field('First Name'),
+                Field('First Name', mFirstName),
                 SizedBox(
                   height: 20,
                 ),
-                Field('Last Name'),
+                Field('Last Name', mLastName),
                 SizedBox(
                   height: 20,
                 ),
-                Field('Email Address'),
+                Field('Email Address', mEmailID),
                 SizedBox(
                   height: 20,
                 ),
-                Field('Street Address'),
+                Field('Street Address', mUserStreetOne),
                 SizedBox(
                   height: 20,
                 ),
-           Field('City*'),
+           Field('City*', mUserCity),
                 SizedBox(
                   height: 20,
                 ),
-               Field('State*'),
+               Field('State*', mUserState),
                 SizedBox(height: 20,),
-                NumField('Pincode'),
+                NumField('Pincode', mUserPinCode),
                 SizedBox(height: 30,),
                 Center(
                   child: Container(
@@ -82,8 +155,6 @@ class _UpdateProfileState extends State<UpdateProfile> {
                 ),
 
 
-
-
               ],
             ),
           ),
@@ -93,6 +164,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
   }
   Widget NumField(
       String name,
+     String initialValue
      // TextEditingController controller,
       ) {
     return Container(
@@ -117,9 +189,10 @@ class _UpdateProfileState extends State<UpdateProfile> {
                     borderRadius: BorderRadius.circular(3)),
                 child: Padding(
                   padding: const EdgeInsets.all(4.0),
-                  child: TextField(
+                  child: TextFormField(
                     keyboardType: TextInputType.number,
                    // controller: controller,
+                    initialValue: initialValue,
                     textAlign: TextAlign.start,
                     cursorColor: Colors.black,
                     style: TextStyle(color: Colors.black, fontSize: 21),
@@ -136,6 +209,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
   }
   Widget Field(
       String name,
+    String lableText
     //  TextEditingController controller,
       ) {
     return Container(
@@ -160,14 +234,13 @@ class _UpdateProfileState extends State<UpdateProfile> {
                 borderRadius: BorderRadius.circular(3)),
             child: Padding(
               padding: const EdgeInsets.only(left: 4.0),
-              child: TextField(
+              child: TextFormField(
                 textCapitalization: TextCapitalization.sentences,
-              //  controller: controller,
+                initialValue: lableText,
                 textAlign: TextAlign.start,
                 cursorColor: Colors.black,
                 style: TextStyle(color: Colors.black, fontSize: 21),
                 //     color:Colors.grey,
-
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   floatingLabelBehavior: FloatingLabelBehavior.never,

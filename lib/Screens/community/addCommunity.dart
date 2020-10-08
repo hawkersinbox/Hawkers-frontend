@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:hawkers/Services/api.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AddCommunity extends StatefulWidget {
   static const routeName = '/Add-Community';
@@ -47,7 +48,7 @@ class _AddCommunityState extends State<AddCommunity> {
         }
       });
 
-  _addCommunity() async {
+  _addCommunity(String access_token) async {
     _mobile = _mobileController.text;
     _communityname = _communitynameController.text;
     _alternateMobile = _alternateMobileController.text;
@@ -87,7 +88,7 @@ class _AddCommunityState extends State<AddCommunity> {
 
       var responseData;
       try {
-        final response = await restApi.addCommunity(body);
+        final response = await restApi.addCommunity(body, access_token);
         responseData = jsonDecode(response.body);
       } catch (e) {}
       setState(() {
@@ -203,7 +204,19 @@ class _AddCommunityState extends State<AddCommunity> {
                     child: RaisedButton(
                       onPressed: () {
                         FocusScope.of(context).requestFocus(FocusNode());
-                        _addCommunity();
+                        Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+
+                        _prefs.then((SharedPreferences sharedPreferences) {
+                          String accessToken = sharedPreferences.getString("access_token");
+                          print("access_token: $accessToken");
+                          _addCommunity(accessToken);
+                        })
+                            .whenComplete(() {
+                          print("Complete!");
+                        })
+                            .catchError((error){
+                          print("Error: ${error.toString()}");
+                        });
                       },
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular((3))),

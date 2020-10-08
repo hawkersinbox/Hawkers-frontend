@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:hawkers/SQLite/Database.dart';
+import 'package:hawkers/SQLite/User.dart';
 import 'package:hawkers/Screens/loginScreen.dart';
 import 'package:hawkers/Screens/otpScreen.dart';
 import 'package:hawkers/Services/api.dart';
@@ -88,8 +90,29 @@ class _RegistrationState extends State<Registration> {
       try {
         final response = await restApi.register(body);
         responseData = jsonDecode(response.body);
-      } catch (e) {}
+        print("Registration Response: ${responseData.toString()}");
+        print("Registration Response: ${response.body.toString()}");
+      } catch (e) {
+        print("Error: ${e.toString()}");
+      }
       if (responseData["success"]) {
+
+        try {
+          AppUser item = AppUser(
+              firstName: _firstnameController.text,
+              lastName: _lastnameController.text,
+              emailID: _emailController.text,
+              mobileNumber: _mobileController.text,
+              userCity: _cityController.text,
+              userState: _stateController.text,
+              userStreetOne: _streetaddressController.text,
+              userPinCode: _pincodeController.text
+          );
+          await DB.insert(AppUser.table, item);
+        }catch (e) {
+          print("Error: ${e.toString()}");
+        }
+
         _mobileController.clear();
         _firstnameController.clear();
         _lastnameController.clear();
@@ -98,6 +121,7 @@ class _RegistrationState extends State<Registration> {
         _stateController.clear();
         _streetaddressController.clear();
         _pincodeController.clear();
+
 
         Navigator.push(
           context,
