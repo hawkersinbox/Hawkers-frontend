@@ -111,11 +111,15 @@ class RestApi {
     try {
       String url =
           BaseUrl + "/v0/product";
+
+      Map<String, String> requestHeaders = {
+        'Content-type': 'application/json',
+        HttpHeaders.authorizationHeader: "Bearer " + access_token
+      };
+
       final response = await http.get(url,
-          headers: <String, String>{
-        'content-type': "application/json",
-            'Bearer' : access_token
-      });
+          headers: requestHeaders
+      );
 
       print("GetProducts response: ${response.body.toString()}");
       return response;
@@ -151,7 +155,7 @@ class RestApi {
   Future<Response> getCategory(String access_token) async {
     try {
       String url =
-          "https://zzsa82b4p3.execute-api.ap-south-1.amazonaws.com/prod/v0/category";
+         BaseUrl +  "/v0/category";
 
       Map<String, String> requestHeaders = {
         'Content-type': 'application/json',
@@ -163,8 +167,7 @@ class RestApi {
       );
 
       print("HeadersMap: ${requestHeaders.toString()}");
-
-
+      print("Get Categories Response: ${response.toString()}");
 
       return response;
     } catch (e) {
@@ -173,12 +176,20 @@ class RestApi {
     }
   }
 
-  Future<Response> getSubCategory(String body) async {
+  Future<Response> getSubCategory(String body, String access_token) async {
     try {
       String url =
           "https://zzsa82b4p3.execute-api.ap-south-1.amazonaws.com/prod/v0/subcategory";
-      final response = await http.get(url,
-          headers: <String, String>{'content-type': "application/json"});
+
+      Map<String, String> requestHeaders = {
+        'Content-type': 'application/json',
+        HttpHeaders.authorizationHeader: "Bearer " + access_token
+      };
+
+      final response = await http.get(
+          url,
+          headers: requestHeaders
+      );
       return response;
     } catch (e) {
       print(e);
@@ -186,13 +197,23 @@ class RestApi {
     }
   }
 
-  Future<Response> addProduct(String body) async {
+  Future<Response> addProduct(String body, String access_token) async {
     try {
       String url =
           "https://zzsa82b4p3.execute-api.ap-south-1.amazonaws.com/prod/v0/product";
+
+      Map<String, String> requestHeaders = {
+        'Content-type': 'application/json',
+        HttpHeaders.authorizationHeader: "Bearer " + access_token
+      };
+
       final response = await http.post(url,
           body: body,
-          headers: <String, String>{'content-type': "application/json"});
+          headers: requestHeaders
+      );
+
+      print("Add Product Map: ${requestHeaders.toString()}");
+      print("Add Product Response: ${response.body.toString()}");
       return response;
     } catch (e) {
       print(e);

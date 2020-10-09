@@ -51,16 +51,17 @@ class ProductProvider with ChangeNotifier {
         categoryResponseFromJson(response.body).response;
     _categories = categories;
     _selectedCategory = _categories[0];
-    getSubCategory(_selectedCategory.id);
+    getSubCategory(_selectedCategory.id, accessToken);
     notifyListeners();
     return _categories;
   }
 
-  Future<List<SubCategory>> getSubCategory(int id) async {
+  Future<List<SubCategory>> getSubCategory(int id, String access_token) async {
     _subCategories = [];
     _selectedSubCategory = null;
     String body = jsonEncode({"category_id": id});
-    final response = await restApi.getSubCategory(body);
+    final response = await restApi.getSubCategory(body, access_token);
+    print("SubCategoriesResponse: ${response.body.toString()}");
     List<SubCategory> subCategories =
         subCategoryResponseFromJson(response.body).response;
     _subCategories = subCategories;
@@ -69,9 +70,9 @@ class ProductProvider with ChangeNotifier {
     return subCategories;
   }
 
-  selectCategory(Category selectCategory) {
+  selectCategory(Category selectCategory, String accessToken) {
     if (selectCategory.id != _selectedCategory.id) {
-      getSubCategory(selectCategory.id);
+      getSubCategory(selectCategory.id, accessToken);
     }
     _selectedCategory = selectCategory;
     notifyListeners();

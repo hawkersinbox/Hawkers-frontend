@@ -101,10 +101,17 @@ class _ProductListState extends State<ProductList> {
                                         ),
                                       ],
                                     ),
-                                    Icon(
-                                      Icons.arrow_forward_ios,
-                                      color: Colors.black,
-                                      size: 21,
+                                    InkWell(
+                                      child: Icon(
+                                        Icons.arrow_forward_ios,
+                                        color: Colors.black,
+                                        size: 21,
+                                      ),
+                                      onTap: (){
+                                        // TODO Product Review Screen...
+
+
+                                      },
                                     )
                                   ],
                                 ),
