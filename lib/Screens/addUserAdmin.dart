@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:hawkers/DataClass/AddUser/AddUserData.dart';
+import 'package:hawkers/DataClass/AddUserData.dart';
 import 'package:hawkers/Services/api.dart';
 import 'package:hawkers/Widgets/navigationBar.dart';
 import 'package:shared_preferences/shared_preferences.dart';

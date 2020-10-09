@@ -288,6 +288,7 @@ class RestApi {
       );
 
       print("HeadersMap: ${requestHeaders.toString()}");
+      print("Create Request Body: $body");
       print("Add User Response: ${response.toString()}");
       return response;
     } catch (e) {

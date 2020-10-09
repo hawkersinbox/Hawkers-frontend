@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:hawkers/DataClass/createSalesRequest.dart';
 import 'package:hawkers/Screens/salesRequest/requestReview.dart';
 import 'package:hawkers/Services/api.dart';
 import 'package:intl/intl.dart';
@@ -365,7 +366,7 @@ class _RaiseSalesState extends State<RaiseSales> {
                               // width:ScreenUtil().setWidth(700),
                               child: RaisedButton(
                                 onPressed: () {
-                                  raiseSalesRequest();
+                                  raiseSalesRequest(_image);
                                   Navigator.push(context,MaterialPageRoute(builder: (context)=>RequestReview()));
                                 },
                                 shape: RoundedRectangleBorder(
@@ -400,7 +401,7 @@ class _RaiseSalesState extends State<RaiseSales> {
     );
   }
 
-  void raiseSalesRequest() {
+  void raiseSalesRequest(File _pickedImageFilePath) {
 
     Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
@@ -411,7 +412,7 @@ class _RaiseSalesState extends State<RaiseSales> {
         "seller_id": 1,
         "product_id": 1,
         "community_id": 1,
-        "image_url": "",
+        "image_url": _pickedImageFilePath.toString(),
         "seller_comment": "wanna sell"
       });
       var response = _restApi.createSalesRequest(accessToken, body);
@@ -421,7 +422,15 @@ class _RaiseSalesState extends State<RaiseSales> {
         Map<String, dynamic> _map = json.decode(responseData) as Map;
         print("Map String: ${_map.toString()}");
 
-        // TODO Parse Response (Raise Sales Request)
+        var createSalesRequest = CreateSalesRequest.fromJson(_map);
+
+        if (createSalesRequest.success){
+          print("Create sales request message : ${createSalesRequest.message}");
+          // TODO Create Sales Request ...
+
+        }else {
+          print("Create sales request : ${createSalesRequest.success.toString()}");
+        }
 
       })
       .whenComplete(() {

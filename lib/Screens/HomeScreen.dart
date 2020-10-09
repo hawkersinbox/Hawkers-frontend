@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:hawkers/DataClass/UserData/UsreInfo.dart';
+import 'package:hawkers/DataClass/UsreInfo.dart';
 import 'package:hawkers/Models/Product.dart';
 import 'package:hawkers/Screens/addPaymentDetails.dart';
 import 'package:hawkers/Screens/addUserAdmin.dart';

@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:hawkers/DataClass/UserData/UsreInfo.dart';
+import 'package:hawkers/DataClass/UsreInfo.dart';
 import 'package:hawkers/Models/userModel.dart';
 import 'package:hawkers/SQLite/Database.dart';
 import 'package:hawkers/SQLite/User.dart';
