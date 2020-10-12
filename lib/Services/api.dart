@@ -319,4 +319,32 @@ class RestApi {
   }
 
 
+  Future<Response> getSalesRequests(String access_token) async {
+    String URL = BaseUrl + "/v0/openrequest";
+
+    try {
+
+    Map<String, String> requestHeaders = {
+      'Content-type': 'application/json',
+      HttpHeaders.authorizationHeader: "Bearer " + access_token
+    };
+
+    final response = await http.get(
+        URL,
+        headers:requestHeaders
+    );
+
+    print("HeadersMap: ${requestHeaders.toString()}");
+    print("Add User Response: ${response.toString()}");
+
+    return response;
+  } catch (e) {
+  print(e);
+  throw e;
+  }
+
+
+  }
+
+
 }

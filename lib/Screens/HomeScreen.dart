@@ -445,5 +445,28 @@ var gridViewList = [
 
   }
 
+  void getSalesRequests(String access_token){
+    var response = restApi.getSalesRequests(access_token);
+
+    response.then((value) {
+
+      var responseBody = value.body;
+      print("Open Sales Request Response: ${responseBody.toString()}");
+
+      print("Response String: $response}");
+      Map<String, dynamic> _map = json.decode(responseBody) as Map;
+      print("Map String: ${_map.toString()}");
+
+      var resp = new UserInfoClass.fromJson(_map);
+
+    })
+    .catchError((error){
+      print("Error: ${error.toString()}");
+    })
+    .whenComplete(() {
+      print("Complete!");
+    });
+  }
+
  }
 
