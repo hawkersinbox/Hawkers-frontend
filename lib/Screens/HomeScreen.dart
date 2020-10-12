@@ -263,15 +263,14 @@ var gridViewList = [
          padding: EdgeInsets.all(5),
          child: Container(
            width: SizeConfig.blockSizeHorizontal * 100,
-           height: SizeConfig.blockSizeVertical * 80,
+           height: SizeConfig.blockSizeVertical * 60,
            child: GridView.builder(
              scrollDirection: Axis.vertical,
              shrinkWrap: true,
              physics: NeverScrollableScrollPhysics(),
              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                  crossAxisCount: 2,
-                 childAspectRatio: MediaQuery.of(context).size.width /
-                     (MediaQuery.of(context).size.height / 2),
+                 childAspectRatio: 2,
                  crossAxisSpacing: 0,
                  mainAxisSpacing: 0
              ),
@@ -284,7 +283,7 @@ var gridViewList = [
                    child: Padding(
                      padding: EdgeInsets.all(5),
                      child: Container(
-                       height: 200,
+                       height: 150,
                        child: Card(
                          elevation: 2,
                          shape: RoundedRectangleBorder(
@@ -298,8 +297,8 @@ var gridViewList = [
                                  image: AssetImage(
                                      gridViewList[index]['image']
                                  ),
-                                 width: 80,
-                                 height: 80,
+                                 width: 50,
+                                 height: 50,
                                ),
                              ),
                              Padding(
@@ -309,7 +308,7 @@ var gridViewList = [
                                    gridViewList[index]['footer'],
                                    textAlign: TextAlign.center,
                                    style: TextStyle(
-                                       fontSize: 16,
+                                       fontSize: 14,
                                        fontWeight: FontWeight.w300,
                                        color: Colors.black
                                    ),
