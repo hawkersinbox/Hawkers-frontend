@@ -283,7 +283,7 @@ var gridViewList = [
                    child: Padding(
                      padding: EdgeInsets.all(5),
                      child: Container(
-                       height: 150,
+                       height: 130,
                        child: Card(
                          elevation: 2,
                          shape: RoundedRectangleBorder(
@@ -297,8 +297,8 @@ var gridViewList = [
                                  image: AssetImage(
                                      gridViewList[index]['image']
                                  ),
-                                 width: 50,
-                                 height: 50,
+                                 width: 40,
+                                 height: 40,
                                ),
                              ),
                              Padding(

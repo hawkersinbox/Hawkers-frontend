@@ -10,6 +10,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 RestApi _restApi = RestApi();
+TextEditingController _addCommentController = new TextEditingController();
 
 class RaiseSales extends StatefulWidget {
   @override
@@ -324,12 +325,11 @@ class _RaiseSalesState extends State<RaiseSales> {
                             padding: const EdgeInsets.all(3.0),
                             child: TextField(
                               // keyboardType: TextInputType.number,
-                              // controller: controller,
+                              controller: _addCommentController,
                               textAlign: TextAlign.start,
                               cursorColor: Colors.black,
                               style: TextStyle(color: Colors.black, fontSize: 19),
                               //     color:Colors.grey,
-
                               decoration: InputDecoration(
                                 border: InputBorder.none,
                                 floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -403,6 +403,9 @@ class _RaiseSalesState extends State<RaiseSales> {
 
   void raiseSalesRequest(File _pickedImageFilePath) {
 
+    String comment = _addCommentController.text.toString();
+    print("Comment: $comment}");
+
     Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
     _prefs.then((SharedPreferences sharedPreferences) {
@@ -413,7 +416,7 @@ class _RaiseSalesState extends State<RaiseSales> {
         "product_id": 1,
         "community_id": 1,
         "image_url": _pickedImageFilePath.toString(),
-        "seller_comment": "wanna sell"
+        "seller_comment": comment
       });
       var response = _restApi.createSalesRequest(accessToken, body);
       response.then((value) {

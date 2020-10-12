@@ -78,33 +78,32 @@ class _CommunitiesState extends State<Communities> {
                           itemBuilder: (ctx, index) => Container(
                             child: Column(
                               children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                        data.community[index].type,
-                                        style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w600,
-                                        )),
-                                    InkWell(
-                                      child: Icon(
+                                InkWell(
+                                  child: Row(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                          data.community[index].type,
+                                          style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w600,
+                                          )),
+                                      Icon(
                                         Icons.arrow_forward_ios,
                                         color: Colors.black,
                                         size: 22,
                                       ),
-                                      onTap: (){
-                                        // TODO Communities...
-                                        Navigator.of(context)
-                                            .push(
-                                          MaterialPageRoute(
+                                    ],
+                                  ),
+                                  onTap: (){
+                                    Navigator.of(context)
+                                        .push(
+                                        MaterialPageRoute(
                                             builder: (context) => RaiseSales()
-                                          )
-                                        );
-                                      },
-                                    )
-                                  ],
+                                        )
+                                    );
+                                  },
                                 ),
                                 Divider(
                                   height: 30,
