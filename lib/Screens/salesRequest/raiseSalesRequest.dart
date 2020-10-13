@@ -404,7 +404,8 @@ class _RaiseSalesState extends State<RaiseSales> {
   void raiseSalesRequest(File _pickedImageFilePath) {
 
     String comment = _addCommentController.text.toString();
-    print("Comment: $comment}");
+    print("Comment: $comment");
+    _addCommentController.clear();
 
     Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 

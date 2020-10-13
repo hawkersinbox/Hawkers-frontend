@@ -80,6 +80,16 @@ class _ProfileState extends State<Profile> {
     this.mUserState = userState;
     this.mUserStreetOne = userStreetOne;
     this.mUserPinCode = userPinCode;
+
+    print("Profile Mobile Number: $mMobileNumber");
+    print("Profile FirtName: $mFirstName");
+    print("Profile LastName: $mLastName");
+    print("Profile EmailID: $mEmailID");
+    print("Profile UserCity: $mUserCity");
+    print("Profile UserState: $mUserState");
+    print("Profile UserStreetOne: $mUserStreetOne");
+    print("Profile UserPinCode: $mUserPinCode");
+
   }
 
 

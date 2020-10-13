@@ -78,10 +78,20 @@ class _AccountState extends State<Account> {
     this.mFirstName = firstName;
     this.mLastName = lastName;
     this.mEmailID = emailID;
+    this.mMobileNo = mobileNumber;
     this.mUserCity = userCity;
     this.mUserState = userState;
     this.mUserStreetOne = userStreetOne;
     this.mUserPinCode = userPinCode;
+
+    print("Account Mobile Number: $mMobileNo");
+    print("Account FirtName: $mFirstName");
+    print("Account Lastname: $mLastName");
+    print("Account EmailID: $mEmailID");
+    print("Account UserCity: $mUserCity");
+    print("Account UserState: $mUserState");
+    print("Account UserStreetOne: $mUserStreetOne");
+    print("Account UserPinCode: $mUserPinCode");
   }
 
   String space = " ";

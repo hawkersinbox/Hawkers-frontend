@@ -76,44 +76,43 @@ class _ProductListState extends State<ProductList> {
                             itemCount: data.products.length,
                             itemBuilder: (ctx, index) => Column(
                               children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          data.products[index].name.toString(),
-                                          style: TextStyle(
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.w700,
-                                              color: Colors.black),
-                                        ),
-                                        Text(
-                                          data.products[index].category
-                                              .toString(),
-                                          style: TextStyle(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w700,
-                                              color: Colors.grey),
-                                        ),
-                                      ],
-                                    ),
-                                    InkWell(
-                                      child: Icon(
+                                InkWell(
+                                  child: Row(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            data.products[index].name.toString(),
+                                            style: TextStyle(
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.w700,
+                                                color: Colors.black),
+                                          ),
+                                          Text(
+                                            data.products[index].category
+                                                .toString(),
+                                            style: TextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.w700,
+                                                color: Colors.grey),
+                                          ),
+                                        ],
+                                      ),
+                                      Icon(
                                         Icons.arrow_forward_ios,
                                         color: Colors.black,
                                         size: 21,
                                       ),
-                                      onTap: (){
-                                        // TODO Product Review Screen...
+                                    ],
+                                  ),
+                                  onTap: (){
+                                    // TODO Navigate To Product Review Screen
 
-
-                                      },
-                                    )
-                                  ],
+                                  },
                                 ),
                                 Divider(
                                   height: 30,

@@ -347,4 +347,35 @@ class RestApi {
   }
 
 
+  Future<Response> updateUserProfiel(String access_token, String body) async {
+    String URL = BaseUrl + "/v0/updateUserProfile";
+
+    try {
+
+      Map<String, String> requestHeaders = {
+        'Content-type': 'application/json',
+        HttpHeaders.authorizationHeader: "Bearer " + access_token
+      };
+
+      final response = await http.put(
+          URL,
+          body: body,
+          headers:requestHeaders
+      );
+
+      print("Update User Profile Body: $body");
+      print("Update User Profile HeadersMap: ${requestHeaders.toString()}");
+      print("Update User Profile Response: ${response.toString()}");
+
+      return response;
+    } catch (e) {
+      print(e);
+      throw e;
+    }
+
+
+  }
+
+
+
 }
