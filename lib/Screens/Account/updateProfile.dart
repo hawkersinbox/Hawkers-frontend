@@ -285,38 +285,45 @@ class _UpdateProfileState extends State<UpdateProfile> {
 
       Map<String, String> _userInputMap = new Map();
 
-      if (_mobileNumberController.text != null){
-        _userInputMap.putIfAbsent("mobile", () => _mobileNumberController.text.toString());
+      if (_mobileNumberController.text.toString() == null){
+        // _userInputMap.putIfAbsent("mobile", () => _mobileNumberController.text.toString());
+        _userInputMap['mobile'] = _mobileNumberController.text.toString();
         print("Mobile Controller Not Null ${_mobileNumberController.text.toString()}");
-      }else {
-        print("Mobile Controller null");
       }
-      if (_firstNameController.text != null){
-        _userInputMap.putIfAbsent("first_name", () => _firstNameController.text.toString());
+
+      if (_firstNameController.text == null){
+        // _userInputMap.putIfAbsent("first_name", () => _firstNameController.text.toString());
+        _userInputMap['first_name'] = _firstNameController.text.toString();
         print("FirstName Controller Not Null ${_firstNameController.text.toString()}");
       }
-      if (_lastNameController.text != null){
-        _userInputMap.putIfAbsent("last_name", () => _lastNameController.text.toString());
+      if (_lastNameController.text == null){
+        // _userInputMap.putIfAbsent("last_name", () => _lastNameController.text.toString());
+        _userInputMap['last_name'] = _lastNameController.text.toString();
         print("LastName Controller Not Null ${_lastNameController.text.toString()}");
       }
-      if (_emailController.text != null){
-        _userInputMap.putIfAbsent("email", () => _emailController.text.toString());
+      if (_emailController.text == null){
+        // _userInputMap.putIfAbsent("email", () => _emailController.text.toString());
+        _userInputMap['email'] = _emailController.text.toString();
         print("EmailID Controller Not Null ${_emailController.text.toString()}");
       }
-      if (_streetOneController.text != null){
-        _userInputMap.putIfAbsent("street_address1", () => _streetOneController.text.toString());
+      if (_streetOneController.text == null){
+        // _userInputMap.putIfAbsent("street_address1", () => _streetOneController.text.toString());
+        _userInputMap['street_address1'] = _streetOneController.text.toString();
         print("StreetOne Controller Not Null ${_streetOneController.text.toString()}");
       }
-      if (_cityController.text != null){
-        _userInputMap.putIfAbsent("city", () => _cityController.text.toString());
+      if (_cityController.text == null){
+        // _userInputMap.putIfAbsent("city", () => _cityController.text.toString());
+        _userInputMap['city'] = _cityController.text.toString();
         print("City Controller Not Null ${_cityController.text.toString()}");
       }
-      if (_stateController.text != null){
-        _userInputMap.putIfAbsent("state", () => _stateController.text.toString());
+      if (_stateController.text == null){
+        // _userInputMap.putIfAbsent("state", () => _stateController.text.toString());
+        _userInputMap['state'] = _stateController.text.toString();
         print("State Controller Not Null ${_stateController.text.toString()}");
       }
-      if (_pinCodeController.text != null){
-        _userInputMap.putIfAbsent("pincode", () => _pinCodeController.text.toString());
+      if (_pinCodeController.text == null){
+        // _userInputMap.putIfAbsent("pincode", () => _pinCodeController.text.toString());
+        _userInputMap['pincode'] = _pinCodeController.text.toString();
         print("PinCode Controller Not Null ${_pinCodeController.text.toString()}");
       }
 
