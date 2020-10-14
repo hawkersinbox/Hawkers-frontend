@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:hawkers/DataClass/UpdateUserProfile.dart';
 import 'package:hawkers/Services/api.dart';
 import 'package:hawkers/Widgets/navigationBar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -292,52 +293,54 @@ class _UpdateProfileState extends State<UpdateProfile> {
       }
 
       if (_firstNameController.text == null){
-        // _userInputMap.putIfAbsent("first_name", () => _firstNameController.text.toString());
-        _userInputMap['first_name'] = _firstNameController.text.toString();
+        _userInputMap.putIfAbsent("first_name", () => _firstNameController.text.toString());
+        // _userInputMap['first_name'] = _firstNameController.text.toString();
         print("FirstName Controller Not Null ${_firstNameController.text.toString()}");
       }
       if (_lastNameController.text == null){
-        // _userInputMap.putIfAbsent("last_name", () => _lastNameController.text.toString());
-        _userInputMap['last_name'] = _lastNameController.text.toString();
+        _userInputMap.putIfAbsent("last_name", () => _lastNameController.text.toString());
+        // _userInputMap['last_name'] = _lastNameController.text.toString();
         print("LastName Controller Not Null ${_lastNameController.text.toString()}");
       }
       if (_emailController.text == null){
-        // _userInputMap.putIfAbsent("email", () => _emailController.text.toString());
-        _userInputMap['email'] = _emailController.text.toString();
+        _userInputMap.putIfAbsent("email", () => _emailController.text.toString());
+        // _userInputMap['email'] = _emailController.text.toString();
         print("EmailID Controller Not Null ${_emailController.text.toString()}");
       }
       if (_streetOneController.text == null){
-        // _userInputMap.putIfAbsent("street_address1", () => _streetOneController.text.toString());
-        _userInputMap['street_address1'] = _streetOneController.text.toString();
+        _userInputMap.putIfAbsent("street_address1", () => _streetOneController.text.toString());
+        // _userInputMap['street_address1'] = _streetOneController.text.toString();
         print("StreetOne Controller Not Null ${_streetOneController.text.toString()}");
       }
       if (_cityController.text == null){
-        // _userInputMap.putIfAbsent("city", () => _cityController.text.toString());
-        _userInputMap['city'] = _cityController.text.toString();
+        _userInputMap.putIfAbsent("city", () => _cityController.text.toString());
+        // _userInputMap['city'] = _cityController.text.toString();
         print("City Controller Not Null ${_cityController.text.toString()}");
       }
       if (_stateController.text == null){
-        // _userInputMap.putIfAbsent("state", () => _stateController.text.toString());
-        _userInputMap['state'] = _stateController.text.toString();
+        _userInputMap.putIfAbsent("state", () => _stateController.text.toString());
+        // _userInputMap['state'] = _stateController.text.toString();
         print("State Controller Not Null ${_stateController.text.toString()}");
       }
       if (_pinCodeController.text == null){
-        // _userInputMap.putIfAbsent("pincode", () => _pinCodeController.text.toString());
-        _userInputMap['pincode'] = _pinCodeController.text.toString();
+        _userInputMap.putIfAbsent("pincode", () => _pinCodeController.text.toString());
+        // _userInputMap['pincode'] = _pinCodeController.text.toString();
         print("PinCode Controller Not Null ${_pinCodeController.text.toString()}");
       }
 
+      // UpdateUserProfileClass _updateProfile = new UpdateUserProfileClass(
+      //   firstName:  _firstNameController.text.toString(),
+      //   lastName: _lastNameController.text.toString(),
+      //   email: _emailController.text.toString(),
+      //   mobile: _mobileNumberController.text.toString(),
+      //   city: _cityController.text.toString(),
+      //   state: _stateController.text.toString(),
+      //   streetAddress1: _streetOneController.text.toString(),
+      //   pincode: _pinCodeController.text.toString(),
+      // );
+      // print("User Input Map: ${_updateProfile.toJson().toString()}");
 
-      // Map<String, String> _mapBody = {
-      //   "mobile": ,
-      //   "first_name": first_name,
-      //   "last_name": last_name,
-      //   "email": email,
-      //   "street_address1": streeAddressOne,
-      //   "city": city,
-      //   "state": state,
-      //   "pincode": pincode
-      // };
+
       print("User Input Map: ${_userInputMap.toString()}");
       String body = json.encode({
         _userInputMap
