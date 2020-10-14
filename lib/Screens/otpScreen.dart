@@ -82,7 +82,11 @@ class _OtpState extends State<Otp> {
   }
 
   requestOtp() async {
+
+    print("Request OTP Mobile: ${widget.mobile.toString()}");
     String body = json.encode({'mobile': widget.mobile});
+
+    print("Request OTP Body: ${body.toString()}");
 
     try {
       await restApi.login(body);

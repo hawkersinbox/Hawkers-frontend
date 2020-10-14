@@ -19,6 +19,9 @@ class RestApi {
           'content-type': "application/json",
         },
       );
+
+      print("Registration Body: ${body.toString()}");
+      print("Registration Response: ${response.toString()}");
       return response;
     } catch (e) {
       print(e);
@@ -29,7 +32,7 @@ class RestApi {
   Future<Response> login(String body) async {
     try {
       String url =
-          "https://zzsa82b4p3.execute-api.ap-south-1.amazonaws.com/prod/auth/v0/signIn";
+          BaseUrl + "/auth/v0/signIn";
       final response = await http.post(
         url,
         body: body,
@@ -37,6 +40,9 @@ class RestApi {
           'content-type': "application/json",
         },
       );
+
+      print("SignIn Body: ${body.toString()}");
+      print("SignIn Response: ${response.toString()}");
       return response;
     } catch (e) {
       print(e);

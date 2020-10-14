@@ -62,6 +62,15 @@ class _RegistrationState extends State<Registration> {
     _pincode = _pincodeController.text;
     _streetaddress = _streetaddressController.text;
 
+    print("Mobile Number: ${_mobileController.text}");
+    print("First Name: ${_firstnameController.text}");
+    print("Last Name: ${_lastnameController.text}");
+    print("Email: ${_emailController.text}");
+    print("State: ${_stateController.text}");
+    print("City: ${_cityController.text}");
+    print("PinCode: ${_pincodeController.text}");
+    print("StreetAddressOne: ${_streetaddressController.text}");
+
     String body = json.encode({
       'email': _email,
       'mobile': _mobile,
@@ -108,7 +117,7 @@ class _RegistrationState extends State<Registration> {
               userStreetOne: _streetaddressController.text,
               userPinCode: _pincodeController.text
           );
-          await DB.insert(AppUser.table, item);
+          // await DB.insert(AppUser.table, item);
         }catch (e) {
           print("Error: ${e.toString()}");
         }
@@ -121,13 +130,14 @@ class _RegistrationState extends State<Registration> {
         _stateController.clear();
         _streetaddressController.clear();
         _pincodeController.clear();
-
+        print("Mobile Number: ${_mobile}");
+        print("Mobile Number Controller: ${_mobileController.text}");
 
         Navigator.push(
           context,
           MaterialPageRoute(
               builder: (context) => Otp(
-                    mobile: _mobile,
+                    mobile: _mobileController.text,
                   )),
         );
       } else {
