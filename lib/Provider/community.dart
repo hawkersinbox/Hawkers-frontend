@@ -12,8 +12,8 @@ class CommunityProvider with ChangeNotifier {
     return _community;
   }
 
-  Future<List<Community>> getCommunity() async {
-    final response = await restApi.getCommunity();
+  Future<List<Community>> getCommunity(String access_token) async {
+    final response = await restApi.getCommunity(access_token);
     List<Community> community =
         communityResponseFromJson(response.body).response;
     _community = community;
