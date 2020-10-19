@@ -100,8 +100,9 @@ class _LoginState extends State<Login> {
                 margin: EdgeInsets.all(0),
                 height: 45,
                 decoration: BoxDecoration(
+                    color:Colors.grey.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(3),
-                    border: Border.all(color: Colors.black45)),
+                    border: Border.all(color: Colors.black)),
                 child: Container(
                   child: Padding(
                     padding: const EdgeInsets.all(5.0),
@@ -167,8 +168,8 @@ class _LoginState extends State<Login> {
                 child: Container(
                   child: SizedBox(
                     height: 45,
-                    width: 200,
-                    // width: ScreenUtil().setWidth(700),
+
+                     width:MediaQuery.of(context).size.width,
                     child: RaisedButton(
                       onPressed: () {
                         FocusScope.of(context).requestFocus(FocusNode());
