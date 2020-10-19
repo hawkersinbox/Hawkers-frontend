@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:hawkers/Provider/AccessToken.dart';
 import 'package:hawkers/Screens/product/addProducts.dart';
 import 'package:provider/provider.dart';
 import 'package:hawkers/Models/Product.dart' as Model;
 import 'package:hawkers/Provider/getProduct.dart';
 import 'package:hawkers/Widgets/navigationBar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProductList extends StatefulWidget {
   static const routeName = '/Products';
@@ -20,15 +22,27 @@ class ProductList extends StatefulWidget {
 
 class _ProductListState extends State<ProductList> {
   bool isLoading = true;
+
   @override
   void initState() {
-    getProduct();
+    Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
+    _prefs.then((SharedPreferences sharedPreferences) {
+      String accessToken = sharedPreferences.getString("access_token");
+      print("access_token: $accessToken");
+      getProduct(accessToken);
+    })
+        .whenComplete(() {
+      print("Complete!");
+    })
+        .catchError((error){
+      print("Error: ${error.toString()}");
+    });
     super.initState();
   }
 
-  getProduct() async {
-    await Provider.of<ProductProvider>(context, listen: false).getProduct();
+  getProduct(String access_token) async {
+    await Provider.of<ProductProvider>(context, listen: false).getProduct(access_token);
     setState(() {
       isLoading = false;
     });
@@ -62,37 +76,43 @@ class _ProductListState extends State<ProductList> {
                             itemCount: data.products.length,
                             itemBuilder: (ctx, index) => Column(
                               children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          data.products[index].name.toString(),
-                                          style: TextStyle(
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.w700,
-                                              color: Colors.black),
-                                        ),
-                                        Text(
-                                          data.products[index].category
-                                              .toString(),
-                                          style: TextStyle(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w700,
-                                              color: Colors.grey),
-                                        ),
-                                      ],
-                                    ),
-                                    Icon(
-                                      Icons.arrow_forward_ios,
-                                      color: Colors.black,
-                                      size: 21,
-                                    )
-                                  ],
+                                InkWell(
+                                  child: Row(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            data.products[index].name.toString(),
+                                            style: TextStyle(
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.w700,
+                                                color: Colors.black),
+                                          ),
+                                          Text(
+                                            data.products[index].category
+                                                .toString(),
+                                            style: TextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.w700,
+                                                color: Colors.grey),
+                                          ),
+                                        ],
+                                      ),
+                                      Icon(
+                                        Icons.arrow_forward_ios,
+                                        color: Colors.black,
+                                        size: 21,
+                                      ),
+                                    ],
+                                  ),
+                                  onTap: (){
+                                    // TODO Navigate To Product Review Screen
+
+                                  },
                                 ),
                                 Divider(
                                   height: 30,
@@ -113,7 +133,19 @@ class _ProductListState extends State<ProductList> {
                               Navigator.pushNamed(
                                       context, AddProducts.routeName)
                                   .then((value) {
-                                getProduct();
+                                Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+
+                                _prefs.then((SharedPreferences sharedPreferences) {
+                                  String accessToken = sharedPreferences.getString("access_token");
+                                  print("access_token: $accessToken");
+                                  getProduct(accessToken);
+                                })
+                                    .whenComplete(() {
+                                  print("Complete!");
+                                })
+                                    .catchError((error){
+                                  print("Error: ${error.toString()}");
+                                });
                               });
                             },
                             shape: RoundedRectangleBorder(
