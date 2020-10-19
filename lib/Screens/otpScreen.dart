@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:hawkers/Provider/AccessToken.dart';
 import 'package:hawkers/Provider/MobileNumber.dart';
 import 'package:pinput/pin_put/pin_put.dart';
 import 'package:flutter/material.dart';
@@ -36,6 +37,10 @@ class _OtpState extends State<Otp> {
   RestApi restApi = RestApi();
   bool _isLoading = false;
   String otp = '';
+
+
+  var accessTokenProvider;
+
 
   BoxDecoration get _pinPutDecoration {
     return BoxDecoration(
@@ -77,7 +82,11 @@ class _OtpState extends State<Otp> {
   }
 
   requestOtp() async {
+
+    print("Request OTP Mobile: ${widget.mobile.toString()}");
     String body = json.encode({'mobile': widget.mobile});
+
+    print("Request OTP Body: ${body.toString()}");
 
     try {
       await restApi.login(body);
@@ -99,35 +108,65 @@ class _OtpState extends State<Otp> {
       final responseData = jsonDecode(response.body);
       print(responseData);
       if (responseData["success"]) {
-        if (response.body != null){
-          print("Response Not Null!");
-          print("Response Body: ${response.body}");
-          UserModel.User loginResponse = UserModel.userFromJson(response.body);
-          UserData.user = loginResponse;
-          final prefs = await SharedPreferences.getInstance();
-          prefs.setString(
-            'userData',
-            json.encode(
-              UserData.user.toJson(),
-            ),
-          );
+        if (responseData["response"]["status"] != null){
+          if (responseData["response"]["status"].toString() == "ACTIVE"){
+            if (response.body != null){
+              print("Response Not Null!");
+              print("Response Body: ${response.body}");
+              UserModel.User loginResponse = UserModel.userFromJson(response.body);
+              UserData.user = loginResponse;
+              final prefs = await SharedPreferences.getInstance();
+              prefs.setString(
+                'userData',
+                json.encode(
+                  UserData.user.toJson(),
+                ),
+              );
 
-          Navigator.pushAndRemoveUntil(
-              context,
-              PageTransition(
-                  type: PageTransitionType.rightToLeft, child: HomeScreen()),
-              ModalRoute.withName('/'));
+              prefs.setString("user_first_name", responseData["response"]["user"]["firstName"]);
+              prefs.setString("user_last_name", responseData["response"]["user"]["lastName"]);
+              prefs.setString("user_email", responseData["response"]["user"]["email"]);
+              prefs.setString("user_access_token", responseData["response"]["user"]["accessToken"]);
 
-          setState(() {
-            _isLoading = false;
-          });
-        }else if (response.body == null){
-          print("Response Null!");
-          print("Response Body: ${response.body}");
-          showDialog(
-            context: context,
-            builder: (context) => showWaitingForApprovalWidget(context)
-          );
+              String accessToken = responseData["response"]["user"]["accessToken"].toString();
+              print("Access Token: $accessToken");
+              prefs.setString("access_token", accessToken);
+
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  PageTransition(
+                      type: PageTransitionType.rightToLeft, child: HomeScreen()),
+                  ModalRoute.withName('/'));
+
+              setState(() {
+                _isLoading = false;
+              });
+            }else if (response.body == null){
+              String message = "Login request sent for approval, will be notified once approved!";
+              print("Response Null!");
+              print("Response Body: ${response.body}");
+              showDialog(
+                  context: context,
+                  builder: (context) => showPopupMessageDialog(context, message, 'Waiting Approval')
+              );
+            }
+          }else if (responseData["response"]["status"].toString() == "DELETE"){
+            String message = responseData["message"].toString();
+            showDialog(
+                context: context,
+                builder: (context) => showPopupMessageDialog(context, message, "Account Deleted!")
+            );
+            print("User Deleted!");
+          }else if (responseData["response"]["status"].toString() == "DRAFT"){
+            String message = responseData["message"].toString();
+            showDialog(
+                context: context,
+                builder: (context) => showPopupMessageDialog(context, message, "In Draft")
+            );
+            print("User Draft!");
+          }
+        }else {
+          print("Staus Null!");
         }
       } else {
         final snackBar = SnackBar(content: Text('${responseData["message"]}'));
@@ -141,6 +180,7 @@ class _OtpState extends State<Otp> {
 
   @override
   Widget build(BuildContext context) {
+    accessTokenProvider = Provider.of<AccessTokenProvider>(context);
     var mobileNumberDetails = Provider.of<MobileNumberProvider>(context);
     return Scaffold(
       key: _scaffoldKey,
@@ -288,8 +328,7 @@ class _OtpState extends State<Otp> {
     );
   }
 
-  Widget showWaitingForApprovalWidget(BuildContext context) {
-    String waiting_for_approval_text = "Login request sent for approval, will be notified once approved!";
+  Widget showPopupMessageDialog(BuildContext context, String message, String title) {
     return Center(
       child: Card(
         elevation: 2,
@@ -308,7 +347,7 @@ class _OtpState extends State<Otp> {
               Padding(
                 padding: EdgeInsets.all(10),
                 child: Text(
-                  'Waiting Approval',
+                  title,
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -319,7 +358,7 @@ class _OtpState extends State<Otp> {
               Padding(
                 padding: EdgeInsets.all(10),
                 child: Text(
-                  waiting_for_approval_text,
+                  message,
                   style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w400,
