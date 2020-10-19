@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:hawkers/Models/communityModel.dart' as Model;
 import 'package:hawkers/Provider/community.dart';
 import 'package:hawkers/Screens/community/addCommunity.dart';
+import 'package:hawkers/Screens/salesRequest/raiseSalesRequest.dart';
+import 'package:hawkers/Screens/salesRequest/salesRequest.dart';
 import 'package:hawkers/Widgets/navigationBar.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Communities extends StatefulWidget {
   static const routeName = '/Community';
@@ -18,15 +21,25 @@ class Communities extends StatefulWidget {
 
 class _CommunitiesState extends State<Communities> {
   bool isLoading = true;
+  Future<SharedPreferences> _prefs;
   @override
   void initState() {
-    getCommunity();
-
+    _prefs = SharedPreferences.getInstance();
+    _prefs.then((SharedPreferences sharedPreferences){
+      String accessToken = sharedPreferences.getString("access_token");
+      getCommunity(accessToken);
+    }).whenComplete(() {
+      print("Complete!");
+    })
+    .catchError((error){
+      print("Error: ${error.toString()}");
+    });
     super.initState();
   }
 
-  getCommunity() async {
-    await Provider.of<CommunityProvider>(context, listen: false).getCommunity();
+  getCommunity(String access_token) async {
+
+    await Provider.of<CommunityProvider>(context, listen: false).getCommunity(access_token);
 
     setState(() {
       isLoading = false;
@@ -65,21 +78,32 @@ class _CommunitiesState extends State<Communities> {
                           itemBuilder: (ctx, index) => Container(
                             child: Column(
                               children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(data.community[index].type,
-                                        style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w600,
-                                        )),
-                                    Icon(
-                                      Icons.arrow_forward_ios,
-                                      color: Colors.black,
-                                      size: 22,
-                                    )
-                                  ],
+                                InkWell(
+                                  child: Row(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                          data.community[index].type,
+                                          style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w600,
+                                          )),
+                                      Icon(
+                                        Icons.arrow_forward_ios,
+                                        color: Colors.black,
+                                        size: 22,
+                                      ),
+                                    ],
+                                  ),
+                                  onTap: (){
+                                    Navigator.of(context)
+                                        .push(
+                                        MaterialPageRoute(
+                                            builder: (context) => RaiseSales()
+                                        )
+                                    );
+                                  },
                                 ),
                                 Divider(
                                   height: 30,
@@ -94,7 +118,30 @@ class _CommunitiesState extends State<Communities> {
                       InkWell(
                         onTap: () {
                           Navigator.pushNamed(context, AddCommunity.routeName)
-                              .then((value) => getCommunity());
+                              .then((value) {
+                            if (_prefs != null){
+                              _prefs.then((SharedPreferences sharedPreferences){
+                                String accessToken = sharedPreferences.getString("access_token");
+                                getCommunity(accessToken);
+                              }).whenComplete(() {
+                                print("Complete!");
+                              })
+                                  .catchError((error){
+                                print("Error: ${error.toString()}");
+                              });
+                            }else {
+                              _prefs = SharedPreferences.getInstance();
+                              _prefs.then((SharedPreferences sharedPreferences){
+                                String accessToken = sharedPreferences.getString("access_token");
+                                getCommunity(accessToken);
+                              }).whenComplete(() {
+                                print("Complete!");
+                              })
+                                  .catchError((error){
+                                print("Error: ${error.toString()}");
+                              });
+                            }
+                          });
                         },
                         child: Container(
                           height: 45,
