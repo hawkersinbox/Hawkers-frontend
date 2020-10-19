@@ -1,9 +1,16 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:hawkers/DataClass/createSalesRequest.dart';
 import 'package:hawkers/Screens/salesRequest/requestReview.dart';
+import 'package:hawkers/Services/api.dart';
 import 'package:intl/intl.dart';
 import 'package:hawkers/Widgets/navigationBar.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+RestApi _restApi = RestApi();
+TextEditingController _addCommentController = new TextEditingController();
 
 class RaiseSales extends StatefulWidget {
   @override
@@ -144,6 +151,18 @@ class _RaiseSalesState extends State<RaiseSales> {
                             //   color: Colors.white10,
                               border: Border.all(color: Colors.black, width: 0),
                               borderRadius: BorderRadius.circular(3)),
+                          child: TextField(
+                            // keyboardType: TextInputType.number,
+                            // controller: controller,
+                            textAlign: TextAlign.start,
+                            cursorColor: Colors.black,
+                            style: TextStyle(color: Colors.black, fontSize: 19),
+                            //     color:Colors.grey,
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              floatingLabelBehavior: FloatingLabelBehavior.never,
+                            ),
+                          ),
                         ),
                         SizedBox(
                           height: 20,
@@ -306,12 +325,11 @@ class _RaiseSalesState extends State<RaiseSales> {
                             padding: const EdgeInsets.all(3.0),
                             child: TextField(
                               // keyboardType: TextInputType.number,
-                              // controller: controller,
+                              controller: _addCommentController,
                               textAlign: TextAlign.start,
                               cursorColor: Colors.black,
                               style: TextStyle(color: Colors.black, fontSize: 19),
                               //     color:Colors.grey,
-
                               decoration: InputDecoration(
                                 border: InputBorder.none,
                                 floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -348,7 +366,7 @@ class _RaiseSalesState extends State<RaiseSales> {
                               // width:ScreenUtil().setWidth(700),
                               child: RaisedButton(
                                 onPressed: () {
-
+                                  raiseSalesRequest(_image);
                                   Navigator.push(context,MaterialPageRoute(builder: (context)=>RequestReview()));
                                 },
                                 shape: RoundedRectangleBorder(
@@ -381,5 +399,59 @@ class _RaiseSalesState extends State<RaiseSales> {
       ),
 
     );
+  }
+
+  void raiseSalesRequest(File _pickedImageFilePath) {
+
+    String comment = _addCommentController.text.toString();
+    print("Comment: $comment");
+    _addCommentController.clear();
+
+    Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+
+    _prefs.then((SharedPreferences sharedPreferences) {
+      String accessToken = sharedPreferences.getString("access_token");
+      print("access_token: $accessToken");
+      String body = json.encode({
+        "seller_id": 1,
+        "product_id": 1,
+        "community_id": 1,
+        "image_url": _pickedImageFilePath.toString(),
+        "seller_comment": comment
+      });
+      var response = _restApi.createSalesRequest(accessToken, body);
+      response.then((value) {
+        var responseData = jsonDecode(value.body);
+        print("Response String: ${responseData.toString()}");
+        Map<String, dynamic> _map = json.decode(responseData) as Map;
+        print("Map String: ${_map.toString()}");
+
+        var createSalesRequest = CreateSalesRequest.fromJson(_map);
+
+        if (createSalesRequest.success){
+          print("Create sales request message : ${createSalesRequest.message}");
+          // TODO Create Sales Request ...
+
+        }else {
+          print("Create sales request : ${createSalesRequest.success.toString()}");
+        }
+
+      })
+      .whenComplete(() {
+        print("Complete!");
+      })
+      .catchError((e){
+        print("Error: ${e.toString()}");
+      });
+
+    })
+        .whenComplete(() {
+      print("Complete!");
+    })
+        .catchError((error){
+      print("Error: ${error.toString()}");
+    });
+
+
   }
 }
