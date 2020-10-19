@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ea6ccf4a-5e0e-4f0a-8be3-fd9222bcf4f9" name="Default Changelist" comment="" />
+    <list default="true" id="ea6ccf4a-5e0e-4f0a-8be3-fd9222bcf4f9" name="Default Changelist" comment="Merge branch 'temp' of https://github.com/hawkersinbox/Hawkers-frontend into temp&#10;&#10;# Conflicts:&#10;#&#9;pubspec.lock">
+      <change afterPath="$PROJECT_DIR$/lib/DataClass/UpdateUserProfile.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/DataClass/UsreInfo.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/SQLite/User.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Models/userModel.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Models/userModel.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Provider/user.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Provider/user.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Screens/Account/updateProfile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Screens/Account/updateProfile.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Screens/userRequest.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Screens/userRequest.dart" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -70,6 +79,217 @@
       <option name="presentableId" value="Default" />
       <updated>1597650120964</updated>
     </task>
+    <task id="LOCAL-00001" summary="Merge branch 'temp' of https://github.com/hawkersinbox/Hawkers-frontend into temp&#10;&#10;# Conflicts:&#10;#&#9;pubspec.lock">
+      <created>1603120391239</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1603120391239</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Merge branch 'temp' of https://github.com/hawkersinbox/Hawkers-frontend into temp&#10;&#10;# Conflicts:&#10;#&#9;pubspec.lock">
+      <created>1603120416490</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1603120416490</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Merge branch 'temp' of https://github.com/hawkersinbox/Hawkers-frontend into temp&#10;&#10;# Conflicts:&#10;#&#9;pubspec.lock">
+      <created>1603120430307</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1603120430307</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Merge branch 'temp' of https://github.com/hawkersinbox/Hawkers-frontend into temp&#10;&#10;# Conflicts:&#10;#&#9;pubspec.lock">
+      <created>1603120442930</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1603120442930</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Merge branch 'temp' of https://github.com/hawkersinbox/Hawkers-frontend into temp&#10;&#10;# Conflicts:&#10;#&#9;pubspec.lock">
+      <created>1603120501069</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1603120501069</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Merge branch 'temp' of https://github.com/hawkersinbox/Hawkers-frontend into temp&#10;&#10;# Conflicts:&#10;#&#9;pubspec.lock">
+      <created>1603120511835</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1603120511835</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Merge branch 'temp' of https://github.com/hawkersinbox/Hawkers-frontend into temp&#10;&#10;# Conflicts:&#10;#&#9;pubspec.lock">
+      <created>1603120522187</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1603120522187</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Merge branch 'temp' of https://github.com/hawkersinbox/Hawkers-frontend into temp&#10;&#10;# Conflicts:&#10;#&#9;pubspec.lock">
+      <created>1603120533695</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1603120533695</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Merge branch 'temp' of https://github.com/hawkersinbox/Hawkers-frontend into temp&#10;&#10;# Conflicts:&#10;#&#9;pubspec.lock">
+      <created>1603120546616</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1603120546616</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Merge branch 'temp' of https://github.com/hawkersinbox/Hawkers-frontend into temp&#10;&#10;# Conflicts:&#10;#&#9;pubspec.lock">
+      <created>1603120554447</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1603120554447</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Merge branch 'temp' of https://github.com/hawkersinbox/Hawkers-frontend into temp&#10;&#10;# Conflicts:&#10;#&#9;pubspec.lock">
+      <created>1603120564873</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1603120564873</updated>
+    </task>
+    <task id="LOCAL-00012" summary="api_dep">
+      <created>1603120587409</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1603120587409</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Merge branch 'temp' of https://github.com/hawkersinbox/Hawkers-frontend into temp&#10;&#10;# Conflicts:&#10;#&#9;pubspec.lock">
+      <created>1603120597365</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1603120597365</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Merge branch 'temp' of https://github.com/hawkersinbox/Hawkers-frontend into temp&#10;&#10;# Conflicts:&#10;#&#9;pubspec.lock">
+      <created>1603120609055</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1603120609055</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Merge branch 'temp' of https://github.com/hawkersinbox/Hawkers-frontend into temp&#10;&#10;# Conflicts:&#10;#&#9;pubspec.lock">
+      <created>1603120622925</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1603120622925</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Merge branch 'temp' of https://github.com/hawkersinbox/Hawkers-frontend into temp&#10;&#10;# Conflicts:&#10;#&#9;pubspec.lock">
+      <created>1603120632533</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1603120632533</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Merge branch 'temp' of https://github.com/hawkersinbox/Hawkers-frontend into temp&#10;&#10;# Conflicts:&#10;#&#9;pubspec.lock">
+      <created>1603120640914</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1603120640914</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Merge branch 'temp' of https://github.com/hawkersinbox/Hawkers-frontend into temp&#10;&#10;# Conflicts:&#10;#&#9;pubspec.lock">
+      <created>1603120651240</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1603120651240</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Merge branch 'temp' of https://github.com/hawkersinbox/Hawkers-frontend into temp&#10;&#10;# Conflicts:&#10;#&#9;pubspec.lock">
+      <created>1603120658198</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1603120658198</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Merge branch 'temp' of https://github.com/hawkersinbox/Hawkers-frontend into temp&#10;&#10;# Conflicts:&#10;#&#9;pubspec.lock">
+      <created>1603120670446</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1603120670446</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Merge branch 'temp' of https://github.com/hawkersinbox/Hawkers-frontend into temp&#10;&#10;# Conflicts:&#10;#&#9;pubspec.lock">
+      <created>1603120680757</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1603120680757</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Merge branch 'temp' of https://github.com/hawkersinbox/Hawkers-frontend into temp&#10;&#10;# Conflicts:&#10;#&#9;pubspec.lock">
+      <created>1603120687216</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1603120687216</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Merge branch 'temp' of https://github.com/hawkersinbox/Hawkers-frontend into temp&#10;&#10;# Conflicts:&#10;#&#9;pubspec.lock">
+      <created>1603120693893</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1603120693893</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Merge branch 'temp' of https://github.com/hawkersinbox/Hawkers-frontend into temp&#10;&#10;# Conflicts:&#10;#&#9;pubspec.lock">
+      <created>1603120700245</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1603120700245</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Merge branch 'temp' of https://github.com/hawkersinbox/Hawkers-frontend into temp&#10;&#10;# Conflicts:&#10;#&#9;pubspec.lock">
+      <created>1603120711493</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1603120711493</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Merge branch 'temp' of https://github.com/hawkersinbox/Hawkers-frontend into temp&#10;&#10;# Conflicts:&#10;#&#9;pubspec.lock">
+      <created>1603120720139</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1603120720139</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Merge branch 'temp' of https://github.com/hawkersinbox/Hawkers-frontend into temp&#10;&#10;# Conflicts:&#10;#&#9;pubspec.lock">
+      <created>1603120729729</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1603120729729</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Merge branch 'temp' of https://github.com/hawkersinbox/Hawkers-frontend into temp&#10;&#10;# Conflicts:&#10;#&#9;pubspec.lock">
+      <created>1603120747507</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1603120747507</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Merge branch 'temp' of https://github.com/hawkersinbox/Hawkers-frontend into temp&#10;&#10;# Conflicts:&#10;#&#9;pubspec.lock">
+      <created>1603120755414</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1603120755414</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Merge branch 'temp' of https://github.com/hawkersinbox/Hawkers-frontend into temp&#10;&#10;# Conflicts:&#10;#&#9;pubspec.lock">
+      <created>1603120765514</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1603120765514</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -85,15 +305,20 @@
       </map>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="api_dep" />
+    <MESSAGE value="Merge branch 'temp' of https://github.com/hawkersinbox/Hawkers-frontend into temp&#10;&#10;# Conflicts:&#10;#&#9;pubspec.lock" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'temp' of https://github.com/hawkersinbox/Hawkers-frontend into temp&#10;&#10;# Conflicts:&#10;#&#9;pubspec.lock" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="137" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1599807082684">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="137" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1599807082684" />
-    <state x="337" y="0" key="CommitChangelistDialog2" timestamp="1599806396435">
+    <state x="337" y="0" key="CommitChangelistDialog2" timestamp="1603120840865">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="337" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1599806396435" />
+    <state x="337" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1603120840865" />
     <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1599467888831">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -118,14 +343,14 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="129" y="55" key="MergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1601899465996" />
-    <state x="388" y="79" key="MultipleFileMergeDialog" timestamp="1601900003067">
+    <state x="388" y="79" key="MultipleFileMergeDialog" timestamp="1603120165155">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="388" y="79" key="MultipleFileMergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1601900003067" />
-    <state x="487" y="74" key="RollbackChangesDialog" timestamp="1599804650295">
+    <state x="388" y="79" key="MultipleFileMergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1603120165155" />
+    <state x="487" y="74" key="RollbackChangesDialog" timestamp="1603120269179">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="487" y="74" key="RollbackChangesDialog/0.0.1366.728@0.0.1366.728" timestamp="1599804650295" />
+    <state x="487" y="74" key="RollbackChangesDialog/0.0.1366.728@0.0.1366.728" timestamp="1603120269179" />
     <state x="184" y="6" key="SettingsEditor" timestamp="1598965699401">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
