@@ -39,36 +39,6 @@ class _SalesRequestState extends State<SalesRequest> {
                 fontWeight: FontWeight.w600,
                 color: Colors.black)),
         centerTitle: true,
-        // bottom: TabBar(
-        //   isScrollable: true,
-        //   indicatorColor: Colors.green,
-        //   tabs: [
-        //     Tab(
-        //       child: Text(
-        //         'All',
-        //         style: TextStyle(fontSize: 12, color: Colors.black),
-        //       ),
-        //     ),
-        //     Tab(
-        //       child: Text(
-        //         'Upcoming',
-        //         style: TextStyle(fontSize: 12, color: Colors.black),
-        //       ),
-        //     ),
-        //     Tab(
-        //       child: Text(
-        //         'InProgress',
-        //         style: TextStyle(fontSize: 12, color: Colors.black),
-        //       ),
-        //     ),
-        //     Tab(
-        //       child: Text(
-        //         'Completed',
-        //         style: TextStyle(fontSize: 12, color: Colors.black),
-        //       ),
-        //     ),
-        //   ],
-        // ),
       ),
       bottomNavigationBar: NavigationBar(),
       body: Column(
