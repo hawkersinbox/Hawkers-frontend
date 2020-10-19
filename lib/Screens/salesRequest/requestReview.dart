@@ -26,7 +26,6 @@ class _RequestReviewState extends State<RequestReview> {
                 return PopupMenuItem<String>(
                   value: choice,
                   child: Text(choice),
-
                 );
               }).toList();
             },
