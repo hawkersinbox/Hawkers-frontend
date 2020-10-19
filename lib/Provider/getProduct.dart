@@ -37,29 +37,31 @@ class ProductProvider with ChangeNotifier {
     return _selectedSubCategory;
   }
 
-  Future<List<Product>> getProduct() async {
-    final response = await restApi.getProduct();
+  Future<List<Product>> getProduct(String access_token) async {
+    final response = await restApi.getProduct(access_token);
     List<Product> products = productResponseFromJson(response.body).response;
     _products = products;
     return products;
   }
 
-  Future<List<Category>> getCategory() async {
-    final response = await restApi.getCategory();
+  Future<List<Category>> getCategory(String accessToken) async {
+    final response = await restApi.getCategory(accessToken);
+    print("Get Categories Response: ${response.body.toString()}");
     List<Category> categories =
         categoryResponseFromJson(response.body).response;
     _categories = categories;
     _selectedCategory = _categories[0];
-    getSubCategory(_selectedCategory.id);
+    getSubCategory(_selectedCategory.id, accessToken);
     notifyListeners();
     return _categories;
   }
 
-  Future<List<SubCategory>> getSubCategory(int id) async {
+  Future<List<SubCategory>> getSubCategory(int id, String access_token) async {
     _subCategories = [];
     _selectedSubCategory = null;
     String body = jsonEncode({"category_id": id});
-    final response = await restApi.getSubCategory(body);
+    final response = await restApi.getSubCategory(body, access_token);
+    print("SubCategoriesResponse: ${response.body.toString()}");
     List<SubCategory> subCategories =
         subCategoryResponseFromJson(response.body).response;
     _subCategories = subCategories;
@@ -68,9 +70,9 @@ class ProductProvider with ChangeNotifier {
     return subCategories;
   }
 
-  selectCategory(Category selectCategory) {
+  selectCategory(Category selectCategory, String accessToken) {
     if (selectCategory.id != _selectedCategory.id) {
-      getSubCategory(selectCategory.id);
+      getSubCategory(selectCategory.id, accessToken);
     }
     _selectedCategory = selectCategory;
     notifyListeners();
