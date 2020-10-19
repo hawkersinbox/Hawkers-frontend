@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
+
 User userFromJson(String str) => User.fromJson(json.decode(str));
 
 String userToJson(User data) => json.encode(data.toJson());
@@ -38,7 +40,8 @@ class Response {
     this.firstName,
     this.lastName,
     this.email,
-    this.accessToken
+    this.accessToken,
+    this.role
   });
 
   int id;
@@ -46,13 +49,15 @@ class Response {
   String lastName;
   String email;
   String accessToken;
+  String role;
 
   factory Response.fromJson(Map<String, dynamic> json) => Response(
     id: json["id"],
     firstName: json["firstName"],
     lastName: json["lastName"],
     email: json["email"],
-    accessToken: json["accessToken"]
+    accessToken: json["accessToken"],
+    role: json["role"]
 
   );
 
@@ -61,6 +66,7 @@ class Response {
     "firstName": firstName,
     "lastName": lastName,
     "email": email,
-    "accessToken": accessToken
+    "accessToken": accessToken,
+    "role": role
   };
 }
