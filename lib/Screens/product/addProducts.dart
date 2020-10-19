@@ -4,12 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:hawkers/Models/priceRange.dart';
 import 'package:hawkers/Models/subcategory.dart';
+import 'package:hawkers/Provider/AccessToken.dart';
 import 'package:hawkers/Provider/getProduct.dart';
 import 'package:hawkers/Screens/product/productReview.dart';
+import 'package:hawkers/Screens/splashScreen.dart';
 import 'package:hawkers/Services/api.dart';
 import 'package:hawkers/Widgets/navigationBar.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 List<PriceRange> priceRangeList = [
   PriceRange(display: "Rs1-Rs100", max: 100, min: 1),
@@ -17,6 +20,8 @@ List<PriceRange> priceRangeList = [
   PriceRange(display: "Rs501-Rs2000", max: 2000, min: 501),
   PriceRange(display: "Rs2001-Rs5000", max: 5000, min: 2001),
 ];
+
+String mAccessToken;
 
 class AddProducts extends StatefulWidget {
   static const routeName = '/Add-Products';
@@ -36,7 +41,7 @@ class _AddProductsState extends State<AddProducts> {
   bool _isLoadingCategory = true;
   PriceRange selectedPriceRange = priceRangeList[0];
   bool _isLoading = false;
-  _addProduct() async {
+  _addProduct(String access_token) async {
     //    "category_id": 2,
     // "sub_category_id":1,
     // "name": "harry potter",
@@ -69,7 +74,7 @@ class _AddProductsState extends State<AddProducts> {
 
       var responseData;
       try {
-        final response = await restApi.addProduct(body);
+        final response = await restApi.addProduct(body, access_token);
         responseData = jsonDecode(response.body);
       } catch (e) {}
 
@@ -111,12 +116,14 @@ class _AddProductsState extends State<AddProducts> {
   @override
   void initState() {
     // TODO: implement initState
+
+    getSharedPrefrences();
+
     super.initState();
-    getCategory();
   }
 
-  getCategory() async {
-    await Provider.of<ProductProvider>(context, listen: false).getCategory();
+  getCategory(String access_token) async {
+    await Provider.of<ProductProvider>(context, listen: false).getCategory(access_token);
     setState(() {
       _isLoadingCategory = false;
     });
@@ -182,7 +189,7 @@ class _AddProductsState extends State<AddProducts> {
                                 );
                               }).toList(),
                               onChanged: (value) {
-                                data.selectCategory(value);
+                                data.selectCategory(value, mAccessToken);
                               },
                             ),
                           ),
@@ -304,7 +311,20 @@ class _AddProductsState extends State<AddProducts> {
                           child: RaisedButton(
                             onPressed: () {
                               FocusScope.of(context).requestFocus(FocusNode());
-                              _addProduct();
+                              Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+
+                              _prefs.then((SharedPreferences sharedPreferences) {
+                                String accessToken = sharedPreferences.getString("access_token");
+                                mAccessToken = accessToken;
+                                print("access_token: $accessToken");
+                                _addProduct(accessToken);
+                              })
+                                  .whenComplete(() {
+                                print("Complete!");
+                              })
+                                  .catchError((error){
+                                print("Error: ${error.toString()}");
+                              });
                               Navigator.push(context,MaterialPageRoute(builder: (context)=>ProductReview()));
                             },
                             shape: RoundedRectangleBorder(
@@ -377,5 +397,22 @@ class _AddProductsState extends State<AddProducts> {
             )),
       ],
     ));
+  }
+
+  void getSharedPrefrences() async {
+    Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+
+    _prefs.then((SharedPreferences sharedPreferences) {
+      String accessToken = sharedPreferences.getString("access_token");
+      mAccessToken = accessToken;
+      print("access_token: $accessToken");
+      getCategory(accessToken);
+    })
+    .whenComplete(() {
+      print("Complete!");
+    })
+    .catchError((error){
+      print("Error: ${error.toString()}");
+    });
   }
 }
