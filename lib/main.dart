@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.green,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: SplashScreen(),
+        home:SplashScreen(),
         routes: {
           // CreateSalesRequest.routeName: (ctx) => CreateSalesRequest(),
           SplashScreen.routeName: (ctx) => SplashScreen(),
