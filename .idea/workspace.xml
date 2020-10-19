@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ea6ccf4a-5e0e-4f0a-8be3-fd9222bcf4f9" name="Default Changelist" comment="Merge branch 'temp' of https://github.com/hawkersinbox/Hawkers-frontend into temp&#10;&#10;# Conflicts:&#10;#&#9;pubspec.lock">
-      <change afterPath="$PROJECT_DIR$/lib/DataClass/UpdateUserProfile.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/DataClass/UsreInfo.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/SQLite/User.dart" afterDir="false" />
+    <list default="true" id="ea6ccf4a-5e0e-4f0a-8be3-fd9222bcf4f9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Models/userModel.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Models/userModel.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Provider/user.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Provider/user.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Screens/Account/updateProfile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Screens/Account/updateProfile.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Screens/userRequest.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Screens/userRequest.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Screens/otpScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Screens/otpScreen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Screens/registrationScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Screens/registrationScreen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -289,7 +285,63 @@
       <option name="project" value="LOCAL" />
       <updated>1603120765514</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Merge branch 'temp' of https://github.com/hawkersinbox/Hawkers-frontend into temp&#10;&#10;# Conflicts:&#10;#&#9;pubspec.lock">
+      <created>1603120777032</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1603120777032</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Merge branch 'temp' of https://github.com/hawkersinbox/Hawkers-frontend into temp&#10;&#10;# Conflicts:&#10;#&#9;pubspec.lock">
+      <created>1603120785761</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1603120785761</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Merge branch 'temp' of https://github.com/hawkersinbox/Hawkers-frontend into temp&#10;&#10;# Conflicts:&#10;#&#9;pubspec.lock">
+      <created>1603120793990</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1603120793990</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Merge branch 'temp' of https://github.com/hawkersinbox/Hawkers-frontend into temp&#10;&#10;# Conflicts:&#10;#&#9;pubspec.lock">
+      <created>1603120803570</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1603120803570</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Merge branch 'temp' of https://github.com/hawkersinbox/Hawkers-frontend into temp&#10;&#10;# Conflicts:&#10;#&#9;pubspec.lock">
+      <created>1603120811459</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1603120811459</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Merge branch 'temp' of https://github.com/hawkersinbox/Hawkers-frontend into temp&#10;&#10;# Conflicts:&#10;#&#9;pubspec.lock">
+      <created>1603120820388</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1603120820388</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Merge branch 'temp' of https://github.com/hawkersinbox/Hawkers-frontend into temp&#10;&#10;# Conflicts:&#10;#&#9;pubspec.lock">
+      <created>1603120830153</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1603120830153</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Merge branch 'temp' of https://github.com/hawkersinbox/Hawkers-frontend into temp&#10;&#10;# Conflicts:&#10;#&#9;pubspec.lock">
+      <created>1603120851061</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1603120851061</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -315,30 +367,30 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="137" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1599807082684" />
-    <state x="337" y="0" key="CommitChangelistDialog2" timestamp="1603120840865">
+    <state x="337" y="0" key="CommitChangelistDialog2" timestamp="1603120849351">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="337" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1603120840865" />
+    <state x="337" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1603120849351" />
     <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1599467888831">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1599467888831" />
-    <state width="1323" height="402" key="GridCell.Tab.0.bottom" timestamp="1601895946492">
+    <state width="1323" height="108" key="GridCell.Tab.0.bottom" timestamp="1603123561407">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="402" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1601895946492" />
-    <state width="1323" height="402" key="GridCell.Tab.0.center" timestamp="1601895946491">
+    <state width="1323" height="108" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1603123561407" />
+    <state width="1323" height="108" key="GridCell.Tab.0.center" timestamp="1603123561407">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="402" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1601895946491" />
-    <state width="1323" height="402" key="GridCell.Tab.0.left" timestamp="1601895946401">
+    <state width="1323" height="108" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1603123561407" />
+    <state width="1323" height="108" key="GridCell.Tab.0.left" timestamp="1603123561407">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="402" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1601895946401" />
-    <state width="1323" height="402" key="GridCell.Tab.0.right" timestamp="1601895946491">
+    <state width="1323" height="108" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1603123561407" />
+    <state width="1323" height="108" key="GridCell.Tab.0.right" timestamp="1603123561407">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="402" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1601895946491" />
+    <state width="1323" height="108" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1603123561407" />
     <state x="129" y="55" key="MergeDialog" timestamp="1601899465996">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -371,9 +423,9 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="460" y="77" key="git4idea.branch.GitSmartOperationDialog/0.0.1366.728@0.0.1366.728" timestamp="1601899376010" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1600321887084">
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1603123274317">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1600321887084" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1603123274317" />
   </component>
 </project>

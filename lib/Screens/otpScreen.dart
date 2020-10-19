@@ -14,7 +14,6 @@ import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 String verification_code_text = "Enter 6 digits verification code sent to ";
 
 class Otp extends StatefulWidget {
@@ -38,9 +37,7 @@ class _OtpState extends State<Otp> {
   bool _isLoading = false;
   String otp = '';
 
-
   var accessTokenProvider;
-
 
   BoxDecoration get _pinPutDecoration {
     return BoxDecoration(
@@ -82,7 +79,6 @@ class _OtpState extends State<Otp> {
   }
 
   requestOtp() async {
-
     print("Request OTP Mobile: ${widget.mobile.toString()}");
     String body = json.encode({'mobile': widget.mobile});
 
@@ -108,65 +104,41 @@ class _OtpState extends State<Otp> {
       final responseData = jsonDecode(response.body);
       print(responseData);
       if (responseData["success"]) {
-        if (responseData["response"]["status"] != null){
-          if (responseData["response"]["status"].toString() == "ACTIVE"){
-            if (response.body != null){
-              print("Response Not Null!");
-              print("Response Body: ${response.body}");
-              UserModel.User loginResponse = UserModel.userFromJson(response.body);
-              UserData.user = loginResponse;
-              final prefs = await SharedPreferences.getInstance();
-              prefs.setString(
-                'userData',
-                json.encode(
-                  UserData.user.toJson(),
-                ),
-              );
+        {
+          print("Response Not Null!");
+          print("Response Body: ${response.body}");
+          UserModel.User loginResponse = UserModel.userFromJson(response.body);
+          UserData.user = loginResponse;
+          final prefs = await SharedPreferences.getInstance();
+          prefs.setString(
+            'userData',
+            json.encode(
+              UserData.user.toJson(),
+            ),
+          );
 
-              prefs.setString("user_first_name", responseData["response"]["user"]["firstName"]);
-              prefs.setString("user_last_name", responseData["response"]["user"]["lastName"]);
-              prefs.setString("user_email", responseData["response"]["user"]["email"]);
-              prefs.setString("user_access_token", responseData["response"]["user"]["accessToken"]);
+          prefs.setString(
+              "user_first_name", responseData["response"]["firstName"]);
+          prefs.setString(
+              "user_last_name", responseData["response"]["lastName"]);
+          prefs.setString("user_email", responseData["response"]["email"]);
+          prefs.setString(
+              "user_access_token", responseData["response"]["accessToken"]);
 
-              String accessToken = responseData["response"]["user"]["accessToken"].toString();
-              print("Access Token: $accessToken");
-              prefs.setString("access_token", accessToken);
+          String accessToken =
+              responseData["response"]["accessToken"].toString();
+          print("Access Token: $accessToken");
+          prefs.setString("access_token", accessToken);
 
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  PageTransition(
-                      type: PageTransitionType.rightToLeft, child: HomeScreen()),
-                  ModalRoute.withName('/'));
+          Navigator.pushAndRemoveUntil(
+              context,
+              PageTransition(
+                  type: PageTransitionType.rightToLeft, child: HomeScreen()),
+              ModalRoute.withName('/'));
 
-              setState(() {
-                _isLoading = false;
-              });
-            }else if (response.body == null){
-              String message = "Login request sent for approval, will be notified once approved!";
-              print("Response Null!");
-              print("Response Body: ${response.body}");
-              showDialog(
-                  context: context,
-                  builder: (context) => showPopupMessageDialog(context, message, 'Waiting Approval')
-              );
-            }
-          }else if (responseData["response"]["status"].toString() == "DELETE"){
-            String message = responseData["message"].toString();
-            showDialog(
-                context: context,
-                builder: (context) => showPopupMessageDialog(context, message, "Account Deleted!")
-            );
-            print("User Deleted!");
-          }else if (responseData["response"]["status"].toString() == "DRAFT"){
-            String message = responseData["message"].toString();
-            showDialog(
-                context: context,
-                builder: (context) => showPopupMessageDialog(context, message, "In Draft")
-            );
-            print("User Draft!");
-          }
-        }else {
-          print("Staus Null!");
+          setState(() {
+            _isLoading = false;
+          });
         }
       } else {
         final snackBar = SnackBar(content: Text('${responseData["message"]}'));
@@ -213,8 +185,8 @@ class _OtpState extends State<Otp> {
                       Text(
                         verification_code_text,
                         style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.grey,
+                          fontSize: 18,
+                          color: Colors.grey,
                         ),
                       ),
                       SizedBox(
@@ -227,7 +199,6 @@ class _OtpState extends State<Otp> {
                           color: Colors.grey,
                         ),
                       ),
-
                     ],
                   ),
                 ),
@@ -262,32 +233,31 @@ class _OtpState extends State<Otp> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Padding(
-                      padding: EdgeInsets.all(5),
-                      child: Text(
-                        'Change Number',
-                        style: TextStyle(
+                        padding: EdgeInsets.all(5),
+                        child: Text(
+                          'Change Number',
+                          style: TextStyle(
                             fontSize: 16,
                             color: Colors.lightGreen,
-                        ),
-                      )
-                      ),
+                          ),
+                        )),
                     _start > 0
                         ? Text(
-                      'Resend in ${_start.toString()}',
-                      style: TextStyle(color: Colors.lightGreen),
-                    )
+                            'Resend in ${_start.toString()}',
+                            style: TextStyle(color: Colors.lightGreen),
+                          )
                         : InkWell(
-                      onTap: () {
-                        requestOtp();
-                      },
-                      child: Text(
-                        'Resend',
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.lightGreen,
-                            decoration: TextDecoration.underline),
-                      ),
-                    ),
+                            onTap: () {
+                              requestOtp();
+                            },
+                            child: Text(
+                              'Resend',
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.lightGreen,
+                                  decoration: TextDecoration.underline),
+                            ),
+                          ),
                   ],
                 ),
               ),
@@ -328,7 +298,8 @@ class _OtpState extends State<Otp> {
     );
   }
 
-  Widget showPopupMessageDialog(BuildContext context, String message, String title) {
+  Widget showPopupMessageDialog(
+      BuildContext context, String message, String title) {
     return Center(
       child: Card(
         elevation: 2,
@@ -349,10 +320,9 @@ class _OtpState extends State<Otp> {
                 child: Text(
                   title,
                   style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black
-                  ),
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black),
                 ),
               ),
               Padding(
@@ -360,33 +330,31 @@ class _OtpState extends State<Otp> {
                 child: Text(
                   message,
                   style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w400,
-                      color: Colors.black,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black,
                   ),
                   textAlign: TextAlign.center,
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(10),
-                child: RaisedButton(
-                  color: Colors.lightGreen,
-                  onPressed: (){
-                    Navigator.pop(context);
-                  },
-                  child: Padding(
-                    padding: EdgeInsets.all(5),
-                    child: Text(
-                      'Okay',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w300,
-                        color: Colors.black,
-                        fontSize: 16
+                  padding: EdgeInsets.all(10),
+                  child: RaisedButton(
+                    color: Colors.lightGreen,
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Padding(
+                      padding: EdgeInsets.all(5),
+                      child: Text(
+                        'Okay',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w300,
+                            color: Colors.black,
+                            fontSize: 16),
                       ),
                     ),
-                  ),
-                )
-              )
+                  ))
             ],
           ),
         ),

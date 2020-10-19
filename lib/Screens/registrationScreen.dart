@@ -19,6 +19,8 @@ class Registration extends StatefulWidget {
 
 //
 class _RegistrationState extends State<Registration> {
+  FocusNode _focus = new FocusNode();
+
   RestApi restApi = RestApi();
   GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
@@ -137,7 +139,7 @@ class _RegistrationState extends State<Registration> {
           context,
           MaterialPageRoute(
               builder: (context) => Otp(
-                    mobile: _mobileController.text,
+                    mobile:_mobile,
                   )),
         );
       } else {
@@ -314,6 +316,7 @@ class _RegistrationState extends State<Registration> {
                 textAlign: TextAlign.start,
                 cursorColor: Colors.black,
                 style: TextStyle(color: Colors.black, fontSize: 21),
+
                 //     color:Colors.grey,
 
                 decoration: InputDecoration(
