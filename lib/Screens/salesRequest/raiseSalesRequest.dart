@@ -2,17 +2,25 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:hawkers/DataClass/createSalesRequest.dart';
+import 'package:hawkers/Screens/community/communities.dart';
 import 'package:hawkers/Screens/salesRequest/requestReview.dart';
 import 'package:hawkers/Services/api.dart';
+import 'package:hawkers/Utility/colors.dart';
 import 'package:intl/intl.dart';
 import 'package:hawkers/Widgets/navigationBar.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:hawkers/Models/communityModel.dart';
+import 'package:hawkers/Provider/getProduct.dart';
+
 
 RestApi _restApi = RestApi();
 TextEditingController _addCommentController = new TextEditingController();
 
 class RaiseSales extends StatefulWidget {
+  final Community community;
+
+  const RaiseSales({Key key, this.community}) : super(key: key);
   @override
   _RaiseSalesState createState() => _RaiseSalesState();
 }
@@ -64,68 +72,16 @@ class _RaiseSalesState extends State<RaiseSales> {
                 SizedBox(height: 4,),
                 Container(
                   width: 270,
-                  child: Text('Empire Medows, Miaypur, Hyderabad, 503023',
+                  child: Text(widget.community.streetAddress1,
                     style:TextStyle(
                         fontSize: 17,
                         //fontWeight: FontWeight.w600,
                         color: Colors.black),
                   ),
                 ),
+
                 SizedBox(height: 10,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text('Available days',
-                      style:TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black),
-                    ),
-                    SizedBox(width:7,),
-                    Text('Sat,Sun',
-                      style:TextStyle(
-                          fontSize: 17,
-                          //fontWeight: FontWeight.w600,
-                          color: Colors.black),
-                    ),
 
-                  ],
-                ),
-                SizedBox(height: 10,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text('Rent',
-                      style:TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black),
-                    ),
-                    SizedBox(width:4,),
-                    Text('3000/-(per day)',
-                      style:TextStyle(
-                          fontSize: 17,
-                          //fontWeight: FontWeight.w600,
-                          color: Colors.black),
-                    ),
-                    SizedBox(width:6,),
-
-                    Text('Fee',
-                      style:TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black),
-                    ),
-                    SizedBox(width:7,),
-                    Text('300',
-                      style:TextStyle(
-                          fontSize: 17,
-                          //fontWeight: FontWeight.w600,
-                          color: Colors.black),
-                    ),
-
-                  ],
-                ),
                 Divider(
                   height: 20, color: Colors.black,thickness: 1,
                 ),
@@ -148,7 +104,7 @@ class _RaiseSalesState extends State<RaiseSales> {
                           height: 40,
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
-                            //   color: Colors.white10,
+                         color: hawkersLightGrey,
                               border: Border.all(color: Colors.black, width: 0),
                               borderRadius: BorderRadius.circular(3)),
                           child: TextField(
@@ -183,7 +139,7 @@ class _RaiseSalesState extends State<RaiseSales> {
                                 height: 40,
                                 alignment: Alignment.centerLeft,
                                 decoration: BoxDecoration(
-                                  //   color: Colors.white10,
+                                    color: hawkersLightGrey,
                                     border: Border.all(color: Colors.black, width: 0),
                                     borderRadius: BorderRadius.circular(3)),
                                 child:  Text(
@@ -242,7 +198,7 @@ class _RaiseSalesState extends State<RaiseSales> {
                           height: 40,
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
-                            //   color: Colors.white10,
+                              color: hawkersLightGrey,
                               border: Border.all(color: Colors.black, width: 0),
                               borderRadius: BorderRadius.circular(3)),
                           child:  Padding(
@@ -280,7 +236,7 @@ class _RaiseSalesState extends State<RaiseSales> {
                           height: 40,
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
-                            //   color: Colors.white10,
+                              color: hawkersLightGrey,
                               border: Border.all(color: Colors.black, width: 0),
                               borderRadius: BorderRadius.circular(3)),
                           child:  Padding(
@@ -318,7 +274,7 @@ class _RaiseSalesState extends State<RaiseSales> {
                           height: 40,
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
-                            //   color: Colors.white10,
+                              color: hawkersLightGrey,
                               border: Border.all(color: Colors.black, width: 0),
                               borderRadius: BorderRadius.circular(3)),
                           child:  Padding(
@@ -367,7 +323,7 @@ class _RaiseSalesState extends State<RaiseSales> {
                               child: RaisedButton(
                                 onPressed: () {
                                   raiseSalesRequest(_image);
-                                  Navigator.push(context,MaterialPageRoute(builder: (context)=>RequestReview()));
+                               //   Navigator.push(context,MaterialPageRoute(builder: (context)=>RequestReview()));
                                 },
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular((3))),
@@ -413,9 +369,8 @@ class _RaiseSalesState extends State<RaiseSales> {
       String accessToken = sharedPreferences.getString("access_token");
       print("access_token: $accessToken");
       String body = json.encode({
-        "seller_id": 1,
         "product_id": 1,
-        "community_id": 1,
+        "community_id": widget.community.id,
         "image_url": _pickedImageFilePath.toString(),
         "seller_comment": comment
       });

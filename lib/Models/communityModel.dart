@@ -1,14 +1,8 @@
-// To parse this JSON data, do
-//
-//     final communityResponse = communityResponseFromJson(jsonString);
-
 import 'dart:convert';
 
-CommunityResponse communityResponseFromJson(String str) =>
-    CommunityResponse.fromJson(json.decode(str));
+CommunityResponse communityResponseFromJson(String str) => CommunityResponse.fromJson(json.decode(str));
 
-String communityResponseToJson(CommunityResponse data) =>
-    json.encode(data.toJson());
+String communityResponseToJson(CommunityResponse data) => json.encode(data.toJson());
 
 class CommunityResponse {
   CommunityResponse({
@@ -16,23 +10,22 @@ class CommunityResponse {
     this.message,
     this.response,
   });
+
   bool success;
   String message;
-  List<Community> response;
+  List< Community> response;
 
-  factory CommunityResponse.fromJson(Map<String, dynamic> json) =>
-      CommunityResponse(
-        success: json["success"],
-        message: json["message"],
-        response: List<Community>.from(
-            json["response"].map((x) => Community.fromJson(x))),
-      );
+  factory CommunityResponse.fromJson(Map<String, dynamic> json) => CommunityResponse(
+    success: json["success"],
+    message: json["message"],
+    response: List< Community>.from(json["response"].map((x) =>  Community.fromJson(x))),
+  );
 
   Map<String, dynamic> toJson() => {
-        "success": success,
-        "message": message,
-        "response": List<dynamic>.from(response.map((x) => x.toJson())),
-      };
+    "success": success,
+    "message": message,
+    "response": List<dynamic>.from(response.map((x) => x.toJson())),
+  };
 }
 
 class Community {
@@ -41,68 +34,68 @@ class Community {
     this.type,
     this.contactPerson,
     this.contactNumber,
-    this.alternateContactNumbr,
+    this.alternateContactNumber,
     this.email,
     this.imageUrl,
-    this.addressId,
     this.availableDays,
     this.maxShopCount,
-    this.status,
+    this.stage,
     this.createdAt,
-    this.updatedAt,
-    this.createdBy,
-    this.updatedBy,
+    this.streetAddress1,
+    this.city,
+    this.state,
+    this.pincode,
   });
 
   int id;
   String type;
-  String contactPerson;
+  dynamic contactPerson;
   String contactNumber;
-  dynamic alternateContactNumbr;
-  dynamic email;
+  String alternateContactNumber;
+  String email;
   dynamic imageUrl;
-  int addressId;
   int availableDays;
   int maxShopCount;
-  String status;
+  String stage;
   DateTime createdAt;
-  DateTime updatedAt;
-  dynamic createdBy;
-  dynamic updatedBy;
+  String streetAddress1;
+  String city;
+  String state;
+  String pincode;
 
-  factory Community.fromJson(Map<String, dynamic> json) => Community(
-        id: json["id"],
-        type: json["type"],
-        contactPerson: json["contact_person"],
-        contactNumber: json["contact_number"],
-        alternateContactNumbr: json["alternate_contact_numbr"],
-        email: json["email"],
-        imageUrl: json["image_url"],
-        addressId: json["address_id"],
-        availableDays: json["available_days"],
-        maxShopCount: json["max_shop_count"],
-        status: json["status"],
-        createdAt: DateTime.parse(json["created_at"]),
-        updatedAt: DateTime.parse(json["updated_at"]),
-        createdBy: json["created_by"],
-        updatedBy: json["updated_by"],
-      );
+  factory  Community.fromJson(Map<String, dynamic> json) =>  Community(
+    id: json["id"],
+    type: json["type"],
+    contactPerson: json["contact_person"],
+    contactNumber: json["contact_number"],
+    alternateContactNumber: json["alternate_contact_number"],
+    email: json["email"],
+    imageUrl: json["image_url"],
+    availableDays: json["available_days"],
+    maxShopCount: json["max_shop_count"],
+    stage: json["stage"],
+    createdAt: DateTime.parse(json["created_at"]),
+    streetAddress1: json["street_address1"],
+    city: json["city"],
+    state: json["state"],
+    pincode: json["pincode"],
+  );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "type": type,
-        "contact_person": contactPerson,
-        "contact_number": contactNumber,
-        "alternate_contact_numbr": alternateContactNumbr,
-        "email": email,
-        "image_url": imageUrl,
-        "address_id": addressId,
-        "available_days": availableDays,
-        "max_shop_count": maxShopCount,
-        "status": status,
-        "created_at": createdAt.toIso8601String(),
-        "updated_at": updatedAt.toIso8601String(),
-        "created_by": createdBy,
-        "updated_by": updatedBy,
-      };
+    "id": id,
+    "type": type,
+    "contact_person": contactPerson,
+    "contact_number": contactNumber,
+    "alternate_contact_number": alternateContactNumber,
+    "email": email,
+    "image_url": imageUrl,
+    "available_days": availableDays,
+    "max_shop_count": maxShopCount,
+    "stage": stage,
+    "created_at": createdAt.toIso8601String(),
+    "street_address1": streetAddress1,
+    "city": city,
+    "state": state,
+    "pincode": pincode,
+  };
 }

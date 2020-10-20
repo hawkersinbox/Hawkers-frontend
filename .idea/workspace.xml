@@ -2,10 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ea6ccf4a-5e0e-4f0a-8be3-fd9222bcf4f9" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/lib/Utility/colors.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Screens/otpScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Screens/otpScreen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Models/communityModel.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Models/communityModel.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Provider/getProduct.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Provider/getProduct.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Screens/HomeScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Screens/HomeScreen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Screens/community/addCommunity.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Screens/community/addCommunity.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Screens/community/communities.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Screens/community/communities.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/Screens/registrationScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Screens/registrationScreen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Screens/salesRequest/raiseSalesRequest.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Screens/salesRequest/raiseSalesRequest.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -375,22 +380,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1599467888831" />
-    <state width="1323" height="108" key="GridCell.Tab.0.bottom" timestamp="1603123561407">
+    <state width="1323" height="186" key="GridCell.Tab.0.bottom" timestamp="1603125294179">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="108" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1603123561407" />
-    <state width="1323" height="108" key="GridCell.Tab.0.center" timestamp="1603123561407">
+    <state width="1323" height="186" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1603125294179" />
+    <state width="1323" height="186" key="GridCell.Tab.0.center" timestamp="1603125294179">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="108" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1603123561407" />
-    <state width="1323" height="108" key="GridCell.Tab.0.left" timestamp="1603123561407">
+    <state width="1323" height="186" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1603125294179" />
+    <state width="1323" height="186" key="GridCell.Tab.0.left" timestamp="1603125294178">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="108" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1603123561407" />
-    <state width="1323" height="108" key="GridCell.Tab.0.right" timestamp="1603123561407">
+    <state width="1323" height="186" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1603125294178" />
+    <state width="1323" height="186" key="GridCell.Tab.0.right" timestamp="1603125294179">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="108" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1603123561407" />
+    <state width="1323" height="186" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1603125294179" />
     <state x="129" y="55" key="MergeDialog" timestamp="1601899465996">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -423,9 +428,9 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="460" y="77" key="git4idea.branch.GitSmartOperationDialog/0.0.1366.728@0.0.1366.728" timestamp="1601899376010" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1603123274317">
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1603131924130">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1603123274317" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1603131924130" />
   </component>
 </project>

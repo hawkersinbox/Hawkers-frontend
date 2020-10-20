@@ -50,9 +50,11 @@ class ProductProvider with ChangeNotifier {
     List<Category> categories =
         categoryResponseFromJson(response.body).response;
     _categories = categories;
-    _selectedCategory = _categories[0];
-    getSubCategory(_selectedCategory.id, accessToken);
+    print(_categories);
+    _selectedCategory = _categories.isEmpty ? null : _categories.first;
+    getSubCategory(_selectedCategory?.id, accessToken);
     notifyListeners();
+
     return _categories;
   }
 

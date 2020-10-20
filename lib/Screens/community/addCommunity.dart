@@ -73,7 +73,7 @@ class _AddCommunityState extends State<AddCommunity> {
       String body = json.encode({
         "type": _communityname,
         "contact_number": _mobile,
-        "alternate_contact_numbr": _alternateMobile,
+        "alternate_contact_number": _alternateMobile,
         "email": _email,
         "street_address": _streetAddress,
         "city": _city,
@@ -107,6 +107,7 @@ class _AddCommunityState extends State<AddCommunity> {
         _availableDaysController.clear();
         final snackBar = SnackBar(content: Text('${responseData["message"]}'));
         _scaffoldKey.currentState.showSnackBar(snackBar);
+        Navigator.pop(context);
       } else {
         final snackBar = SnackBar(content: Text('${responseData["message"]}'));
         _scaffoldKey.currentState.showSnackBar(snackBar);
@@ -177,23 +178,7 @@ class _AddCommunityState extends State<AddCommunity> {
                 SizedBox(
                   height: 10,
                 ),
-                Row(
-                  children: [
-                    IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.location_on,
-                          size: 30,
-                        )),
-                    Text('Add Location',
-                        style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black,
-                            decoration: TextDecoration.underline)),
-                    //  Icon(Icons.phot)
-                  ],
-                ),
+
                 SizedBox(
                   height: 25,
                 ),

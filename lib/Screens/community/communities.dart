@@ -100,7 +100,7 @@ class _CommunitiesState extends State<Communities> {
                                     Navigator.of(context)
                                         .push(
                                         MaterialPageRoute(
-                                            builder: (context) => RaiseSales()
+                                            builder: (context) => RaiseSales(community:data.community[index],)
                                         )
                                     );
                                   },

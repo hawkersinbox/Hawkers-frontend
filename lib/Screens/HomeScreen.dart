@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:hawkers/DataClass/UsreInfo.dart';
 import 'package:hawkers/Models/Product.dart';
+import 'package:hawkers/Models/userModel.dart';
 import 'package:hawkers/Screens/addPaymentDetails.dart';
 import 'package:hawkers/Screens/addUserAdmin.dart';
 import 'package:hawkers/Screens/adminApproval/adminApproval.dart';
@@ -13,6 +14,8 @@ import 'package:hawkers/Screens/salesRequest/salesRequest.dart';
 import 'package:hawkers/Screens/userRequest.dart';
 import 'package:hawkers/Services/api.dart';
 import 'package:hawkers/Utility/SizeConfig.dart';
+import 'package:hawkers/Utility/userData.dart';
+import 'package:hawkers/Widgets/userDetail.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'Account/account.dart';
@@ -42,17 +45,17 @@ var gridViewList = [
     "image": "assets/icons/approval.png"
   },
   {
-    "footer": "Add User",
-    "image": "assets/icons/add_users.png"
-  },
-  {
     "footer": "Products",
     "image": "assets/icons/products.png"
   },
   {
     "footer": "Add Payment",
     "image": "assets/icons/payments.png"
-  }
+  },
+  {
+    "footer":"Add User",
+    "image":"assets/icons/add_users.png"
+  },
 ];
 
 
@@ -341,7 +344,7 @@ var gridViewList = [
          approvalClicked(context);
          break;
        case 3:
-         addUserClicked(context);
+        addUserClicked(context);
          break;
        case 4:
          productsClicked(context);

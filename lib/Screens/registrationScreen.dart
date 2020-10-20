@@ -305,7 +305,7 @@ class _RegistrationState extends State<Registration> {
           Container(
             height: 45,
             decoration: BoxDecoration(
-                //   color: Colors.white10,
+                  color: Color(0xfff8f8f8),
                 border: Border.all(color: Colors.black, width: 0),
                 borderRadius: BorderRadius.circular(3)),
             child: Padding(
