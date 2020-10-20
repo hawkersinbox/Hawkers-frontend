@@ -97,6 +97,7 @@ class _CommunitiesState extends State<Communities> {
                                     ],
                                   ),
                                   onTap: (){
+
                                     Navigator.of(context)
                                         .push(
                                         MaterialPageRoute(
