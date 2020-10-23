@@ -1,17 +1,17 @@
 import 'dart:io';
 import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class RestApi {
   RestApi();
 
-  final String BaseUrl = "https://zzsa82b4p3.execute-api.ap-south-1.amazonaws.com/prod";
-
+  final String BaseUrl =
+      "https://zzsa82b4p3.execute-api.ap-south-1.amazonaws.com/prod";
 
   Future<Response> register(String body) async {
     try {
-      String url =
-          BaseUrl + "/auth/v0/signUp";
+      String url = BaseUrl + "/auth/v0/signUp";
       final response = await http.post(
         url,
         body: body,
@@ -31,8 +31,7 @@ class RestApi {
 
   Future<Response> login(String body) async {
     try {
-      String url =
-          BaseUrl + "/auth/v0/signIn";
+      String url = BaseUrl + "/auth/v0/signIn";
       final response = await http.post(
         url,
         body: body,
@@ -79,11 +78,8 @@ class RestApi {
         HttpHeaders.authorizationHeader: "Bearer " + access_token
       };
 
-      final response = await http.post(
-        url,
-        body: body,
-        headers: requestHeaders
-      );
+      final response =
+          await http.post(url, body: body, headers: requestHeaders);
 
       print("Add Communities Response: ${response.toString()}");
       return response;
@@ -115,17 +111,14 @@ class RestApi {
 
   Future<Response> getProduct(String access_token) async {
     try {
-      String url =
-          BaseUrl + "/v0/product";
+      String url = BaseUrl + "/v0/product";
 
       Map<String, String> requestHeaders = {
         'Content-type': 'application/json',
         HttpHeaders.authorizationHeader: "Bearer " + access_token
       };
 
-      final response = await http.get(url,
-          headers: requestHeaders
-      );
+      final response = await http.get(url, headers: requestHeaders);
 
       print("GetProducts response: ${response.body.toString()}");
       return response;
@@ -135,42 +128,16 @@ class RestApi {
     }
   }
 
-  Future<Response> getCommunity(String access_token) async {
-    try {
-      String url =
-          "https://zzsa82b4p3.execute-api.ap-south-1.amazonaws.com/prod/v0/community";
-      print(url);
-
-      Map<String, String> requestHeaders = {
-        'Content-type': 'application/json',
-        HttpHeaders.authorizationHeader: "Bearer " + access_token
-      };
-
-      final response = await http.get(
-        url,
-        headers: requestHeaders
-      );
-      print(response.body);
-      return response;
-    } catch (e) {
-      print(e);
-      throw e;
-    }
-  }
-
   Future<Response> getCategory(String access_token) async {
     try {
-      String url =
-         BaseUrl +  "/v0/category";
+      String url = BaseUrl + "/v0/category";
 
       Map<String, String> requestHeaders = {
         'Content-type': 'application/json',
         HttpHeaders.authorizationHeader: "Bearer " + access_token
       };
 
-      final response = await http.get(url,
-          headers:requestHeaders
-      );
+      final response = await http.get(url, headers: requestHeaders);
 
       print("HeadersMap: ${requestHeaders.toString()}");
       print("Get Categories Response: ${response.toString()}");
@@ -182,20 +149,16 @@ class RestApi {
     }
   }
 
-  Future<Response> getSubCategory(String body, String access_token) async {
+  Future<Response> getSubCategory(id, String access_token) async {
     try {
       String url =
-          "https://zzsa82b4p3.execute-api.ap-south-1.amazonaws.com/prod/v0/subcategory";
+          "https://zzsa82b4p3.execute-api.ap-south-1.amazonaws.com/prod/v0/subcategoryofCategory/$id";
 
       Map<String, String> requestHeaders = {
         'Content-type': 'application/json',
         HttpHeaders.authorizationHeader: "Bearer " + access_token
       };
-
-      final response = await http.get(
-          url,
-          headers: requestHeaders
-      );
+      final response = await http.get(url, headers: requestHeaders);
       return response;
     } catch (e) {
       print(e);
@@ -213,10 +176,8 @@ class RestApi {
         HttpHeaders.authorizationHeader: "Bearer " + access_token
       };
 
-      final response = await http.post(url,
-          body: body,
-          headers: requestHeaders
-      );
+      final response =
+          await http.post(url, body: body, headers: requestHeaders);
 
       print("Add Product Map: ${requestHeaders.toString()}");
       print("Add Product Response: ${response.body.toString()}");
@@ -227,12 +188,12 @@ class RestApi {
     }
   }
 
-  Future<Response> salesRequest() async {
+  Future<Response> updateRequestStage(body) async {
     try {
+      final headers = await getHeader();
       String url =
-          "https://zzsa82b4p3.execute-api.ap-south-1.amazonaws.com/prod/v0/request";
-      final response = await http.get(url,
-          headers: <String, String>{'content-type': "application/json"});
+          "https://zzsa82b4p3.execute-api.ap-south-1.amazonaws.com/prod/v0/updateRequestStage";
+      final response = await http.put(url, body: body, headers: headers);
       return response;
     } catch (e) {
       print(e);
@@ -240,23 +201,119 @@ class RestApi {
     }
   }
 
+  Future<Response> updateCommunityStage(body) async {
+    try {
+      final headers = await getHeader();
+      String url =
+          "https://zzsa82b4p3.execute-api.ap-south-1.amazonaws.com/prod/v0/updateCommunityStage";
+      final response = await http.put(url, body: body, headers: headers);
+      return response;
+    } catch (e) {
+      print(e);
+      throw e;
+    }
+  }
 
+  Future<Response> getCommunitybyID(id) async {
+    try {
+      final headers = await getHeader();
+      String url =
+          "https://zzsa82b4p3.execute-api.ap-south-1.amazonaws.com/prod/v0/community/$id";
+      final response = await http.get(url, headers: headers);
+      return response;
+    } catch (e) {
+      print(e);
+      throw e;
+    }
+  }
+
+  Future<Response> getsalesRequestbyID(id) async {
+    try {
+      final headers = await getHeader();
+      String url =
+          "https://zzsa82b4p3.execute-api.ap-south-1.amazonaws.com/prod/v0/request/$id";
+      final response = await http.get(url, headers: headers);
+      return response;
+    } catch (e) {
+      print(e);
+      throw e;
+    }
+  }
+
+  Future<Response> salesRequest() async {
+    try {
+      final headers = await getHeader();
+      String url =
+          "https://zzsa82b4p3.execute-api.ap-south-1.amazonaws.com/prod/v0/request";
+      final response = await http.get(url, headers: headers);
+      return response;
+    } catch (e) {
+      print(e);
+      throw e;
+    }
+  }
+
+  Future<Response> salesRequestbystage(String stage) async {
+    try {
+      final headers = await getHeader();
+      String url =
+          "https://zzsa82b4p3.execute-api.ap-south-1.amazonaws.com/prod/v0/requestbystage/$stage";
+      final response = await http.get(url, headers: headers);
+      return response;
+    } catch (e) {
+      print(e);
+      throw e;
+    }
+  }
+
+  Future<Response> getCommunity() async {
+    try {
+      final headers = await getHeader();
+      String url = BaseUrl + "/v0/community";
+      final response = await http.get(url, headers: headers);
+      return response;
+    } catch (e) {
+      print(e);
+      throw e;
+    }
+  }
+
+  Future<Response> createPayment(String body) async {
+    try {
+      final headers = await getHeader();
+      String url = BaseUrl + "/v0/payment";
+      final response = await http.post(url, body: body, headers: headers);
+      return response;
+    } catch (e) {
+      print(e);
+      throw e;
+    }
+  }
+
+  Future<Response> getCommunityByStage(String stage) async {
+    try {
+      final headers = await getHeader();
+      String url =
+          "https://zzsa82b4p3.execute-api.ap-south-1.amazonaws.com/prod/v0/getCommunityByStage/$stage";
+      final response = await http.get(url, headers: headers);
+      return response;
+    } catch (e) {
+      print(e);
+      throw e;
+    }
+  }
 
   Future<Response> addUser(String access_token, String body) async {
-
     try {
-      String url =
-          BaseUrl + "/v0/user";
+      String url = BaseUrl + "/v0/user";
 
       Map<String, String> requestHeaders = {
         'Content-type': 'application/json',
         HttpHeaders.authorizationHeader: "Bearer " + access_token
       };
 
-      final response = await http.post(url,
-          body: body,
-          headers:requestHeaders
-      );
+      final response =
+          await http.post(url, body: body, headers: requestHeaders);
 
       print("HeadersMap: ${requestHeaders.toString()}");
       print("Add User Response: ${response.toString()}");
@@ -266,23 +323,18 @@ class RestApi {
       print(e);
       throw e;
     }
-
   }
 
   Future<Response> getUserInfo(String access_token) async {
     try {
-      String url =
-          BaseUrl + "/v0/myAccount";
+      String url = BaseUrl + "/v0/myAccount";
 
       Map<String, String> requestHeaders = {
         'Content-type': 'application/json',
         HttpHeaders.authorizationHeader: "Bearer " + access_token
       };
 
-      final response = await http.get(
-          url,
-          headers:requestHeaders
-      );
+      final response = await http.get(url, headers: requestHeaders);
 
       print("HeadersMap: ${requestHeaders.toString()}");
       print("Add User Response: ${response.toString()}");
@@ -294,25 +346,17 @@ class RestApi {
     }
   }
 
-
-  Future<Response> createSalesRequest(
-      String access_token,
-      String body
-      ) async {
+  Future<Response> createSalesRequest(String access_token, String body) async {
     try {
-      String url =
-          BaseUrl + "/v0/request";
+      String url = BaseUrl + "/v0/request";
 
       Map<String, String> requestHeaders = {
         'Content-type': 'application/json',
         HttpHeaders.authorizationHeader: "Bearer " + access_token
       };
 
-      final response = await http.post(
-          url,
-          body: body,
-          headers:requestHeaders
-      );
+      final response =
+          await http.post(url, body: body, headers: requestHeaders);
 
       print("HeadersMap: ${requestHeaders.toString()}");
       print("Create Request Body: $body");
@@ -324,50 +368,37 @@ class RestApi {
     }
   }
 
-
   Future<Response> getSalesRequests(String access_token) async {
     String URL = BaseUrl + "/v0/openrequest";
 
     try {
-
-    Map<String, String> requestHeaders = {
-      'Content-type': 'application/json',
-      HttpHeaders.authorizationHeader: "Bearer " + access_token
-    };
-
-    final response = await http.get(
-        URL,
-        headers:requestHeaders
-    );
-
-    print("HeadersMap: ${requestHeaders.toString()}");
-    print("Add User Response: ${response.toString()}");
-
-    return response;
-  } catch (e) {
-  print(e);
-  throw e;
-  }
-
-
-  }
-
-
-  Future<Response> updateUserProfiel(String access_token, String body) async {
-    String URL = BaseUrl + "/v0/updateUserProfile";
-
-    try {
-
       Map<String, String> requestHeaders = {
         'Content-type': 'application/json',
         HttpHeaders.authorizationHeader: "Bearer " + access_token
       };
 
-      final response = await http.put(
-          URL,
-          body: body,
-          headers:requestHeaders
-      );
+      final response = await http.get(URL, headers: requestHeaders);
+
+      print("HeadersMap: ${requestHeaders.toString()}");
+      print("Add User Response: ${response.toString()}");
+
+      return response;
+    } catch (e) {
+      print(e);
+      throw e;
+    }
+  }
+
+  Future<Response> updateUserProfiel(String access_token, String body) async {
+    String URL = BaseUrl + "/v0/updateUserProfile";
+
+    try {
+      Map<String, String> requestHeaders = {
+        'Content-type': 'application/json',
+        HttpHeaders.authorizationHeader: "Bearer " + access_token
+      };
+
+      final response = await http.put(URL, body: body, headers: requestHeaders);
 
       print("Update User Profile Body: $body");
       print("Update User Profile HeadersMap: ${requestHeaders.toString()}");
@@ -378,10 +409,15 @@ class RestApi {
       print(e);
       throw e;
     }
-
-
   }
+}
 
-
-
+Future<Map<String, String>> getHeader() async {
+  final _prefs = await SharedPreferences.getInstance();
+  final accessToken = _prefs.getString("user_access_token");
+  Map<String, String> requestHeaders = {
+    'Content-type': 'application/json',
+    HttpHeaders.authorizationHeader: "Bearer " + accessToken
+  };
+  return requestHeaders;
 }

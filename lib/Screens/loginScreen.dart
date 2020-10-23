@@ -1,16 +1,12 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:hawkers/Models/userModel.dart';
 import 'package:hawkers/Provider/MobileNumber.dart';
 import 'package:hawkers/Screens/registrationScreen.dart';
-import 'package:hawkers/Utility/userData.dart';
 import 'package:hawkers/Utility/SizeConfig.dart';
 import 'package:provider/provider.dart';
-import 'package:hawkers/Provider/user.dart';
 import 'package:hawkers/Screens/otpScreen.dart';
 import 'package:hawkers/Services/api.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class Login extends StatefulWidget {
   static const routeName = '/Login';
@@ -22,7 +18,6 @@ class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
   GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   RestApi restApi = RestApi();
-  TextEditingController _mobileController = new TextEditingController();
   String _mobile;
   bool mobileValid = true;
   bool _isLoading = false;
@@ -41,19 +36,24 @@ class _LoginState extends State<Login> {
       try {
         final response = await restApi.login(body);
         responseData = jsonDecode(response.body);
-      } catch (e) {}
-
-      if (responseData["success"]) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => Otp(
-                    mobile: _mobile,
-                  )),
-        );
-      } else {
-        final snackBar = SnackBar(content: Text('${responseData["message"]}'));
-        _scaffoldKey.currentState.showSnackBar(snackBar);
+        if (responseData["success"]) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => Otp(
+                      mobile: _mobile,
+                    )),
+          );
+        } else {
+          final snackBar =
+              SnackBar(content: Text('${responseData["message"]}'));
+          _scaffoldKey.currentState.showSnackBar(snackBar);
+        }
+      } catch (e) {
+            final snackBar =
+              SnackBar(content: Text('Network error'));
+          _scaffoldKey.currentState.showSnackBar(snackBar);
+        print(e);
       }
       setState(() {
         _isLoading = false;
@@ -100,7 +100,7 @@ class _LoginState extends State<Login> {
                 margin: EdgeInsets.all(0),
                 height: 45,
                 decoration: BoxDecoration(
-                    color:Colors.grey.withOpacity(0.2),
+                    color: Colors.grey.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(3),
                     border: Border.all(color: Colors.black)),
                 child: Container(
@@ -168,8 +168,7 @@ class _LoginState extends State<Login> {
                 child: Container(
                   child: SizedBox(
                     height: 45,
-
-                     width:MediaQuery.of(context).size.width,
+                    width: MediaQuery.of(context).size.width,
                     child: RaisedButton(
                       onPressed: () {
                         FocusScope.of(context).requestFocus(FocusNode());

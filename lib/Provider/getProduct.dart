@@ -41,6 +41,8 @@ class ProductProvider with ChangeNotifier {
     final response = await restApi.getProduct(access_token);
     List<Product> products = productResponseFromJson(response.body).response;
     _products = products;
+    print(_products);
+    notifyListeners();
     return products;
   }
 
@@ -61,9 +63,7 @@ class ProductProvider with ChangeNotifier {
   Future<List<SubCategory>> getSubCategory(int id, String access_token) async {
     _subCategories = [];
     _selectedSubCategory = null;
-    String body = jsonEncode({"category_id": id});
-    final response = await restApi.getSubCategory(body, access_token);
-    print("SubCategoriesResponse: ${response.body.toString()}");
+    final response = await restApi.getSubCategory(id, access_token);
     List<SubCategory> subCategories =
         subCategoryResponseFromJson(response.body).response;
     _subCategories = subCategories;

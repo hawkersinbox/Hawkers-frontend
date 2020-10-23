@@ -19,9 +19,6 @@ class SizeConfig {
     blockSizeHorizontal = screenWidth / 100;
     blockSizeVertical = screenHeight / 100;
 
-    print('Screen_Width $screenWidth');
-    print('Screen_Height $screenHeight');
-
     _safeAreaHorizontal = _mediaQueryData.padding.left +
         _mediaQueryData.padding.right;
     _safeAreaVertical = _mediaQueryData.padding.top +
@@ -36,15 +33,12 @@ class SizeConfig {
 
     if (MediaQuery.of(context).size.height.toDouble() > 790){
       // Large Screen Device
-      print(MediaQuery.of(context).size.height.toString());
       return 2;
     }else if (780 > MediaQuery.of(context).size.height.toDouble() && MediaQuery.of(context).size.height.toDouble() > 680){
       // Medium Screen Device
-      print(MediaQuery.of(context).size.height.toString());
       return 1;
     }else if (500 < MediaQuery.of(context).size.height.toDouble() && MediaQuery.of(context).size.height.toDouble() < 600){
       // Small Screen Device
-      print(MediaQuery.of(context).size.height.toString());
       return 0;
     }
 

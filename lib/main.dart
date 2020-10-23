@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hawkers/Provider/AccessToken.dart';
 import 'package:hawkers/Provider/MobileNumber.dart';
 import 'package:hawkers/Provider/SalesRequestProvider.dart';
+import 'package:hawkers/Provider/approvalCommunity.dart';
+import 'package:hawkers/Provider/approvalRequest.dart';
 import 'package:hawkers/Provider/community.dart';
 import 'package:hawkers/Provider/getProduct.dart';
 import 'package:hawkers/SQLite/Database.dart';
@@ -22,11 +24,9 @@ import 'Screens/loginScreen.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
-
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -48,6 +48,12 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider<AccessTokenProvider>(
           create: (_) => AccessTokenProvider(),
+        ),
+        ChangeNotifierProvider<AprovalSales>(
+          create: (_) => AprovalSales(),
+        ),
+        ChangeNotifierProvider<AprovalCommunity>(
+          create: (_) => AprovalCommunity(),
         )
       ],
       child: MaterialApp(
@@ -56,7 +62,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.green,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home:SplashScreen(),
+        home: SplashScreen(),
         routes: {
           // CreateSalesRequest.routeName: (ctx) => CreateSalesRequest(),
           SplashScreen.routeName: (ctx) => SplashScreen(),

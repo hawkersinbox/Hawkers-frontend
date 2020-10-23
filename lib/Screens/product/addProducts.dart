@@ -9,6 +9,8 @@ import 'package:hawkers/Provider/getProduct.dart';
 import 'package:hawkers/Screens/product/productReview.dart';
 import 'package:hawkers/Screens/splashScreen.dart';
 import 'package:hawkers/Services/api.dart';
+import 'package:hawkers/Utility/constant.dart';
+import 'package:hawkers/Utility/show_toast.dart';
 import 'package:hawkers/Widgets/navigationBar.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
@@ -42,13 +44,6 @@ class _AddProductsState extends State<AddProducts> {
   PriceRange selectedPriceRange = priceRangeList[0];
   bool _isLoading = false;
   _addProduct(String access_token) async {
-    //    "category_id": 2,
-    // "sub_category_id":1,
-    // "name": "harry potter",
-    // "upper_price": 100,
-    // "lower_price": 25,
-    // "description": "one of best book",
-    // "image_url": " "
     final category =
         Provider.of<ProductProvider>(context, listen: false).selectedCategory;
     final subCategory = Provider.of<ProductProvider>(context, listen: false)
@@ -76,19 +71,17 @@ class _AddProductsState extends State<AddProducts> {
       try {
         final response = await restApi.addProduct(body, access_token);
         responseData = jsonDecode(response.body);
-      } catch (e) {}
 
-      if (responseData["success"]) {
-        _productnameController.clear();
-        _commentController.clear();
-        _mfgController.clear();
-
-        final snackBar = SnackBar(content: Text('${responseData["message"]}'));
-        _scaffoldKey.currentState.showSnackBar(snackBar);
-      } else {
-        final snackBar = SnackBar(content: Text('${responseData["message"]}'));
-        _scaffoldKey.currentState.showSnackBar(snackBar);
+        if (responseData["success"]) {
+          _productnameController.clear();
+          _commentController.clear();
+          _mfgController.clear();
+        }
+        showToast(responseData["message"]);
+      } catch (e) {
+        showToast(errorMessage);
       }
+
       setState(() {
         _isLoading = false;
       });
@@ -123,7 +116,8 @@ class _AddProductsState extends State<AddProducts> {
   }
 
   getCategory(String access_token) async {
-    await Provider.of<ProductProvider>(context, listen: false).getCategory(access_token);
+    await Provider.of<ProductProvider>(context, listen: false)
+        .getCategory(access_token);
     setState(() {
       _isLoadingCategory = false;
     });
@@ -311,21 +305,20 @@ class _AddProductsState extends State<AddProducts> {
                           child: RaisedButton(
                             onPressed: () {
                               FocusScope.of(context).requestFocus(FocusNode());
-                              Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
-
-                              _prefs.then((SharedPreferences sharedPreferences) {
-                                String accessToken = sharedPreferences.getString("access_token");
+                              Future<SharedPreferences> _prefs =
+                                  SharedPreferences.getInstance();
+                              _prefs
+                                  .then((SharedPreferences sharedPreferences) {
+                                String accessToken =
+                                    sharedPreferences.getString("access_token");
                                 mAccessToken = accessToken;
                                 print("access_token: $accessToken");
                                 _addProduct(accessToken);
-                              })
-                                  .whenComplete(() {
-                                print("Complete!");
-                              })
-                                  .catchError((error){
+                              }).whenComplete(() {
+                                Navigator.pop(context);
+                              }).catchError((error) {
                                 print("Error: ${error.toString()}");
                               });
-                              Navigator.push(context,MaterialPageRoute(builder: (context)=>ProductReview()));
                             },
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular((3))),
@@ -401,17 +394,13 @@ class _AddProductsState extends State<AddProducts> {
 
   void getSharedPrefrences() async {
     Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
-
     _prefs.then((SharedPreferences sharedPreferences) {
       String accessToken = sharedPreferences.getString("access_token");
       mAccessToken = accessToken;
-      print("access_token: $accessToken");
       getCategory(accessToken);
-    })
-    .whenComplete(() {
+    }).whenComplete(() {
       print("Complete!");
-    })
-    .catchError((error){
+    }).catchError((error) {
       print("Error: ${error.toString()}");
     });
   }

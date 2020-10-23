@@ -42,7 +42,7 @@ class SalesRequest {
     this.imageUrl,
     this.sellerComment,
     this.adminComment,
-    this.status,
+    this.stage,
     this.createdAt,
     this.product,
   });
@@ -51,7 +51,7 @@ class SalesRequest {
   String imageUrl;
   String sellerComment;
   dynamic adminComment;
-  String status;
+  String stage;
   DateTime createdAt;
   String product;
 
@@ -60,7 +60,7 @@ class SalesRequest {
         imageUrl: json["image_url"],
         sellerComment: json["seller_comment"],
         adminComment: json["admin_comment"],
-        status: json["status"],
+        stage: json["stage"],
         createdAt: DateTime.parse(json["created_at"]),
         product: json["product"],
       );
@@ -70,7 +70,7 @@ class SalesRequest {
         "image_url": imageUrl,
         "seller_comment": sellerComment,
         "admin_comment": adminComment,
-        "status": status,
+        "stage": stage,
         "created_at": createdAt.toIso8601String(),
         "product": product,
       };

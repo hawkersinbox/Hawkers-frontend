@@ -110,7 +110,6 @@ class _ProductListState extends State<ProductList> {
                                     ],
                                   ),
                                   onTap: (){
-                                    // TODO Navigate To Product Review Screen
 
                                   },
                                 ),
@@ -127,7 +126,6 @@ class _ProductListState extends State<ProductList> {
                       Container(
                         child: SizedBox(
                           height: 45,
-                          // width:ScreenUtil().setWidth(700),
                           child: RaisedButton(
                             onPressed: () {
                               Navigator.pushNamed(

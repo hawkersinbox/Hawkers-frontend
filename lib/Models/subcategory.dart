@@ -39,31 +39,31 @@ class SubCategoryResponse {
 class SubCategory {
   SubCategory({
     this.id,
-    this.subCategory,
     this.categoryId,
+    this.subCategory,
     this.createdAt,
-    this.updatedAt,
+    this.category,
   });
 
   int id;
-  String subCategory;
   int categoryId;
+  String subCategory;
   DateTime createdAt;
-  DateTime updatedAt;
+  String category;
 
   factory SubCategory.fromJson(Map<String, dynamic> json) => SubCategory(
         id: json["id"],
-        subCategory: json["sub_category"],
         categoryId: json["category_id"],
+        subCategory: json["sub_category"],
         createdAt: DateTime.parse(json["created_at"]),
-        updatedAt: DateTime.parse(json["updated_at"]),
+        category: json["category"],
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
-        "sub_category": subCategory,
         "category_id": categoryId,
+        "sub_category": subCategory,
         "created_at": createdAt.toIso8601String(),
-        "updated_at": updatedAt.toIso8601String(),
+        "category": category,
       };
 }

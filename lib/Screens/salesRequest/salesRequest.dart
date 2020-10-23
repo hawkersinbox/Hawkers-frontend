@@ -33,7 +33,7 @@ class _SalesRequestState extends State<SalesRequest> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
-        title: Text('Request Details',
+        title: Text('Sales Request',
             style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.w600,
@@ -55,24 +55,6 @@ class _SalesRequestState extends State<SalesRequest> {
                       SalesRequestTile(data.salesRequests[index]),
                 ),
               ),
-            ),
-          ),
-          InkWell(
-            onTap: () {
-              Navigator.push(context,MaterialPageRoute(builder: (context)=>RaiseSales()));
-            },
-            child: Container(
-              height: 45,
-              width: 200,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                  color: Colors.lightGreen,
-                  borderRadius: BorderRadius.circular(3)),
-              child: Text('New Request',
-                  style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.white)),
             ),
           ),
         ],
@@ -117,11 +99,6 @@ class SalesRequestTile extends StatelessWidget {
                   ],
                 ),
               ),
-              Icon(
-                Icons.arrow_forward_ios,
-                color: Colors.black,
-                size: 22,
-              )
             ],
           ),
         ],
