@@ -1,15 +1,14 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:hawkers/SQLite/Database.dart';
 import 'package:hawkers/SQLite/User.dart';
-import 'package:hawkers/Screens/loginScreen.dart';
 import 'package:hawkers/Screens/otpScreen.dart';
 import 'package:hawkers/Services/api.dart';
-import 'package:provider/provider.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:hawkers/Utility/global.dart';
-import 'dart:convert';
-import 'package:hawkers/Provider/user.dart';
+import 'package:hawkers/Utility/colors.dart';
+import 'package:hawkers/Utility/constant.dart';
+import 'package:hawkers/Utility/show_toast.dart';
+import 'package:hawkers/Widgets/custumButton.dart';
 
 class Registration extends StatefulWidget {
   static const routeName = '/Registration';
@@ -107,23 +106,6 @@ class _RegistrationState extends State<Registration> {
         print("Error: ${e.toString()}");
       }
       if (responseData["success"]) {
-
-        try {
-          AppUser item = AppUser(
-              firstName: _firstnameController.text,
-              lastName: _lastnameController.text,
-              emailID: _emailController.text,
-              mobileNumber: _mobileController.text,
-              userCity: _cityController.text,
-              userState: _stateController.text,
-              userStreetOne: _streetaddressController.text,
-              userPinCode: _pincodeController.text
-          );
-          // await DB.insert(AppUser.table, item);
-        }catch (e) {
-          print("Error: ${e.toString()}");
-        }
-
         _mobileController.clear();
         _firstnameController.clear();
         _lastnameController.clear();
@@ -132,26 +114,29 @@ class _RegistrationState extends State<Registration> {
         _stateController.clear();
         _streetaddressController.clear();
         _pincodeController.clear();
-        print("Mobile Number: ${_mobile}");
-        print("Mobile Number Controller: ${_mobileController.text}");
-
         Navigator.push(
           context,
           MaterialPageRoute(
               builder: (context) => Otp(
-                    mobile:_mobile,
+                    isSignUp: true,
+                    mobile: _mobile,
+                    email: _email,
+                    firstname: _firstname,
+                    lastname: _lastname,
+                    city: _city,
+                    state: _state,
+                    streetaddress: _streetaddress,
+                    pincode: _pincode,
                   )),
         );
       } else {
-        final snackBar = SnackBar(content: Text('${responseData["message"]}'));
-        _scaffoldKey.currentState.showSnackBar(snackBar);
+        showToast(responseData["message"] ?? '');
       }
       setState(() {
         _isLoading = false;
       });
     } else {
-      final snackBar = SnackBar(content: Text('Invalid Input'));
-      _scaffoldKey.currentState.showSnackBar(snackBar);
+      showToast(errorInvalidInput);
     }
   }
 
@@ -160,7 +145,6 @@ class _RegistrationState extends State<Registration> {
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-        backgroundColor: Colors.white,
         title: Text(
           'My account',
           style: TextStyle(
@@ -180,7 +164,8 @@ class _RegistrationState extends State<Registration> {
               ),
               Field('Last Name*', _lastnameController),
               SizedBox(height: 20),
-              NumField('Mobile Number*', _mobileController),
+              NumField('Mobile Number*', _mobileController,
+                  maxcount: 10, prefix: '+91 '),
               SizedBox(
                 height: 20,
               ),
@@ -188,7 +173,7 @@ class _RegistrationState extends State<Registration> {
               SizedBox(
                 height: 20,
               ),
-              Field('Street Address', _streetaddressController),
+              Field('Street Address*', _streetaddressController),
               SizedBox(
                 height: 20,
               ),
@@ -200,7 +185,11 @@ class _RegistrationState extends State<Registration> {
               SizedBox(
                 height: 20,
               ),
-              NumField('Pincode*', _pincodeController),
+              NumField(
+                'Pincode*',
+                _pincodeController,
+                maxcount: 10,
+              ),
               SizedBox(
                 height: 70,
               ),
@@ -223,32 +212,13 @@ class _RegistrationState extends State<Registration> {
               SizedBox(
                 height: 30,
               ),
-              Container(
-                child: SizedBox(
-                  height: 45,
-                  // width:ScreenUtil().setWidth(700),
-                  child: RaisedButton(
-                    onPressed: () {
-                      FocusScope.of(context).requestFocus(FocusNode());
-                      _registerUser();
-                    },
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular((5))),
-                    color: Colors.lightGreen,
-                    child: _isLoading
-                        ? SpinKitCircle(
-                            color: Colors.white,
-                            size: 25,
-                          )
-                        : Text(
-                            'Create Account',
-                            style: TextStyle(
-                                fontSize: 21,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white),
-                          ),
-                  ),
-                ),
+              CustumButton(
+                isLoading: _isLoading,
+                onTap: () {
+                  FocusScope.of(context).requestFocus(FocusNode());
+                  _registerUser();
+                },
+                title: 'Create Account',
               ),
               SizedBox(
                 height: 20,
@@ -305,7 +275,7 @@ class _RegistrationState extends State<Registration> {
           Container(
             height: 45,
             decoration: BoxDecoration(
-                  color: Color(0xfff8f8f8),
+                color: hawkersLightGrey,
                 border: Border.all(color: Colors.black, width: 0),
                 borderRadius: BorderRadius.circular(3)),
             child: Padding(
@@ -316,9 +286,6 @@ class _RegistrationState extends State<Registration> {
                 textAlign: TextAlign.start,
                 cursorColor: Colors.black,
                 style: TextStyle(color: Colors.black, fontSize: 21),
-
-                //     color:Colors.grey,
-
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -381,8 +348,10 @@ class _RegistrationState extends State<Registration> {
 
   Widget NumField(
     String name,
-    TextEditingController controller,
-  ) {
+    TextEditingController controller, {
+    prefix,
+    @required maxcount,
+  }) {
     return Container(
         child: Column(
       children: [
@@ -408,12 +377,14 @@ class _RegistrationState extends State<Registration> {
               child: TextField(
                 keyboardType: TextInputType.number,
                 controller: controller,
+                maxLength: maxcount,
                 textAlign: TextAlign.start,
                 cursorColor: Colors.black,
                 style: TextStyle(color: Colors.black, fontSize: 21),
-                //     color:Colors.grey,
-
                 decoration: InputDecoration(
+                  counterText: '',
+                  prefix: Text(prefix ?? ''),
+                  contentPadding: EdgeInsets.only(top: 1),
                   border: InputBorder.none,
                   floatingLabelBehavior: FloatingLabelBehavior.never,
                 ),

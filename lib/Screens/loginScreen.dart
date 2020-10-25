@@ -4,6 +4,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:hawkers/Provider/MobileNumber.dart';
 import 'package:hawkers/Screens/registrationScreen.dart';
 import 'package:hawkers/Utility/SizeConfig.dart';
+import 'package:hawkers/Widgets/custumButton.dart';
 import 'package:provider/provider.dart';
 import 'package:hawkers/Screens/otpScreen.dart';
 import 'package:hawkers/Services/api.dart';
@@ -50,9 +51,8 @@ class _LoginState extends State<Login> {
           _scaffoldKey.currentState.showSnackBar(snackBar);
         }
       } catch (e) {
-            final snackBar =
-              SnackBar(content: Text('Network error'));
-          _scaffoldKey.currentState.showSnackBar(snackBar);
+        final snackBar = SnackBar(content: Text('Network error'));
+        _scaffoldKey.currentState.showSnackBar(snackBar);
         print(e);
       }
       setState(() {
@@ -71,7 +71,6 @@ class _LoginState extends State<Login> {
       resizeToAvoidBottomPadding: false,
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
         //elevation: 0,
         title: Text(
           'My Account',
@@ -114,9 +113,9 @@ class _LoginState extends State<Login> {
                         textAlign: TextAlign.start,
                         cursorColor: Colors.black,
                         style: TextStyle(color: Colors.black, fontSize: 21),
-                        //     color:Colors.grey,
-
                         decoration: InputDecoration(
+                          contentPadding: EdgeInsets.only(top: 1),
+                          prefixText: '+91 ',
                           counterText: '',
                           border: InputBorder.none,
                           floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -165,32 +164,13 @@ class _LoginState extends State<Login> {
                 height: 30,
               ),
               Center(
-                child: Container(
-                  child: SizedBox(
-                    height: 45,
-                    width: MediaQuery.of(context).size.width,
-                    child: RaisedButton(
-                      onPressed: () {
-                        FocusScope.of(context).requestFocus(FocusNode());
-                        _login();
-                      },
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular((3))),
-                      color: Colors.lightGreen,
-                      child: _isLoading
-                          ? SpinKitCircle(
-                              color: Colors.white,
-                              size: 25,
-                            )
-                          : Text(
-                              'Request Otp',
-                              style: TextStyle(
-                                  fontSize: 21,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.white),
-                            ),
-                    ),
-                  ),
+                child: CustumButton(
+                  isLoading: _isLoading,
+                  onTap: () {
+                    FocusScope.of(context).requestFocus(FocusNode());
+                    _login();
+                  },
+                  title: 'Request OTP',
                 ),
               ),
               SizedBox(
@@ -205,10 +185,9 @@ class _LoginState extends State<Login> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Don't have an account?",
+                      "Don't have an account? ",
                       style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.lightGreen,
+                        fontSize: 17,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -223,9 +202,9 @@ class _LoginState extends State<Login> {
                       child: Text(
                         'Create one',
                         style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 17,
                           decoration: TextDecoration.underline,
-                          color: Colors.lightGreen,
+                          color: Colors.blue,
                           fontWeight: FontWeight.w500,
                         ),
                       ),

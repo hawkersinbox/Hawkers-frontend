@@ -4,6 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:hawkers/Provider/AccessToken.dart';
 import 'package:hawkers/Provider/MobileNumber.dart';
+import 'package:hawkers/Utility/show_toast.dart';
 import 'package:pinput/pin_put/pin_put.dart';
 import 'package:flutter/material.dart';
 import 'package:hawkers/Screens/HomeScreen.dart';
@@ -19,11 +20,28 @@ String verification_code_text = "Enter 6 digits verification code sent to ";
 class Otp extends StatefulWidget {
   static const routeName = '/Otp';
 
+  final bool isSignUp;
   final mobile;
-  const Otp({
-    Key key,
-    this.mobile,
-  }) : super(key: key);
+  final email;
+  final firstname;
+  final lastname;
+  final city;
+  final state;
+  final streetaddress;
+  final pincode;
+
+  const Otp(
+      {Key key,
+      this.isSignUp,
+      this.mobile,
+      this.email,
+      this.firstname,
+      this.lastname,
+      this.city,
+      this.state,
+      this.streetaddress,
+      this.pincode})
+      : super(key: key);
   @override
   _OtpState createState() => _OtpState();
 }
@@ -94,56 +112,70 @@ class _OtpState extends State<Otp> {
   verifyOtp() async {
     otp = _pinPutController.text;
     if (otp.isNotEmpty && otp.length == 6) {
-      String body = json.encode({'mobile': widget.mobile, 'otp': otp});
+      String body = json.encode(widget.isSignUp
+          ? {
+              'isSignUp': true,
+              'mobile': widget.mobile,
+              'otp': otp,
+              'email': widget.email,
+              'first_name': widget.firstname,
+              'last_name': widget.lastname,
+              'city': widget.city,
+              'state': widget.state,
+              'street_address1': widget.streetaddress,
+              'pincode': widget.pincode,
+            }
+          : {'mobile': widget.mobile, 'otp': otp});
 
       setState(() {
         _isLoading = true;
       });
 
-      final response = await restApi.otpVerify(body);
-      final responseData = jsonDecode(response.body);
-      print(responseData);
-      if (responseData["success"]) {
-        {
-          print("Response Not Null!");
-          print("Response Body: ${response.body}");
-          UserModel.User loginResponse = UserModel.userFromJson(response.body);
-          UserData.user = loginResponse;
-          final prefs = await SharedPreferences.getInstance();
-          prefs.setString(
-            'userData',
-            json.encode(
-              UserData.user.toJson(),
-            ),
-          );
-
-          prefs.setString(
-              "user_first_name", responseData["response"]["firstName"]);
-          prefs.setString(
-              "user_last_name", responseData["response"]["lastName"]);
-          prefs.setString("user_email", responseData["response"]["email"]);
-          prefs.setString(
-              "user_access_token", responseData["response"]["accessToken"]);
-
-          String accessToken =
-              responseData["response"]["accessToken"].toString();
-          print("Access Token: $accessToken");
-          prefs.setString("access_token", accessToken);
-
-          Navigator.pushAndRemoveUntil(
-              context,
-              PageTransition(
-                  type: PageTransitionType.rightToLeft, child: HomeScreen()),
-              ModalRoute.withName('/'));
-
-          setState(() {
-            _isLoading = false;
-          });
+      try {
+        final response = await restApi.otpVerify(body);
+        final responseData = jsonDecode(response.body);
+        print(responseData);
+        if (responseData["success"]) {
+          if (widget.isSignUp) {
+            showToast(responseData["message"] ?? '');
+            Navigator.pop(context);
+            Navigator.pop(context);
+          } else {
+            UserModel.User loginResponse =
+                UserModel.userFromJson(response.body);
+            UserData.user = loginResponse;
+            final prefs = await SharedPreferences.getInstance();
+            prefs.setString(
+              'userData',
+              json.encode(
+                UserData.user.toJson(),
+              ),
+            );
+            prefs.setString(
+                "user_first_name", responseData["response"]["firstName"]);
+            prefs.setString(
+                "user_last_name", responseData["response"]["lastName"]);
+            prefs.setString("user_email", responseData["response"]["email"]);
+            prefs.setString(
+                "user_access_token", responseData["response"]["accessToken"]);
+            String accessToken =
+                responseData["response"]["accessToken"].toString();
+            print("Access Token: $accessToken");
+            prefs.setString("access_token", accessToken);
+            Navigator.pushAndRemoveUntil(
+                context,
+                PageTransition(
+                    type: PageTransitionType.rightToLeft, child: HomeScreen()),
+                ModalRoute.withName('/'));
+            setState(() {
+              _isLoading = false;
+            });
+          }
+        } else {
+          showToast(responseData["message"] ?? '');
         }
-      } else {
-        final snackBar = SnackBar(content: Text('${responseData["message"]}'));
-        _scaffoldKey.currentState.showSnackBar(snackBar);
-      }
+      } catch (e) {}
+
       setState(() {
         _isLoading = false;
       });
@@ -153,13 +185,12 @@ class _OtpState extends State<Otp> {
   @override
   Widget build(BuildContext context) {
     accessTokenProvider = Provider.of<AccessTokenProvider>(context);
-    var mobileNumberDetails = Provider.of<MobileNumberProvider>(context);
     return Scaffold(
       key: _scaffoldKey,
       resizeToAvoidBottomPadding: false,
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        // backgroundColor: Colors.white,
         title: Text(
           'Verify Mobile Number',
           style: TextStyle(
@@ -193,7 +224,7 @@ class _OtpState extends State<Otp> {
                         height: 5,
                       ),
                       Text(
-                        mobileNumberDetails.mobileNumber,
+                        widget.mobile ?? '',
                         style: TextStyle(
                           fontSize: 18,
                           color: Colors.grey,
@@ -232,15 +263,20 @@ class _OtpState extends State<Otp> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Padding(
-                        padding: EdgeInsets.all(5),
-                        child: Text(
-                          'Change Number',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.lightGreen,
-                          ),
-                        )),
+                    InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Padding(
+                          padding: EdgeInsets.all(5),
+                          child: Text(
+                            'Change Number',
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.lightGreen,
+                            ),
+                          )),
+                    ),
                     _start > 0
                         ? Text(
                             'Resend in ${_start.toString()}',
@@ -318,7 +354,7 @@ class _OtpState extends State<Otp> {
               Padding(
                 padding: EdgeInsets.all(10),
                 child: Text(
-                  title,
+                  title ?? '',
                   style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -328,7 +364,7 @@ class _OtpState extends State<Otp> {
               Padding(
                 padding: EdgeInsets.all(10),
                 child: Text(
-                  message,
+                  message ?? '',
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w400,
@@ -338,23 +374,24 @@ class _OtpState extends State<Otp> {
                 ),
               ),
               Padding(
-                  padding: EdgeInsets.all(10),
-                  child: RaisedButton(
-                    color: Colors.lightGreen,
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: Padding(
-                      padding: EdgeInsets.all(5),
-                      child: Text(
-                        'Okay',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w300,
-                            color: Colors.black,
-                            fontSize: 16),
-                      ),
+                padding: EdgeInsets.all(10),
+                child: RaisedButton(
+                  color: Colors.lightGreen,
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.all(5),
+                    child: Text(
+                      'Okay',
+                      style: TextStyle(
+                          fontWeight: FontWeight.w300,
+                          color: Colors.black,
+                          fontSize: 16),
                     ),
-                  ))
+                  ),
+                ),
+              )
             ],
           ),
         ),

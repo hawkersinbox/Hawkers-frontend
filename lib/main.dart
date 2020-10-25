@@ -59,7 +59,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Hawkers',
         theme: ThemeData(
-          primarySwatch: Colors.green,
+          primarySwatch: Colors.lightGreen,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         home: SplashScreen(),
