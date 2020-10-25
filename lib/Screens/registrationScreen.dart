@@ -85,7 +85,7 @@ class _RegistrationState extends State<Registration> {
     print(body);
 
     if (_mobile != '' &&
-        _email != '' &&
+       
         _firstname != '' &&
         _lastname != '' &&
         _city != '' &&
@@ -319,7 +319,7 @@ class _RegistrationState extends State<Registration> {
               Container(
                 height: 45,
                 decoration: BoxDecoration(
-                    //  color: Colors.black12,
+                      color: hawkersLightGrey,
                     border: Border.all(color: Colors.black, width: 0),
                     borderRadius: BorderRadius.circular(3)),
                 child: Padding(
@@ -369,7 +369,7 @@ class _RegistrationState extends State<Registration> {
         Container(
             height: 45,
             decoration: BoxDecoration(
-                //   color: Colors.black12,
+                 color: hawkersLightGrey,
                 border: Border.all(color: Colors.black, width: 0),
                 borderRadius: BorderRadius.circular(3)),
             child: Padding(

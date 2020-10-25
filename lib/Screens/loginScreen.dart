@@ -4,6 +4,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:hawkers/Provider/MobileNumber.dart';
 import 'package:hawkers/Screens/registrationScreen.dart';
 import 'package:hawkers/Utility/SizeConfig.dart';
+import 'package:hawkers/Utility/colors.dart';
 import 'package:hawkers/Widgets/custumButton.dart';
 import 'package:provider/provider.dart';
 import 'package:hawkers/Screens/otpScreen.dart';
@@ -99,7 +100,7 @@ class _LoginState extends State<Login> {
                 margin: EdgeInsets.all(0),
                 height: 45,
                 decoration: BoxDecoration(
-                    color: Colors.grey.withOpacity(0.2),
+                    color: hawkersLightGrey,
                     borderRadius: BorderRadius.circular(3),
                     border: Border.all(color: Colors.black)),
                 child: Container(
